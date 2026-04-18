@@ -9,12 +9,14 @@
 
 ## 🔗 Quick Links
 
-| Document | Description | English Version |
-|----------|-------------|-----------------|
-| [README.md](README.md) | 📖 Main documentation (this one) | [English](README-en.md) |
-| [TECHNICAL.md](TECHNICAL.md) | 🔬 Technical Principles + Algorithms | [English](TECHNICAL-en.md) |
-| [CHANGELOG.md](CHANGELOG.md) | 📅 Evolution History + Decision Process | [English](CHANGELOG-en.md) |
-| [TEST-REPORT.md](TEST-REPORT.md) | 🧪 Test Results + Bug Fixes | [English](TEST-REPORT-en.md) |
+| Document | Description | Language |
+|----------|-------------|----------|
+| [README.md](README.md) | 📖 English Main Page (this one) | English |
+| [README_粵語.md](README_粵語.md) | 📖 Cantonese Version | 粵語 |
+| [README_中文.md](README_中文.md) | 📖 Simplified Chinese (Formal) | 書面語 |
+| [TECHNICAL.md](TECHNICAL-en.md) | 🔬 Technical Principles + Algorithms | English |
+| [CHANGELOG.md](CHANGELOG-en.md) | 📅 Evolution History + Decision Process | English |
+| [TEST-REPORT.md](TEST-REPORT-en.md) | 🧪 Test Results + Bug Fixes | English |
 | [cover.webp](cover.webp) | 🖼️ Cover Image |
 
 ---
