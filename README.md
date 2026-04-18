@@ -645,3 +645,183 @@ OCM-Sup/
 
 _Last updated: 2026-04-18_
 _OCM Sup v2.0_
+
+---
+
+## 🙏 Credits
+
+### Inspiration Sources
+
+- **Andrej Karpathy** - Programming Principles (Simplicity First, Surgical Changes)
+- **Aporia Labs** - LLM Wiki v2 (Confidence Scoring, Supersession, Forgetting)
+- **Anthropic** - OODA Loop / CraniMem Architecture  
+- **Jacky** - QS Professional, requirements proposer for the entire system
+
+### Technology Stack
+
+- **OpenClaw** - AI Assistant Framework
+- **BM25 (rank_bm25)** - Keyword Search
+- **Sentence Transformers** - Vector Embeddings
+- **Flask** - HTTP API
+- **Mermaid.js** - Chart rendering
+
+### Main Contributors
+
+- **Jacky** - Product design, requirements
+- **Star (阿星)** - System development, algorithm implementation
+
+---
+
+## 📄 License
+
+MIT License - See [LICENSE](LICENSE) for details.
+
+---
+
+## 🔗 Links
+
+- [GitHub Repository](https://github.com/st007097-coder/ocm-sup)
+- [OpenClaw Docs](https://docs.openclaw.ai)
+- [Jacky's GitHub](https://github.com/st007097-coder)
+
+---
+
+## 📋 Full Step-by-Step Guide
+
+### Step 1: Understand Your Memory Needs
+
+**Before building, ask yourself:**
+- What do you search for most often?
+- What relationships matter to you?
+- What information do you want to remember?
+
+**Common patterns:**
+- Project status and progress
+- People and their roles
+- System configurations and decisions
+- Learning and research notes
+
+### Step 2: Design Your Entities
+
+**Core entity types:**
+
+| Type | Example | Attributes |
+|------|--------|------------|
+| Person | Jacky | role, skills, projects |
+| Project | Kwu Tung Station | status, deadline, budget |
+| System | OCM Sup | version, features, integrations |
+| Concept | Triple-Stream Search | description, when to use |
+
+**Start small:** Begin with 5-10 entities, expand as needed.
+
+### Step 3: Implement Search
+
+**Choose your search method:**
+
+| Method | Best For | When to Use |
+|--------|---------|------------|
+| BM25 only | Fast, keyword-only search | Simple use cases |
+| BM25 + Vector | Semantic search needed | Mixed Chinese/English |
+| **Triple-Stream** | Full capability | Jacky's setup |
+
+**For Chinese + English mixed content:**
+```python
+# Query expansion helps bridge language gaps
+expanded_query = query + translate_to_english(query) + translate_to_chinese(query)
+```
+
+### Step 4: Add Entity-Type Filtering
+
+**Why filter?** Prevents false positives from cross-lingual embeddings.
+
+```python
+# Example: Person entities shouldn't match "concept" types
+INCOMPATIBLE_PAIRS = [
+    ('person', 'concept'),
+    ('person', 'technology'),  # unless person uses it
+]
+```
+
+### Step 5: Implement Smart Recall
+
+**Trigger keywords:**
+```python
+HIGH_PRIORITY_KEYWORDS = [
+    'Jacky', 'Kwu Tung Station', 'Star',  # Core entities
+    'project', 'progress', 'update',     # Work-related
+    'search', 'find', 'knowledge',      # Action keywords
+]
+```
+
+### Step 6: Add Proactive Discovery (Optional)
+
+**Automatically finds new relationships:**
+- News mentions "Jacky" + "AI" → suggests Jacky interested in AI
+- New project + Jacky → suggests works_on relationship
+
+### Step 7: Visualize Your Graph
+
+**Debug and understand:**
+```bash
+python3 graph_visualization.py --format mermaid
+```
+
+This shows:
+- How many edges
+- Which is the central node (most connections)
+
+### Step 8: Continuous Optimization
+
+**Remember:** The system evolves, not built once.
+
+```
+Weekly review:
+1. Are search results accurate?
+2. Any new entities to add?
+3. Any missing relationships?
+4. Which feature is most used?
+
+Adjust as needed:
+- If you don't need a channel, remove it
+- If you have new entity types, add them
+```
+
+### Step 9: FAQ
+
+**Q: Should I use all scripts?**
+A: No. Choose what you need. For search upgrade, add triple fusion. For quick search, BM25 alone is enough.
+
+**Q: How to handle Chinese/English mixed?**
+A: Query expansion + entity-type filtering. See Step 4.
+
+**Q: How often to update entities?**
+A: Daily or weekly, depending on your information volume.
+
+---
+
+## 📝 Summary: Why Step-by-Step?
+
+> Because you can't build a perfect system at once.
+> Everyone's starting point is different, the features you need are different.
+
+**Recommended path:**
+```
+1. Understand yourself (Step 1)
+2. Choose search solution (Step 2)
+3. Design entities (Step 3)
+4. Implement search (Step 4)
+5. Add smart trigger (Step 5)
+6. Proactive discovery (Step 6) - optional
+7. Visualization (Step 7) - optional
+8. Continuous optimization (Step 8)
+```
+
+**Most important:**
+- Don't copy, think
+- Don't do it all at once, iterate
+- Don't aim for perfect, aim for working
+
+---
+
+_Last updated: 2026-04-18_
+_OCM Sup v2.0 - Production Ready_ 🚀
