@@ -2,7 +2,7 @@
 
 # OCM Sup — OpenClaw Memory System
 
-> 🧠 期哥's Intelligent Memory System — Triple-Stream Search + Knowledge Graph + Proactive Discovery
+> 🧠 Jacky's Intelligent Memory System — Triple-Stream Search + Knowledge Graph + Proactive Discovery
 
 [![Status](https://img.shields.io/badge/status-production_ready-green.svg)](#)
 [![OCM Sup](https://img.shields.io/badge/OCM%20Sup-v2.0-blue.svg)](#)
@@ -26,7 +26,7 @@
 
 **This is not meant for you to copy.**
 
-Everyone, every Agent, every use case is different. 期哥 is a Hong Kong QS (Quantity Surveyor). His system is based on:
+Everyone, every Agent, every use case is different. Jacky is a Hong Kong QS (Quantity Surveyor). His system is based on:
 
 - **Work Nature** — Engineering project management, cost estimation
 - **Technical Background** — Interested in AI but not an engineer
@@ -64,26 +64,26 @@ Everyone, every Agent, every use case is different. 期哥 is a Hong Kong QS (Qu
 
 #### 📍 Scenario
 
-期哥 asks: "How's the 古洞站 project progressing?"
+Jacky asks: "How's the Kwu Tung Station project progressing?"
 
-#### 😣 Pain Point
+#### 😣 Pain Points
 
 | Problem | Description |
 |---------|-------------|
-| Single search method效果好差 | Vector Search only knows "related", doesn't know "期哥 → works_on → 古洞站" |
-| 中英混合效果差 | Chinese "古洞站" and English "Kwu Tung Station" don't search to the same result |
-| 假陽性多 | Vector search incorrectly returns "期哥" just because they're often together in training data |
+| Single search methodpoor results | Vector Search only knows "related", doesn't know "Jacky → works_on → Kwu Tung Station" |
+| 中英混合not effective | Chinese "Kwu Tung Station" and English "Kwu Tung Station" don't search to the same result |
+| High false positives | Vector search incorrectly returns "Jacky" just because they're often together in training data |
 
 #### ✅ Solution
 
 Triple fusion: `BM25 + Vector + Graph`
 
 ```
-Query: 古洞站
+Query: Kwu Tung Station
 
-BM25: Precise keyword match for "古洞站"
+BM25: Precise keyword match for "Kwu Tung Station"
 Vector: Understand related concepts like "車站建設", "MTR項目"
-Graph: Discover "期哥 → works_on → 古洞站" relationship
+Graph: Discover "Jacky → works_on → Kwu Tung Station" relationship
 
 → Combine results from three channels (RRF Fusion)
 ```
@@ -94,15 +94,15 @@ Graph: Discover "期哥 → works_on → 古洞站" relationship
 
 #### 📍 Scenario
 
-期哥 asks: "Does 阿星 know I'm a QS?"
+Jacky asks: "Does Star know I'm a QS?"
 
-#### 😣 Pain Point
+#### 😣 Pain Points
 
 | Problem | Description |
 |---------|-------------|
-| 資訊碎片化 | "期哥 is a QS" fact scattered across documents |
-| 關係唔明確 | Even if you find 期哥, you don't know his relationship with 古洞站 or OCM Sup |
-| 需要手動維護 | Have to remember which connections go where, easy to miss |
+| Information scattered | "Jacky is a QS" fact scattered across documents |
+| Relationships unclear | Even if you find Jacky, you don't know his relationship with Kwu Tung Station or OCM Sup |
+| Requires manual maintenance | Have to remember which connections go where, easy to miss |
 
 #### ✅ Solution
 
@@ -110,13 +110,13 @@ Build Entity relationship graph:
 
 ```
        ┌──────┐
-       │ 期哥  │ (person)
+       │ Jacky  │ (person)
        └──┬───┘
     works_on│
       ┌─────┴─────┐
       ▼           ▼
 ┌──────────┐  ┌──────┐
-│  古洞站   │  │  阿星  │
+│  Kwu Tung Station   │  │  Star  │
 │ (project)│  │(system)│
 └────┬─────┘  └───┬──┘
      │             │
@@ -134,15 +134,15 @@ Build Entity relationship graph:
 
 #### 📍 Scenario
 
-期哥 asks: "What's the latest progress on 古洞站?"
+Jacky asks: "What's the latest progress on Kwu Tung Station?"
 
-#### 😣 Pain Point
+#### 😣 Pain Points
 
 | Problem | Description |
 |---------|-------------|
-| 被動等待 | If 期哥 doesn't ask, 阿星 doesn't proactively bring it up |
-| 每次都要手動 | 期哥 has to remember to say "search 古洞站" |
-| 唔知幾時觸發 | Which keywords should trigger search? |
+| Passive waiting | If Jacky doesn't ask, Star doesn't proactively bring it up |
+| Requires manual trigger each time | Jacky has to remember to say "search Kwu Tung Station" |
+| Unknown trigger timing | Which keywords should trigger search? |
 
 #### ✅ Solution
 
@@ -150,7 +150,7 @@ Automatically identify queries that need triggering:
 
 ```python
 HIGH_PRIORITY_KEYWORDS = [
-    '期哥', '古洞站', '阿星',  # Core entities
+    'Jacky', 'Kwu Tung Station', 'Star',  # Core entities
     'project', '進度', '進展',  # Work-related
     'search', '搵', '知識',     # Action keywords
 ]
@@ -167,12 +167,12 @@ def should_trigger(query):
 
 System automatically discovers new entity relationships without waiting for queries.
 
-#### 😣 Pain Point
+#### 😣 Pain Points
 
 | Problem | Description |
 |---------|-------------|
-| 被動等問題 | System only finds relationships when user asks |
-| 關係慢慢過時 | New documents don't automatically connect to existing entities |
+| Passively waiting for questions | System only finds relationships when user asks |
+| Relationships become outdated | New documents don't automatically connect to existing entities |
 
 #### ✅ Solution
 
@@ -264,7 +264,7 @@ RRF_score(doc) = Σ 1 / (k + rank_channel(doc))
 
 ## 🙏 Credits
 
-- **期哥** — Requirement proposer, tester, direction guide
+- **Jacky** — Requirement proposer, tester, direction guide
 - **Andrej Karpathy** — Simplicity First principle
 - **Aporia Labs** — LLM Wiki v2 architecture reference
 - **Anthropic** — OODA Loop / CraniMem inspiration
