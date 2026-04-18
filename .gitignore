@@ -1,0 +1,9 @@
+# Backup files
+backup/
+
+# Helper scripts (not core OCM Sup scripts)
+scripts/cantonese_to_formal.py
+
+# OS files
+.DS_Store
+*.swp
