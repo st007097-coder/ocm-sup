@@ -3,7 +3,7 @@
 > 🧠 期哥嘅智能記憶系統 — 結合 Triple-Stream Search + Knowledge Graph + Proactive Discovery
 
 [![Status](https://img.shields.io/badge/status-production_ready-green.svg)](#)
-[![OCM Sup](https://img.shields.io/badge/OCM%20Sup-v2.0-blue.svg)](#)
+[![OCM Sup](https://img.shields.io/badge/OCM%20Sup-v2.2-blue.svg)](#)
 
 [![View on GitHub](https://img.shields.io/badge/GitHub-Repo-green.svg)](https://github.com/st007097-coder/ocm-sup)
 
@@ -16,6 +16,11 @@
 | [CHANGELOG.md](CHANGELOG.md) | 📅 進化歷史 + 決策過程 | [English](CHANGELOG-en.md) |
 | [TEST-REPORT.md](TEST-REPORT.md) | 🧪 測試結果 + 問題修復 | [English](TEST-REPORT-en.md) |
 | [cover.webp](cover.webp) | 🖼️ 封面圖片 |
+[docs/MODULES.md](docs/MODULES.md) | 🏗️ 模組架構 + 資料流 | [English](docs/MODULES.md)
+[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | 📐 架構圖 | [English](docs/ARCHITECTURE.md)
+[docs/ABLATION.md](docs/ABLATION.md) | 🔬 消融研究結果 | [English](docs/ABLATION.md)
+[docs/PRECISION-IMPROVEMENT.md](docs/PRECISION-IMPROVEMENT.md) | 📊 精確度改進分析 | [English](docs/PRECISION-IMPROVEMENT.md)
+[docs/UPGRADE-ROADMAP.md](docs/UPGRADE-ROADMAP.md) | 🚀 升級路線圖 (P0 → P0.4) | [English](docs/UPGRADE-ROADMAP.md)
 
 ---
 
