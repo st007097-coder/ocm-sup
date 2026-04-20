@@ -17,7 +17,11 @@
 | [TECHNICAL.md](TECHNICAL-en.md) | 🔬 Technical Principles + Algorithms | English |
 | [CHANGELOG.md](CHANGELOG-en.md) | 📅 Evolution History + Decision Process | English |
 | [TEST-REPORT.md](TEST-REPORT-en.md) | 🧪 Test Results + Bug Fixes | English |
-| [MODULES.md](MODULES.md) | 🏗️ Module Architecture + Data Flow | English |
+| [docs/MODULES.md](docs/MODULES.md) | 🏗️ Module Architecture + Data Flow | English |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | 📐 Architecture Diagram | English |
+| [docs/ABLATION.md](docs/ABLATION.md) | 🔬 Ablation Study Results | English |
+| [docs/PRECISION-IMPROVEMENT.md](docs/PRECISION-IMPROVEMENT.md) | 📊 Precision Improvement Analysis | English |
+| [docs/UPGRADE-ROADMAP.md](docs/UPGRADE-ROADMAP.md) | 🚀 Upgrade Roadmap (P0 → P0.4) | English |
 | [cover.webp](cover.webp) | 🖼️ Cover Image |
 
 ---
