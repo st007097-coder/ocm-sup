@@ -4,132 +4,132 @@ _Last Updated: 2026-04-19 10:28 HKT_
 
 ---
 
-## 測試結果（32 queries）
+## Test Results (32 queries)
 
-| Metric | 數值 | 備註 |
+| Metric | Value | Notes |
 |--------|------|------|
 | **Naive Top-1 Hit Rate** | 100% | (any result with score > 0) |
 | **Honest Top-1 Hit Rate** | 31.2% | (result actually relevant to query) |
 | **Naive Top-3 Hit Rate** | 100% | |
 | **Top-5 Hit Rate** | 100% | |
 
-**關鍵發現：系統返回結果，但結果未必相關！**
+**Key Finding: System returns results, but results may not be relevant!**
 
 ---
 
-## 22 個 Mismatches 分析
+## 22 Mismatches Analysis
 
-### 類型 1：系統/Tool 名稱 → 返回錯誤 entity
+### Type 1: System/Tool Name → Returns Wrong Entity
 
-| Query | Expected | Got | 原因 |
+| Query | Expected | Got | Reason |
 |-------|----------|-----|------|
-| `OpenClaw` | OpenClaw system docs | Hermes Agent 文章 | OpenClaw 字樣出現喺 Hermes 文章 |
-| `即夢` | Jimeng/即夢 AI tool | F2 Cross-lingual 修復 | 即夢字樣喺修復文檔 |
-| `OCM Sup` | OCM Sup memory system | 阿星 entity | OCM Sup 提及喺阿星頁面 |
-| `notion` | Notion integration | MCP Protocol 文章 | Notion 提及喺 MCP 文章 |
-| `BM25` | BM25 algorithm docs | 阿星 entity | BM25 提及喺多處 |
-| `Triple-Stream` | Triple-Stream docs | 阿星 entity | 提及但唔係主 topic |
+| `OpenClaw` | OpenClaw system docs | Hermes Agent 文章 | OpenClaw mentioned in Hermes article |
+| `即夢` | Jimeng/即夢 AI tool | F2 Cross-lingual 修復 | Jimeng mentioned in fix document |
+| `OCM Sup` | OCM Sup memory system | Ah Sing entity | OCM Sup mentioned in Ah Sing page |
+| `notion` | Notion integration | MCP Protocol 文章 | Notion mentioned in MCP article |
+| `BM25` | BM25 algorithm docs | Ah Sing entity | BM25 mentioned in multiple places |
+| `Triple-Stream` | Triple-Stream docs | Ah Sing entity | mentioned but not main topic |
 
-### 類型 2：中文關鍵詞 → 返回英文 AI 新聞
+### Type 2: Chinese Keywords → Returns English AI News
 
-| Query | Expected | Got | 原因 |
+| Query | Expected | Got | Reason |
 |-------|----------|-----|------|
-| `工程` | Engineering docs | AI News articles | "工程" 字樣喺 AI 新聞 |
-| `分判商` | Subcontractor docs | 兩極分化 article | 分判商提及但唔係主題 |
-| `供應商` | Supplier docs | Latest AI Digest | 行業關鍵詞匹配 |
-| `合約` | Contract docs | 期哥 entity | 合約提及但分散 |
-| `投標` | Tendering docs | Latest AI Digest | 投標關鍵詞匹配 |
+| `Engineering` | Engineering docs | AI News articles | "Engineering" mentioned in AI News |
+| `Subcontractor` | Subcontractor docs | polarization article | Subcontractor mentioned but not the topic |
+| `Supplier` | Supplier docs | Latest AI Digest | industry keyword match |
+| `Contract` | Contract docs | Jacky entity | Contract mentioned but scattered |
+| `Tendering` | Tendering docs | Latest AI Digest | Tendering關鍵詞匹配 |
 
-### 類型 3：Cross-lingual → 返回不相關結果
+### Type 3: Cross-lingual → Returns Irrelevant Results
 
-| Query | Expected | Got | 原因 |
+| Query | Expected | Got | Reason |
 |-------|----------|-----|------|
-| `Kwu Tung Station` | 古洞站 docs | 元認知規則 | 英文關鍵詞匹配到唔相關內容 |
-| `knowledge graph` | 知識圖譜/圖譜 | OCM Sup Test Report | Graph 提及但唔係關於 graph |
+| `Kwu Tung Station` | Kwu Tung Station docs | Metacognition Rules | English keyword matched to unrelated content |
+| `Knowledge Graph` | Knowledge Graph | OCM Sup Test Report | Graph mentioned but not about graph |
 
 ---
 
-## 根本原因分析
+## Root Cause Analysis
 
-### 1. Wiki 內容分佈不均
+### 1. Wiki Content Distribution Imbalance
 
-問題：大量 AI news 文章淹沒咗真正嘅 entity docs
-- AI news 佔用咗大量 storage
-- 期哥相關 entities 相對少
-- 導致 keyword search 偏向 AI news
+Problem: Large amount of AI news articles overwhelm actual entity docs
+- AI news occupies large storage
+- Jacky-related entities are relatively few
+- causes keyword search to favor AI news
 
-### 2. BM25 匹配太寬鬆
+### 2. BM25 Matching Too Loose
 
-"OpenClaw" 匹配到任何包含呢個字嘅文章
-但呢啲文章唔係「關於 OpenClaw」
-而係「提及 OpenClaw」
+"OpenClaw" matches any article containing this word
+but these articles are not "about OpenClaw"
+but "mentions OpenClaw"
 
-### 3. 缺乏 semantic re-ranking
+### 3. Lack of Semantic Re-ranking
 
-Vector search 102ms latency 太慢
-系統用咗 early exit，只靠 BM25
-結果：高 recall（找到所有提到 keyword 嘅 doc）
-但低 precision（找到嘅唔係真正相關嘅 doc）
+Vector search 102ms latency too slow
+System used early exit, relying only on BM25
+Result: High recall (found all docs mentioning keyword)
+but low precision (found docs are not actually relevant)
 
-### 4. Entity relationship 未被利用
+### 4. Entity Relationships Not Utilized
 
-Graph search 可以幫手
-但 BFS 可能返回 "proximity" 相關而非 "semantic" 相關
+Graph search could help
+but BFS may return "proximity" related instead of "semantic" related
 
 ---
 
-## 改進方向
+## Improvement Directions
 
-### 短期（1-2 星期）
+### Short-term (1-2 weeks)
 
-1. **增加 entity documents 数量**
-   - 創建更多明確的 entity docs（不用成日靠 AI news）
-   - 每個 system/tool 有獨立 page
+1. **Increase Entity Document Count**
+   - Create more explicit entity docs (not relying on AI news)
+   - Each system/tool has its own page
 
-2. **調整 BM25 boost**
-   - 提高 exact entity match 的 boost
-   - 降低 keyword mention 的 boost
+2. **Adjust BM25 Boost**
+   - Increase boost for exact entity match
+   - Decrease boost for keyword mention
 
-3. **強制 Vector re-ranking（就算慢）**
-   - 對 top-20 BM25 results 強制 vector re-rank
-   -犧牲 speed 換 quality
+3. **Force Vector Re-ranking (even if slow)**
+   - Force vector re-rank on top-20 BM25 results
+   -sacrifice speed for quality
 
-### 中期（1 個月）
+### Medium-term (1 month)
 
-4. **實現真正的 Top-K Precision**
+4. **Implement True Top-K Precision**
    ```python
    def is_relevant(result, query):
-       # 檢查 result 是否「關於」query，而唔係「提及」query
+       # Check if result is "about" query, not "mentions" query
        return semantic_similarity(query, result.title) > threshold
    ```
 
-5. **分離 AI News vs Entity Storage**
+5. **Separate AI News vs Entity Storage**
    - AI news → separate collection
    - Entities → primary search
 
-6. **增加 entity page 數量**
-   - OpenClaw, Hermes, Jimeng, Notion, Obsidian 等
+6. **Increase Entity Page Count**
+   - OpenClaw, Hermes, Jimeng, Notion, Obsidian, etc.
    - 每個有獨立、詳細的 page
 
-### 長期
+### Long-term
 
-7. **Implement RAG-style retrieval**
-   - 唔只返回 doc，改為返回 answer
-   - 结合 retrieval + synthesis
+7. **Implement RAG-style Retrieval**
+   - 唔只返回 doc，改為return answer
+   - combine retrieval + synthesis
 
 ---
 
-## 總結
+## Summary
 
-**問題核心：** OCM-Sup 目前係 high-recall, low-precision system
+**Core Problem:** OCM-Sup is currently a high-recall, low-precision system
 
-| 方面 | 目前 | 目標 |
+| Aspect | Current | Target |
 |------|------|------|
-| Recall | 高（100%）| 高（維持）|
-| Precision | 低（31%）| 高（>80%）|
-| Latency | 快（BM25 0.4ms）| 可接受（<100ms）|
+| Recall | 高（100%）| High (maintain)|
+| Precision | Low (31%)| High (>80%)|
+| Latency | Fast (BM25 0.4ms)| Acceptable (<100ms)|
 
-**下一步最關鍵：** 提高 precision，而唔係继续提高 recall
+**Next Step Priority:** Increase precision, not continue increasing recall
 
 ---
 
