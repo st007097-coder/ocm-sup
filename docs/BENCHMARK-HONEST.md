@@ -23,10 +23,10 @@ _Last Updated: 2026-04-19 10:28 HKT_
 
 | Query | Expected | Got | Reason |
 |-------|----------|-----|------|
-| `OpenClaw` | OpenClaw system docs | Hermes Agent 文章 | OpenClaw mentioned in Hermes article |
-| `即夢` | Jimeng/即夢 AI tool | F2 Cross-lingual 修復 | Jimeng mentioned in fix document |
+| `OpenClaw` | OpenClaw system docs | Hermes Agent article | OpenClaw mentioned in Hermes article |
+| `Jimeng` | Jimeng/Jimeng AI tool | F2 Cross-lingual fix | Jimeng mentioned in fix document |
 | `OCM Sup` | OCM Sup memory system | Ah Sing entity | OCM Sup mentioned in Ah Sing page |
-| `notion` | Notion integration | MCP Protocol 文章 | Notion mentioned in MCP article |
+| `notion` | Notion integration | MCP Protocol article | Notion mentioned in MCP article |
 | `BM25` | BM25 algorithm docs | Ah Sing entity | BM25 mentioned in multiple places |
 | `Triple-Stream` | Triple-Stream docs | Ah Sing entity | mentioned but not main topic |
 
@@ -38,7 +38,7 @@ _Last Updated: 2026-04-19 10:28 HKT_
 | `Subcontractor` | Subcontractor docs | polarization article | Subcontractor mentioned but not the topic |
 | `Supplier` | Supplier docs | Latest AI Digest | industry keyword match |
 | `Contract` | Contract docs | Jacky entity | Contract mentioned but scattered |
-| `Tendering` | Tendering docs | Latest AI Digest | Tendering關鍵詞匹配 |
+| `Tendering` | Tendering docs | Latest AI Digest | Tendering keyword match |
 
 ### Type 3: Cross-lingual → Returns Irrelevant Results
 
@@ -109,12 +109,12 @@ but BFS may return "proximity" related instead of "semantic" related
 
 6. **Increase Entity Page Count**
    - OpenClaw, Hermes, Jimeng, Notion, Obsidian, etc.
-   - 每個有獨立、詳細的 page
+   - each有獨立、詳細的 page
 
 ### Long-term
 
 7. **Implement RAG-style Retrieval**
-   - 唔只返回 doc，改為return answer
+   - 唔只return doc，改為return answer
    - combine retrieval + synthesis
 
 ---
