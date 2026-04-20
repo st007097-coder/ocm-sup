@@ -1,11 +1,11 @@
-# OCM-Sup 第三輪升級路線圖：由 7.5 → 8.5
+# OCM-Sup Third Round Upgrade Roadmap: 7.5 → 8.5
 
 _Last Updated: 2026-04-19 10:25 HKT_
-_基於：Second-round GitHub Reviewer Feedback_
+_Based on: Second-round GitHub Reviewer Feedback_
 
 ---
 
-## 當前位置
+## Current位置
 
 | 維度 | 分數 | 狀態 |
 |------|------|------|
@@ -18,7 +18,7 @@ _基於：Second-round GitHub Reviewer Feedback_
 
 ---
 
-## 目標：提升到 8.5/10
+## Goal：提升到 8.5/10
 
 **關鍵唔係再加功能，而是：**
 1. 更硬的評測
@@ -32,7 +32,7 @@ _基於：Second-round GitHub Reviewer Feedback_
 
 ### P0.1：擴大 Benchmark Dataset（Evidence）
 
-**目標：** 由 3 個 test queries → 20+ queries，包含 hard cases
+**Goal：** 由 3 個 test queries → 20+ queries，包含 hard cases
 
 **具體做法：**
 - 新增 10 個「陌生」queries（唔係我熟悉嗰類）
@@ -42,14 +42,14 @@ _基於：Second-round GitHub Reviewer Feedback_
 **成功標準：**
 ```
 之前：3 queries, 95% hit rate
-之後：20 queries, hit rate 唔應該跌太多（目標 >85%）
+之後：20 queries, hit rate 唔應該跌太多（Goal >85%）
 ```
 
 **預計時間：** 2-3 小時
 
 ### P0.2：明確「Hit Rate」定義（Evidence）
 
-**目標：** 唔再含糊定義「找到就算 hit」
+**Goal：** 唔再含糊定義「找到就算 hit」
 
 **具體做法：**
 ```python
@@ -69,7 +69,7 @@ BAD_HIT = retrieve entity that leads to wrong conclusion
 
 ### P0.3：Graph False Positive Analysis（Engineering）
 
-**目標：** 確認 Graph 嘅 false positive 幾高，值唔值得保留
+**Goal：** 確認 Graph 嘅 false positive 幾高，值唔值得保留
 
 **具體做法：**
 1. 列出最近 10 次 Graph search 的 results
@@ -86,7 +86,7 @@ BAD_HIT = retrieve entity that leads to wrong conclusion
 
 ### P0.4：寫「已知弱點」章節（Evidence）
 
-**目標：** 承認邊啲部分未站稳，增加可信度
+**Goal：** 承認邊啲部分未站稳，增加可信度
 
 **具體做法：** 在 FAILURE-CASES.md 新增「Current Weaknesses」section：
 ```
@@ -118,7 +118,7 @@ BAD_HIT = retrieve entity that leads to wrong conclusion
 
 ### P1.1：7日長跑測試（Evidence）
 
-**目標：** 證明 system 唔會「用耐咗就腫」
+**Goal：** 證明 system 唔會「用耐咗就腫」
 
 **具體做法：**
 1. 創建 cron job，每日自動：
@@ -141,7 +141,7 @@ BAD_HIT = retrieve entity that leads to wrong conclusion
 
 ### P1.2：Cost-Benefit Table（Evidence）
 
-**目標：** 證明「複雜度係值得」
+**Goal：** 證明「複雜度係值得」
 
 **具體做法：**
 | 配置 | Latency | Hit Rate | Cost (tokens) | ROI |
@@ -159,7 +159,7 @@ BAD_HIT = retrieve entity that leads to wrong conclusion
 
 ### P1.3：Production Deployment Path（Production Readiness）
 
-**目標：** 降低 deployment friction
+**Goal：** 降低 deployment friction
 
 **具體做法：**
 1. 創建 `Dockerfile`：
@@ -184,7 +184,7 @@ docker-compose up
 
 ### P1.4：Real Workflow Case Study（Evidence）
 
-**目標：** 唔好淨係 benchmark，最好有真 agent 任務案例
+**Goal：** 唔好淨係 benchmark，最好有真 agent 任務案例
 
 **具體做法：**
 選擇 3 個真實期哥工作場景：
@@ -214,7 +214,7 @@ docker-compose up
 
 ### P2.1：OpenAPI Spec + Monitoring Dashboard（Production Readiness）
 
-**目標：** 變成真正嘅「platform」而唔係 scripts
+**Goal：** 變成真正嘅「platform」而唔係 scripts
 
 **具體做法：**
 1. OpenAPI 3.0 spec for `/search`, `/entity`, `/stats`
@@ -229,7 +229,7 @@ docker-compose up
 
 ### P2.2：Multilingual Benchmark（Evidence）
 
-**目標：** 證明 system 唔只係中英文
+**Goal：** 證明 system 唔只係中英文
 
 **具體做法：**
 - 日文 queries（學習日文建築術語）
@@ -240,7 +240,7 @@ docker-compose up
 
 ### P2.3：Memory Pollution Control（Engineering）
 
-**目標：** 解決「用耐咗就腫」問題
+**Goal：** 解決「用耐咗就腫」問題
 
 **具體做法：**
 1. 實現「記憶衝突檢測」：
@@ -281,7 +281,7 @@ P1.3（Docker）+ P1.1（7日長跑）係最佳 combo，直接解決最大懷疑
 
 ---
 
-## 當前最大懷疑（Reviewer 提出）
+## Current最大懷疑（Reviewer 提出）
 
 ### 懷疑 1：長期運行會唔會腫？
 
@@ -293,7 +293,7 @@ P1.3（Docker）+ P1.1（7日長跑）係最佳 combo，直接解決最大懷疑
 
 ---
 
-## 最終目標
+## 最終Goal
 
 由：
 
@@ -317,4 +317,4 @@ P1.3（Docker）+ P1.1（7日長跑）係最佳 combo，直接解決最大懷疑
 
 _Last updated: 2026-04-19 10:25 HKT_
 _Author: 阿星 (Ah Sing)_
-_Document: OCM-Sup 第三輪升級路線圖（7.5 → 8.5）_
+_Document: OCM-Sup 第三Round升級路線圖（7.5 → 8.5）_

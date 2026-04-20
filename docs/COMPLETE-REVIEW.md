@@ -1,4 +1,4 @@
-# OCM-Sup 完整回顧
+# OCM-Sup Complete Review
 
 _Last Updated: 2026-04-19 10:21 HKT_
 
