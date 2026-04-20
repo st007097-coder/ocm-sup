@@ -1,0 +1,637 @@
+{
+  "timestamp": "2026-04-19T11:42:43.007232",
+  "total_queries": 32,
+  "summary": {
+    "hit_top1_pct": 100.0,
+    "hit_top3_pct": 100.0,
+    "hit_top5_pct": 100.0
+  },
+  "by_category": {
+    "entity": {
+      "total": 2,
+      "hit1": 2,
+      "hit3": 2,
+      "hit5": 2
+    },
+    "person": {
+      "total": 2,
+      "hit1": 2,
+      "hit3": 2,
+      "hit5": 2
+    },
+    "system": {
+      "total": 4,
+      "hit1": 4,
+      "hit3": 4,
+      "hit5": 4
+    },
+    "tool": {
+      "total": 2,
+      "hit1": 2,
+      "hit3": 2,
+      "hit5": 2
+    },
+    "concept": {
+      "total": 3,
+      "hit1": 3,
+      "hit3": 3,
+      "hit5": 3
+    },
+    "ambiguous": {
+      "total": 5,
+      "hit1": 5,
+      "hit3": 5,
+      "hit5": 5
+    },
+    "en2zh": {
+      "total": 8,
+      "hit1": 8,
+      "hit3": 8,
+      "hit5": 8
+    },
+    "location": {
+      "total": 1,
+      "hit1": 1,
+      "hit3": 1,
+      "hit5": 1
+    },
+    "industry": {
+      "total": 3,
+      "hit1": 3,
+      "hit3": 3,
+      "hit5": 3
+    },
+    "document": {
+      "total": 1,
+      "hit1": 1,
+      "hit3": 1,
+      "hit5": 1
+    },
+    "process": {
+      "total": 1,
+      "hit1": 1,
+      "hit3": 1,
+      "hit5": 1
+    }
+  },
+  "detailed_results": [
+    {
+      "query": "hermes",
+      "expected": "Hermes Agent entity",
+      "category": "entity",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 999.0,
+      "top_title": "Hermes Agent 5分鐘入門指南",
+      "channels_used": [
+        "BM25",
+        "Vector"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "古洞站",
+      "expected": "Kwu Tung Station entity",
+      "category": "entity",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 999.0,
+      "top_title": "古洞站",
+      "channels_used": [
+        "BM25",
+        "Vector",
+        "Graph"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "期哥",
+      "expected": "Jacky entity",
+      "category": "person",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 999.0,
+      "top_title": "期哥",
+      "channels_used": [
+        "BM25",
+        "Vector",
+        "Graph"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "OpenClaw",
+      "expected": "OpenClaw system docs",
+      "category": "system",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 999.0,
+      "top_title": "OpenClaw",
+      "channels_used": [
+        "BM25",
+        "Vector",
+        "Graph"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "阿星",
+      "expected": "Ah Sing entity",
+      "category": "person",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 999.0,
+      "top_title": "阿星",
+      "channels_used": [
+        "BM25",
+        "Vector",
+        "Graph"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "即夢",
+      "expected": "Jimeng/即夢 AI tool",
+      "category": "tool",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 999.0,
+      "top_title": "即夢",
+      "channels_used": [
+        "BM25",
+        "Vector",
+        "Graph"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "EvoMap",
+      "expected": "EvoMap evolver entity",
+      "category": "system",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 0.03278688524590164,
+      "top_title": "EvoMap 整合可行性評估",
+      "channels_used": [
+        "BM25"
+      ],
+      "bm25_only": true,
+      "cross_lingual": true
+    },
+    {
+      "query": "ClawEmail",
+      "expected": "ClawEmail research",
+      "category": "system",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 0.03278688524590164,
+      "top_title": "ClawEmail 研究 — AI 工作郵箱身份",
+      "channels_used": [
+        "BM25",
+        "Vector"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "OCM Sup",
+      "expected": "OCM Sup memory system",
+      "category": "system",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 999.0,
+      "top_title": "OCM Sup",
+      "channels_used": [
+        "BM25",
+        "Vector",
+        "Graph"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "notion",
+      "expected": "Notion integration docs",
+      "category": "tool",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 0.04891591750396616,
+      "top_title": "Notion",
+      "channels_used": [
+        "BM25",
+        "Vector"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "BM25",
+      "expected": "BM25 search algorithm docs",
+      "category": "concept",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 999.0,
+      "top_title": "BM25",
+      "channels_used": [
+        "BM25",
+        "Vector",
+        "Graph"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "Triple-Stream",
+      "expected": "Triple-Stream Search docs",
+      "category": "concept",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 999.0,
+      "top_title": "Triple-Stream Search",
+      "channels_used": [
+        "BM25",
+        "Vector",
+        "Graph"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "RRF",
+      "expected": "Reciprocal Rank Fusion docs",
+      "category": "concept",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 999.0,
+      "top_title": "RRF (Reciprocal Rank Fusion)",
+      "channels_used": [
+        "BM25",
+        "Graph"
+      ],
+      "bm25_only": false,
+      "cross_lingual": true
+    },
+    {
+      "query": "QS",
+      "expected": "Quantity Surveyor OR Query Search?",
+      "category": "ambiguous",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 999.0,
+      "top_title": "Quantity Surveyor",
+      "channels_used": [
+        "BM25",
+        "Vector"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "memory",
+      "expected": "Memory system OR recall?",
+      "category": "ambiguous",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 999.0,
+      "top_title": "memory-search-中英文問題",
+      "channels_used": [
+        "BM25",
+        "Vector"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "search",
+      "expected": "Search tool OR web search?",
+      "category": "ambiguous",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 999.0,
+      "top_title": "Vector Search",
+      "channels_used": [
+        "BM25",
+        "Vector",
+        "Graph"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "project",
+      "expected": "Project entity OR general concept?",
+      "category": "ambiguous",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 0.048651507139079855,
+      "top_title": "Notion",
+      "channels_used": [
+        "BM25",
+        "Vector"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "agent",
+      "expected": "AI Agent OR human agent?",
+      "category": "ambiguous",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 999.0,
+      "top_title": "What Is Hermes Agent?",
+      "channels_used": [
+        "BM25",
+        "Vector"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "Kwu Tung Station",
+      "expected": "古洞站 Chinese docs",
+      "category": "en2zh",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 0.03278688524590164,
+      "top_title": "古洞站",
+      "channels_used": [
+        "BM25",
+        "Vector"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "quantity surveyor",
+      "expected": "QS 工料測量師 docs",
+      "category": "en2zh",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 0.03278688524590164,
+      "top_title": "Quantity Surveyor",
+      "channels_used": [
+        "BM25",
+        "Graph"
+      ],
+      "bm25_only": false,
+      "cross_lingual": true
+    },
+    {
+      "query": "knowledge graph",
+      "expected": "知識圖譜/圖譜 docs",
+      "category": "en2zh",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 0.04918032786885246,
+      "top_title": "Knowledge Graph",
+      "channels_used": [
+        "BM25",
+        "Vector"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "vector search",
+      "expected": "向量搜索 docs",
+      "category": "en2zh",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 999.0,
+      "top_title": "Vector Search",
+      "channels_used": [
+        "BM25",
+        "Vector",
+        "Graph"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "BM25 algorithm",
+      "expected": "BM25 算法 docs",
+      "category": "en2zh",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 999.0,
+      "top_title": "BM25",
+      "channels_used": [
+        "BM25",
+        "Vector",
+        "Graph"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "consolidation loop",
+      "expected": "整合循環/蒸餾 docs",
+      "category": "en2zh",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 0.04891591750396616,
+      "top_title": "Consolidation Loop",
+      "channels_used": [
+        "BM25",
+        "Vector"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "latency benchmark",
+      "expected": "延遲測試 docs",
+      "category": "en2zh",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 999.0,
+      "top_title": "Latency Benchmark",
+      "channels_used": [
+        "BM25",
+        "Vector",
+        "Graph"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "entity relationship",
+      "expected": "實體關係 docs",
+      "category": "en2zh",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 0.04918032786885246,
+      "top_title": "Knowledge Graph",
+      "channels_used": [
+        "BM25",
+        "Vector"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "香港",
+      "expected": "Hong Kong related docs",
+      "category": "location",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 0.048171500630517027,
+      "top_title": "Quantity Surveyor",
+      "channels_used": [
+        "BM25",
+        "Vector"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "工程",
+      "expected": "Engineering docs",
+      "category": "industry",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 0.03278688524590164,
+      "top_title": "AI Influence Daily Digest - Karpathy 2026-04-16",
+      "channels_used": [
+        "BM25"
+      ],
+      "bm25_only": true,
+      "cross_lingual": true
+    },
+    {
+      "query": "分判商",
+      "expected": "Subcontractor docs",
+      "category": "industry",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 0.04918032786885246,
+      "top_title": "分判商",
+      "channels_used": [
+        "BM25",
+        "Vector",
+        "Graph"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "供應商",
+      "expected": "Supplier docs",
+      "category": "industry",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 0.04771225838023,
+      "top_title": "供應商",
+      "channels_used": [
+        "BM25",
+        "Vector",
+        "Graph"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "合約",
+      "expected": "Contract docs",
+      "category": "document",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 999.0,
+      "top_title": "合約",
+      "channels_used": [
+        "BM25",
+        "Vector",
+        "Graph"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    },
+    {
+      "query": "投標",
+      "expected": "Tendering docs",
+      "category": "process",
+      "hit_top1": 1,
+      "hit_top3": 1,
+      "hit_top5": 1,
+      "total_results": 5,
+      "top_score": 999.0,
+      "top_title": "投標",
+      "channels_used": [
+        "BM25",
+        "Vector",
+        "Graph"
+      ],
+      "bm25_only": false,
+      "cross_lingual": false
+    }
+  ]
+}

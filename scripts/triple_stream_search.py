@@ -11,8 +11,10 @@ import time
 import os
 import re
 import hashlib
+import yaml
 from pathlib import Path
 from collections import defaultdict
+from datetime import datetime
 from typing import List, Tuple, Dict, Optional
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -454,7 +456,49 @@ class TripleStreamSearch:
                 'expansion': self.expander.expand_query(query)[1][:3],
             })
         
+        # Update lastAccessed for all returned documents
+        today = datetime.now().strftime('%Y-%m-%d')
+        for result in response:
+            self._update_last_accessed(result['path'], today)
+            self._decay_confidence(result['path'])
+        
         return response
+    
+    def _update_last_accessed(self, path: str, date: str, thread_lock=None):
+        """"Update lastAccessed field in a wiki file's frontmatter."""
+        try:
+            # Resolve relative paths against wiki directory
+            file_path = Path(path)
+            if not file_path.is_absolute():
+                file_path = self.wiki_path / path
+            if not file_path.exists():
+                return
+            content = file_path.read_text()
+            
+            # Check if lastAccessed already set to this date
+            if re.search(r'^lastAccessed:\s*' + date, content, re.MULTILINE):
+                return
+            
+            # Update or add lastAccessed
+            if re.search(r'^lastAccessed:', content, re.MULTILINE):
+                content = re.sub(
+                    r'^lastAccessed:\s*.+$',
+                    f'lastAccessed: {date}',
+                    content,
+                    flags=re.MULTILINE
+                )
+            else:
+                # Add after confidence: field (insert approach)
+                content = re.sub(
+                    r'^(confidence:.+)',
+                    rf'\1\nlastAccessed: {date}',
+                    content,
+                    flags=re.MULTILINE
+                )
+            
+            file_path.write_text(content)
+        except Exception:
+            pass  # Silently fail - don't disrupt search
     
     def _get_sources(self, bm25_score: float, vector_score: float, graph_score: float) -> List[str]:
         sources = []
@@ -465,6 +509,57 @@ class TripleStreamSearch:
         if graph_score > 0:
             sources.append('graph')
         return sources if sources else ['none']
+    
+    def _decay_confidence(self, path: str, decay: float = 0.02) -> bool:
+        """Decay confidence of a wiki page on search hit.
+        
+        "Use it or lose it" mechanism: pages that appear in search results
+        get slightly lower confidence each time they're accessed.
+        This incentivizes fresh content and prevents stale pages from
+        permanently ranking high.
+        
+        Args:
+            path: Path to wiki file
+            decay: Amount to decay confidence by (default 0.02 = 2%)
+        
+        Returns:
+            True if confidence was updated, False otherwise
+        """
+        try:
+            file_path = Path(path)
+            if not file_path.is_absolute():
+                file_path = self.wiki_path / path
+            if not file_path.exists():
+                return False
+            
+            content = file_path.read_text()
+            
+            # Find current confidence
+            conf_match = re.search(r'^confidence:\s*([0-9.]+)', content, re.MULTILINE)
+            if not conf_match:
+                return False
+            
+            current_conf = float(conf_match.group(1))
+            
+            # Apply decay (minimum 0.1 to avoid total collapse)
+            new_conf = max(0.1, current_conf - decay)
+            
+            # Only update if change is meaningful (>0.01)
+            if abs(new_conf - current_conf) < 0.01:
+                return False
+            
+            # Update confidence
+            content = re.sub(
+                r'^confidence:\s*[0-9.]+',
+                f'confidence: {new_conf:.2f}',
+                content,
+                flags=re.MULTILINE
+            )
+            
+            file_path.write_text(content)
+            return True
+        except Exception:
+            return False
     
     def save_cache(self):
         self.cache.save()
