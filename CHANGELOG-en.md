@@ -372,3 +372,90 @@ Remember: **Copying is the last form of learning, but creating is the first form
 
 _Last updated: 2026-04-18_
 _Version: 2.0_
+---
+
+## 🧬 v2.1: Phase Z+ Self-Audit (2026-04-19)
+
+### Situation
+
+After completing 7-Dir, system needed honest assessment.
+Self-audit scored only 5.4/10 — significant gaps identified.
+
+### Decision
+
+**Self-Audit + Precision Improvement in one session.**
+
+### What We Did Today
+
+#### Self-Audit Framework
+- 8-dimension scoring system
+- Unit Tests (37 tests: query_expansion + triple_stream)
+- Schema Versioning (schema_migration.py)
+- Time-based Decay (time_decay.py)
+
+#### Precision Improvement
+- Exact Match + Position-Aware scoring
+- Title Boost (+5 for exact title match)
+- BM25 tuning for Chinese/English
+- Query Expansion with synonyms
+- **Result:** 32 queries, 100% top-1 accuracy
+
+#### Result
+- Self-Audit Score: **5.4 → 7.5/10**
+- Unit Tests: 37 passing
+- Schema v1.3: 84 entities migrated
+- Time Decay: 73 entities calculated
+
+---
+
+## 🧬 v2.2: Wiki Cleanup + OCM-Sup Repo Structuring (2026-04-20)
+
+### Situation
+
+- Wiki had 5721 broken wikilinks (905 warnings in lint report)
+- OCM-Sup repo had unorganized docs scattered at root
+- Double frontmatter issue in 226 files
+
+### Decision
+
+**Clean up Wiki and reorganize OCM-Sup repo in parallel.**
+
+### What We Did Today
+
+#### Wiki Tags
+- Auto-added tags to 1986 files
+- Result: 2888/2961 files now have tags (was 955)
+
+#### Wiki Weblink Formatting  
+- Converted bare URLs to markdown [text](url) format
+- 1107 files converted, 13000+ links formatted
+- Result: 1574 files with weblinks (was 990)
+
+#### Double Frontmatter Fix
+- Fixed 226 files with multiple YAML frontmatter blocks
+- Merged frontmatter blocks correctly
+- Restored 2 corrupted files from Obsidian
+
+#### Wiki pageType Fix
+- Added pageType: note to 95 files missing it
+
+#### Wikilinks Repair
+- Fixed 5482 broken wikilinks (95.8% reduction)
+- System references → folder links (e.g., [[AI]] → [AI](AI-News/))
+- Malformed links fixed (e.g., [[OpenClaw)]] → [[OpenClaw]])
+- Remaining 239 broken links are genuine missing pages
+
+#### OCM-Sup Repo Reorganization
+- Created docs/ folder for documentation
+- Moved 9 self-audit docs to docs/
+- Added .gitignore for __pycache__
+- Pushed to GitHub with proper commit messages
+- Added x-thread-2026-04-18.md to docs/
+
+### Result
+
+- **Wiki Quality:** Significantly improved structure and links
+- **OCM-Sup Repo:** Clean, organized, properly documented
+- **GitHub:** https://github.com/st007097-coder/ocm-sup
+
+---
