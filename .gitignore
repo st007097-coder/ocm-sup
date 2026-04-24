@@ -14,3 +14,15 @@ __pycache__/
 
 # Test artifacts
 .pytest_cache/
+
+# Continuity Layer runtime state (not committed)
+scripts/continuity/__pycache__/
+scripts/continuity/incidents.json
+scripts/continuity/hooks.json
+scripts/continuity/carryover.json
+scripts/continuity/staging.json
+scripts/continuity/frontstage_guard_log.jsonl
+scripts/continuity/traces_audit.jsonl
+
+# API state
+*.log
