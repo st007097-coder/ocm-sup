@@ -625,6 +625,8 @@ Without active forgetting:
 | No memory hygiene | Consolidation v2 | Automatic 30-day cleanup |
 | Flat entity graph | Typed relationship graph | Relationship-aware recall |
 
+> **For detailed feature-by-feature analysis, see [Pain Points and Solutions](#pain-points-and-solutions).**
+
 ---
 
 ## ✨ Core Features
