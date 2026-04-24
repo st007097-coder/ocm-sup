@@ -41,6 +41,11 @@ QUERIES = {
         {'query': 'Triple-Stream', 'expected': 'Triple-Stream Search docs', 'category': 'concept'},
         {'query': 'RRF', 'expected': 'Reciprocal Rank Fusion docs', 'category': 'concept'},
     ],
+    'p0.5_new_entities': [
+        {'query': 'Query Expansion', 'expected': 'Query Expansion entity doc', 'category': 'concept'},
+        {'query': 'Retention Scan', 'expected': 'Retention Scan entity doc', 'category': 'workflow'},
+        {'query': 'Tavily', 'expected': 'Tavily search tool entity doc', 'category': 'tool'},
+    ],
     'ambiguous': [
         {'query': 'QS', 'expected': 'Quantity Surveyor OR Query Search?', 'category': 'ambiguous'},
         {'query': 'memory', 'expected': 'Memory system OR recall?', 'category': 'ambiguous'},

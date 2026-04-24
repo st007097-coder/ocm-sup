@@ -490,7 +490,7 @@ def _exact_match_graph_boost(query, graph_results):
 
 ---
 
-## 🧬 v2.1: Continuity Layer 完成 (2026-04-24)
+## 🧬 v2.2: Continuity Layer 完成 (2026-04-24)
 
 ### 當時情况
 

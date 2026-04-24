@@ -3,7 +3,7 @@
 > 🧠 Jacky's Intelligent Memory System — Combining Triple-Stream Search + Knowledge Graph + Proactive Discovery
 
 [![Status](https://img.shields.io/badge/status-production_ready-green.svg)](#)
-[![OCM Sup](https://img.shields.io/badge/OCM%20Sup-v2.0-blue.svg)](#)
+[![OCM Sup](https://img.shields.io/badge/OCM%20Sup-v2.2-blue.svg)](#)
 
 [![View on GitHub](https://img.shields.io/badge/GitHub-Repo-green.svg)](https://github.com/st007097-coder/ocm-sup)
 
@@ -548,12 +548,6 @@ Jacky: "QS is correct, updated"
 
 **Core Goal:** Let Star know "what", "why", "when", and "how much".
 
----
-
-## 📖 Table of Contents
-
----
-
 ## 📖 Table of Contents
 
 - [Introduction](#introduction)
@@ -955,7 +949,9 @@ confidence = base_confidence
 | 2026-04-13 | v1.2 | 7-Dir 1, 2 integration |
 | 2026-04-15 | v1.3 | 7-Dir 4 KG Auto-Expansion |
 | 2026-04-17 | v1.4 | Phase Z (Uncertainty Tracking + EQS) |
-| **2026-04-18** | **v2.0** | **Complete Roadmap Done** |
+| 2026-04-18 | v2.0 | Complete Roadmap Done (Triple-Stream + KG + Smart Recall) |
+| 2026-04-21 | v2.1 | Exact Match Boost (P0.2-P0.5: 100% TOP1 on 35 queries) |
+| 2026-04-24 | v2.2 | Continuity Layer (Carryover + Hooks + Frontstage Guard) |
 
 ### Roadmap Completion Status
 
@@ -1389,5 +1385,5 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 ---
 
-_Last updated: 2026-04-18_
-_OCM Sup v2.0 - Production Ready_ 🚀
+_Last updated: 2026-04-24_
+_OCM Sup v2.2 - Production Ready_ 🚀

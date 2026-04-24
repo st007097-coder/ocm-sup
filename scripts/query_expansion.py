@@ -66,9 +66,22 @@ class QueryExpander:
             # Quality terms
             "QS": {"quantity surveyor", "工料測量師", "QS"},
             "工料測量": {"quantity surveying", "工料測量", "QS"},
-            "工程": {"engineering", "工程", "construction"},
-            "造價": {"cost", "造價", "costing"},
+            "工料測量師": {"quantity surveyor", "工料測量師", "QS", "工料測量"},
             "估算": {"estimation", "估算", "estimate"},
+            "造價": {"cost", "造價", "costing", "造價"},
+            
+            # Construction / QS terms
+            "分判商": {"subcontractor", "分判商", "sub-contractor"},
+            "供應商": {"supplier", "供應商", "vendor"},
+            "投標": {"tendering", "投標", "bidding", "投標"},
+            "合約": {"contract", "合約", "agreement"},
+            "工程": {"engineering", "工程", "construction"},
+            "工程合約": {"construction contract", "工程合約", "contract"},
+            "造價估算": {"cost estimation", "造價估算", "estimation"},
+            
+            # Distillation terms
+            "蒸餾": {"distillation", "蒸餾", "蒸餾"},
+            "知識蒸餾": {"knowledge distillation", "知識蒸餾", "distillation"},
             
             # Person entities
             "期哥": {"Jacky", "期哥", "jacky", "積奇", "Jacky Evolution", "QS期哥"},
@@ -148,6 +161,10 @@ class QueryExpander:
             "古洞站": ["古洞站", "Kwu Tung Station", "gutong station"],
             "知識圖譜": ["知識圖譜", "knowledge graph", "knowledge-graph"],
             "記憶蒸餾": ["memory distillation", "memory distill", "記憶蒸餾", "知識蒸餾"],
+            "Quantity Surveyor": ["Quantity Surveyor", "quantity surveyor", "工料測量師"],
+            "工料測量師": ["工料測量師", "Quantity Surveyor", "quantity surveyor"],
+            "知識蒸餾": ["知識蒸餾", "knowledge distillation", "memory distillation"],
+            "知識圖譜": ["知識圖譜", "knowledge graph", "knowledge-graph"],
         }
     
     def is_chinese(self, text: str) -> bool:

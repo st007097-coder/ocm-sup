@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OCM Sup - 智能記憶系統</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0f172a;
+    font-family: 'Noto Sans HK', -apple-system, sans-serif;
+    overflow: hidden;
+  }
+</style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script>
+/**
+ * animations.jsx — 時間軸動畫引擎 (inline version)
+ */
+(function() {
+  const { createContext, useContext, useState, useEffect, useRef, useCallback } = React;
+
+  const TimeContext = createContext({ time: 0, duration: 30, playing: false });
+  const SpriteContext = createContext(null);
+
+  const Easing = {
+    linear: t => t,
+    easeIn: t => t * t,
+    easeOut: t => 1 - (1 - t) * (1 - t),
+    easeInOut: t => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2,
+    expoOut: t => t === 1 ? 1 : 1 - Math.pow(2, -10 * t),
+    overshoot: t => {
+      const c1 = 1.70158, c3 = c1 + 1;
+      return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
+    },
+    spring: t => {
+      const c = (2 * Math.PI) / 3;
+      return t === 0 ? 0 : t === 1 ? 1 : Math.pow(2, -10 * t) * Math.sin((t * 10 - 0.75) * c) + 1;
+    },
+  };
+
+  function interpolate(t, input, output, easing) {
+    const [inStart, inEnd] = input;
+    const [outStart, outEnd] = output;
+    if (t <= inStart) return outStart;
+    if (t >= inEnd) return outEnd;
+    let progress = (t - inStart) / (inEnd - inStart);
+    if (easing) progress = easing(progress);
+    return outStart + (outEnd - outStart) * progress;
+  }
+
+  function useTime() { return useContext(TimeContext).time; }
+  function useSprite() { return useContext(SpriteContext) || { t: 0, elapsed: 0, duration: 0 }; }
+
+  function Stage({ duration = 30, width = 1920, height = 1080, loop = true, children, bgColor = '#0f172a' }) {
+    const [time, setTime] = useState(0);
+    const [playing, setPlaying] = useState(true);
+    const [scale, setScale] = useState(1);
+    const rafRef = useRef(null);
+    const lastRef = useRef(null);
+    const effectiveLoop = (typeof window !== 'undefined' && window.__recording) ? false : loop;
+
+    useEffect(() => {
+      function updateScale() {
+        const vw = window.innerWidth;
+        const vh = window.innerHeight - 56;
+        const s = Math.min(vw / width, vh / height);
+        setScale(s);
+      }
+      updateScale();
+      window.addEventListener('resize', updateScale);
+      return () => window.removeEventListener('resize', updateScale);
+    }, [width, height]);
+
+    useEffect(() => {
+      if (!playing) return;
+      let cancelled = false;
+      lastRef.current = null;
+
+      function tick(now) {
+        if (cancelled) return;
+        if (lastRef.current === null) {
+          lastRef.current = now;
+          if (typeof window !== 'undefined') window.__ready = true;
+        }
+        const delta = (now - lastRef.current) / 1000;
+        lastRef.current = now;
+        setTime(prev => {
+          const next = prev + delta;
+          if (next >= duration) return effectiveLoop ? 0 : duration - 0.001;
+          return next;
+        });
+        rafRef.current = requestAnimationFrame(tick);
+      }
+
+      document.fonts.ready.then(() => {
+        if (!cancelled) rafRef.current = requestAnimationFrame(tick);
+      });
+
+      return () => { cancelled = true; cancelAnimationFrame(rafRef.current); };
+    }, [playing, duration, effectiveLoop]);
+
+    const progress = time / duration;
+    const ctx = { time, duration, playing, setPlaying, setTime };
+
+    return React.createElement(TimeContext.Provider, { value: ctx },
+      React.createElement('div', { style: { position: 'fixed', inset: 0, background: '#000', display: 'flex', flexDirection: 'column', fontFamily: 'inherit' } },
+        React.createElement('div', { style: { flex: 1, position: 'relative', overflow: 'hidden' } },
+          React.createElement('div', {
+            style: {
+              position: 'absolute', top: '50%', left: '50%',
+              transformOrigin: 'center center',
+              transform: `translate(-50%, -50%) scale(${scale})`,
+              width, height, background: bgColor, overflow: 'hidden'
+            }
+          }, children)
+        ),
+        React.createElement('div', {
+          style: {
+            position: 'fixed', bottom: 0, left: 0, right: 0,
+            background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(10px)',
+            padding: '12px 20px', display: 'flex', alignItems: 'center', gap: 16,
+            color: '#fff', fontSize: 12, zIndex: 100
+          }
+        },
+          React.createElement('button', {
+            style: { background: 'none', border: '1px solid rgba(255,255,255,0.3)', color: '#fff', padding: '6px 14px', borderRadius: 4, cursor: 'pointer', fontSize: 12 },
+            onClick: () => setPlaying(p => !p)
+          }, playing ? '⏸ 暫停' : '▶ 播放'),
+          React.createElement('button', {
+            style: { background: 'none', border: '1px solid rgba(255,255,255,0.3)', color: '#fff', padding: '6px 14px', borderRadius: 4, cursor: 'pointer', fontSize: 12 },
+            onClick: () => setTime(0)
+          }, '⏮ 開始'),
+          React.createElement('div', { style: { fontFamily: 'ui-monospace, monospace', fontVariantNumeric: 'tabular-nums', minWidth: 90 } },
+            `${time.toFixed(2)}s / ${duration.toFixed(2)}s`
+          ),
+          React.createElement('div', {
+            style: { flex: 1, height: 4, background: 'rgba(255,255,255,0.2)', borderRadius: 2, position: 'relative', cursor: 'pointer' },
+            onClick: (e) => {
+              const rect = e.currentTarget.getBoundingClientRect();
+              const ratio = (e.clientX - rect.left) / rect.width;
+              setTime(Math.max(0, Math.min(duration, ratio * duration)));
+            }
+          },
+            React.createElement('div', { style: { position: 'absolute', top: 0, left: 0, height: '100%', background: '#fff', borderRadius: 2, width: `${progress * 100}%`, pointerEvents: 'none' } })
+          )
+        )
+      )
+    );
+  }
+
+  function Sprite({ start = 0, end, children, style }) {
+    const { time } = useContext(TimeContext);
+    const actualEnd = end == null ? Infinity : end;
+    if (time < start || time >= actualEnd) return null;
+    const duration = actualEnd - start;
+    const elapsed = time - start;
+    const t = Math.max(0, Math.min(1, elapsed / duration));
+    return React.createElement(SpriteContext.Provider, { value: { t, elapsed, duration, start, end: actualEnd } },
+      React.createElement('div', { style: { position: 'absolute', inset: 0, ...style } }, children)
+    );
+  }
+
+  window.Animations = { Stage, Sprite, useTime, useSprite, Easing, interpolate };
+})();
+</script>
+
+<script type="text/babel">
+const { Stage, Sprite, useTime, useSprite, Easing, interpolate } = window.Animations;
+
+// ============ COLORS ============
+const COLORS = {
+  bg: '#0f172a',
+  bg2: '#1e293b',
+  primary: '#1A73E8',     // Google Blue
+  teal: '#0D9488',        // Teal
+  accent: '#22D3EE',      // Cyan accent
+  white: '#FFFFFF',
+  gray: '#94A3B8',
+  lightGray: '#CBD5E1',
+  dark: '#0F172A',
+  success: '#10B981',
+};
+
+// ============ SCENE 1: 問題 (0-10s) ============
+function Scene1_Problem() {
+  const { t, elapsed } = useSprite();
+  
+  // Fade in
+  const opacity = interpolate(t, [0, 0.3], [0, 1], Easing.easeOut);
+  const scale = interpolate(t, [0.8, 1], [0.95, 1], Easing.expoOut);
+  
+  // Question animation
+  const questionOpacity = interpolate(t, [0.5, 1.5], [0, 1], Easing.easeOut);
+  const questionScale = interpolate(t, [0.9, 1], [0.95, 1], Easing.expoOut);
+  
+  // Error shake
+  const shakeX = t < 0.6 ? Math.sin(t * 60) * (1 - t) * 10 : 0;
+
+  return (
+    <div style={{ 
+      width: '100%', height: '100%', 
+      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+      opacity, transform: `scale(${scale})`
+    }}>
+      {/* Title */}
+      <div style={{ 
+        fontSize: 18, color: COLORS.gray, letterSpacing: 4, marginBottom: 40,
+        fontWeight: 300
+      }}>
+        OCM SUP · 智能記憶系統
+      </div>
+      
+      {/* Question bubble */}
+      <div style={{
+        background: COLORS.bg2,
+        borderRadius: 20,
+        padding: '30px 50px',
+        maxWidth: 800,
+        opacity: questionOpacity,
+        transform: `scale(${questionScale}) translateX(${shakeX}px)`,
+        border: '1px solid rgba(255,255,255,0.1)',
+        boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+        position: 'relative'
+      }}>
+        <div style={{ fontSize: 14, color: COLORS.gray, marginBottom: 15 }}>
+          👤 用家提問
+        </div>
+        <div style={{ 
+          fontSize: 42, color: COLORS.white, fontWeight: 500, lineHeight: 1.4,
+          fontFamily: "'Noto Sans HK', sans-serif"
+        }}>
+          「古洞站項目進展怎樣？」
+        </div>
+        
+        {/* Traditional search fails indicator */}
+        <div style={{
+          marginTop: 30,
+          display: 'flex',
+          alignItems: 'center',
+          gap: 15
+        }}>
+          <div style={{
+            width: 60, height: 60, borderRadius: '50%',
+            background: 'rgba(239, 68, 68, 0.2)',
+            border: '2px solid #EF4444',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: 28
+          }}>
+            ✗
+          </div>
+          <div>
+            <div style={{ fontSize: 18, color: '#EF4444', fontWeight: 500 }}>
+              傳統單一搜索
+            </div>
+            <div style={{ fontSize: 14, color: COLORS.gray, marginTop: 4 }}>
+              假陽性多 · 關係不明 · 結果散乱
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Bottom label */}
+      <div style={{
+        marginTop: 60,
+        fontSize: 16, color: COLORS.gray,
+        letterSpacing: 2
+      }}>
+        0{elapsed.toFixed(1)}s
+      </div>
+    </div>
+  );
+}
+
+// ============ SCENE 2: 三流融合 (10-20s) ============
+function Scene2_TripleStream() {
+  const { t } = useSprite();
+  
+  const opacity = interpolate(t, [0, 0.4], [0, 1], Easing.easeOut);
+  
+  // Channel activation timing
+  const bm25Active = t >= 0.3;
+  const vectorActive = t >= 0.5;
+  const graphActive = t >= 0.7;
+  
+  // RRF Fusion pulse
+  const fusionPulse = t > 0.85 ? Math.sin((t - 0.85) * 40) * 0.3 + 0.7 : 0;
+  
+  return (
+    <div style={{ 
+      width: '100%', height: '100%', 
+      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+      opacity
+    }}>
+      {/* Title */}
+      <div style={{ 
+        fontSize: 18, color: COLORS.accent, letterSpacing: 4, marginBottom: 50,
+        fontWeight: 300
+      }}>
+        核心技術 · 三流搜索
+      </div>
+      
+      {/* Three channels */}
+      <div style={{ display: 'flex', gap: 40, alignItems: 'flex-start' }}>
+        
+        {/* BM25 Channel */}
+        <div style={{
+          width: 280,
+          opacity: bm25Active ? 1 : 0.3,
+          transform: `scale(${bm25Active ? 1 : 0.9})`,
+          transition: 'all 0.5s ease',
+          textAlign: 'center'
+        }}>
+          <div style={{
+            width: 100, height: 100, borderRadius: 20,
+            background: bm25Active ? 'linear-gradient(135deg, #1A73E8, #0D9488)' : 'rgba(255,255,255,0.1)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            margin: '0 auto 20px',
+            boxShadow: bm25Active ? '0 0 40px rgba(26,115,232,0.5)' : 'none',
+            transition: 'all 0.5s ease'
+          }}>
+            <span style={{ fontSize: 36, color: '#fff', fontWeight: 700 }}>BM</span>
+          </div>
+          <div style={{ fontSize: 24, color: COLORS.white, fontWeight: 500, marginBottom: 8 }}>
+            BM25
+          </div>
+          <div style={{ fontSize: 14, color: COLORS.gray, lineHeight: 1.6 }}>
+            精確關鍵詞匹配<br/>
+            中文 · 英文
+          </div>
+          {bm25Active && (
+            <div style={{
+              marginTop: 15, fontSize: 12, color: COLORS.teal,
+              animation: 'pulse 1s infinite'
+            }}>
+              ✓ 激活
+            </div>
+          )}
+        </div>
+        
+        {/* Vector Channel */}
+        <div style={{
+          width: 280,
+          opacity: vectorActive ? 1 : 0.3,
+          transform: `scale(${vectorActive ? 1 : 0.9})`,
+          transition: 'all 0.5s ease',
+          textAlign: 'center'
+        }}>
+          <div style={{
+            width: 100, height: 100, borderRadius: 20,
+            background: vectorActive ? 'linear-gradient(135deg, #0D9488, #22D3EE)' : 'rgba(255,255,255,0.1)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            margin: '0 auto 20px',
+            boxShadow: vectorActive ? '0 0 40px rgba(13,148,136,0.5)' : 'none',
+            transition: 'all 0.5s ease'
+          }}>
+            <span style={{ fontSize: 28, color: '#fff' }}>⊿</span>
+          </div>
+          <div style={{ fontSize: 24, color: COLORS.white, fontWeight: 500, marginBottom: 8 }}>
+            Vector
+          </div>
+          <div style={{ fontSize: 14, color: COLORS.gray, lineHeight: 1.6 }}>
+            語義相似度<br/>
+            中英雙語
+          </div>
+          {vectorActive && (
+            <div style={{
+              marginTop: 15, fontSize: 12, color: COLORS.teal
+            }}>
+              ✓ 激活
+            </div>
+          )}
+        </div>
+        
+        {/* Graph Channel */}
+        <div style={{
+          width: 280,
+          opacity: graphActive ? 1 : 0.3,
+          transform: `scale(${graphActive ? 1 : 0.9})`,
+          transition: 'all 0.5s ease',
+          textAlign: 'center'
+        }}>
+          <div style={{
+            width: 100, height: 100, borderRadius: 20,
+            background: graphActive ? 'linear-gradient(135deg, #22D3EE, #A855F7)' : 'rgba(255,255,255,0.1)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            margin: '0 auto 20px',
+            boxShadow: graphActive ? '0 0 40px rgba(34,211,238,0.5)' : 'none',
+            transition: 'all 0.5s ease'
+          }}>
+            <span style={{ fontSize: 32, color: '#fff' }}>◉</span>
+          </div>
+          <div style={{ fontSize: 24, color: COLORS.white, fontWeight: 500, marginBottom: 8 }}>
+            Graph
+          </div>
+          <div style={{ fontSize: 14, color: COLORS.gray, lineHeight: 1.6 }}>
+            知識圖譜<br/>
+            實體關係
+          </div>
+          {graphActive && (
+            <div style={{
+              marginTop: 15, fontSize: 12, color: COLORS.teal
+            }}>
+              ✓ 激活
+            </div>
+          )}
+        </div>
+      </div>
+      
+      {/* RRF Fusion */}
+      <div style={{
+        marginTop: 60,
+        padding: '25px 60px',
+        background: `rgba(16, 185, 129, ${0.2 + fusionPulse * 0.3})`,
+        borderRadius: 16,
+        border: '2px solid #10B981',
+        opacity: fusionPulse > 0 ? 1 : 0.7
+      }}>
+        <div style={{ fontSize: 20, color: COLORS.white, fontWeight: 500 }}>
+          RRF Fusion · 融合結果
+        </div>
+        <div style={{ fontSize: 14, color: COLORS.gray, marginTop: 8 }}>
+          Reciprocal Rank Fusion · k=60
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ============ SCENE 3: 正確結果 (20-30s) ============
+function Scene3_Result() {
+  const { t, elapsed, duration } = useSprite();
+  
+  const opacity = interpolate(t, [0, 0.3], [0, 1], Easing.easeOut);
+  
+  // Fade in elements sequentially
+  const titleOpacity = interpolate(t, [0, 0.3], [0, 1], Easing.easeOut);
+  const graphOpacity = interpolate(t, [0.2, 0.6], [0, 1], Easing.easeOut);
+  const resultOpacity = interpolate(t, [0.5, 0.9], [0, 1], Easing.easeOut);
+  
+  // Jacky node pulse
+  const jackyPulse = Math.sin(t * 3) * 0.05 + 1;
+  
+  return (
+    <div style={{ 
+      width: '100%', height: '100%', 
+      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+      opacity
+    }}>
+      {/* Title */}
+      <div style={{ 
+        fontSize: 18, color: COLORS.success, letterSpacing: 4, marginBottom: 50,
+        opacity: titleOpacity, fontWeight: 300
+      }}>
+        精確結果 · 信心回答
+      </div>
+      
+      {/* Entity Graph */}
+      <div style={{
+        display: 'flex', alignItems: 'center', gap: 60,
+        opacity: graphOpacity
+      }}>
+        {/* Jacky */}
+        <div style={{
+          textAlign: 'center',
+          transform: `scale(${jackyPulse})`,
+          transition: 'transform 0.3s ease'
+        }}>
+          <div style={{
+            width: 120, height: 120, borderRadius: '50%',
+            background: 'linear-gradient(135deg, #1A73E8, #0D9488)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            margin: '0 auto 15px',
+            boxShadow: '0 0 40px rgba(26,115,232,0.4)'
+          }}>
+            <span style={{ fontSize: 42, color: '#fff', fontWeight: 700 }}>J</span>
+          </div>
+          <div style={{ fontSize: 22, color: COLORS.white, fontWeight: 500 }}>Jacky</div>
+          <div style={{ fontSize: 12, color: COLORS.gray, marginTop: 4 }}>QS · 工料測量師</div>
+        </div>
+        
+        {/* works_on arrow */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div style={{
+            padding: '15px 30px',
+            background: 'rgba(26,115,232,0.2)',
+            borderRadius: 12,
+            border: '1px solid rgba(26,115,232,0.5)',
+            color: COLORS.accent,
+            fontSize: 16,
+            fontWeight: 500,
+            letterSpacing: 2
+          }}>
+            works_on
+          </div>
+          <div style={{
+            marginTop: 20,
+            width: 4, height: 60,
+            background: 'linear-gradient(to bottom, #1A73E8, #0D9488)'
+          }} />
+        </div>
+        
+        {/* 古洞站 */}
+        <div style={{ textAlign: 'center' }}>
+          <div style={{
+            width: 120, height: 120, borderRadius: 16,
+            background: 'linear-gradient(135deg, #0D9488, #22D3EE)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            margin: '0 auto 15px',
+            boxShadow: '0 0 40px rgba(13,148,136,0.4)'
+          }}>
+            <span style={{ fontSize: 36, color: '#fff', fontWeight: 700 }}>古</span>
+          </div>
+          <div style={{ fontSize: 22, color: COLORS.white, fontWeight: 500 }}>古洞站</div>
+          <div style={{ fontSize: 12, color: COLORS.gray, marginTop: 4 }}>MTR 東鐵線項目</div>
+        </div>
+        
+        {/* Result arrow */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div style={{
+            padding: '15px 30px',
+            background: 'rgba(16,185,129,0.2)',
+            borderRadius: 12,
+            border: '1px solid rgba(16,185,129,0.5)',
+            color: COLORS.success,
+            fontSize: 16,
+            fontWeight: 500
+          }}>
+            →
+          </div>
+        </div>
+        
+        {/* Answer */}
+        <div style={{
+          padding: '30px 40px',
+          background: COLORS.bg2,
+          borderRadius: 16,
+          border: '1px solid rgba(16,185,129,0.3)',
+          maxWidth: 400,
+          opacity: resultOpacity
+        }}>
+          <div style={{ fontSize: 18, color: COLORS.success, fontWeight: 500, marginBottom: 12 }}>
+            ✓ 回答
+          </div>
+          <div style={{ fontSize: 20, color: COLORS.white, lineHeight: 1.6 }}>
+            古洞站目前處於<br/>
+            <span style={{ color: COLORS.accent, fontWeight: 500 }}>BS（Building Survey）階段</span>
+          </div>
+          <div style={{ 
+            marginTop: 15, fontSize: 12, color: COLORS.gray,
+            padding: '8px 12px',
+            background: 'rgba(255,255,255,0.05)',
+            borderRadius: 8,
+            display: 'inline-block'
+          }}>
+            Confidence: 95% · from: 古洞站.md
+          </div>
+        </div>
+      </div>
+      
+      {/* Bottom branding */}
+      <div style={{
+        position: 'absolute', bottom: 80,
+        fontSize: 14, color: COLORS.gray, letterSpacing: 2
+      }}>
+        OCM Sup v2.0 · Triple-Stream Search
+      </div>
+    </div>
+  );
+}
+
+// ============ MAIN APP ============
+function App() {
+  return (
+    <Stage duration={30} width={1920} height={1080} bgColor={COLORS.bg}>
+      
+      {/* Scene 1: Problem (0-10s) */}
+      <Sprite start={0} end={10}>
+        <Scene1_Problem />
+      </Sprite>
+      
+      {/* Scene 2: Triple-Stream (10-20s) */}
+      <Sprite start={10} end={20}>
+        <Scene2_TripleStream />
+      </Sprite>
+      
+      {/* Scene 3: Result (20-30s) */}
+      <Sprite start={20} end={30}>
+        <Scene3_Result />
+      </Sprite>
+      
+    </Stage>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+
+<style>{`
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+`}</style>
+
+</body>
+</html>

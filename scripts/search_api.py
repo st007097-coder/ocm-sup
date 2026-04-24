@@ -98,8 +98,18 @@ def search_get():
     t0 = time.perf_counter()
     
     query = request.args.get('q', '')
+    # Flask/Werkzeug decodes URL parameters automatically for UTF-8
+    # But we add explicit handling for malformed encoding
     if not query:
         return jsonify({'error': 'Missing query parameter: q'}), 400
+    
+    # Handle double-URL-encoded queries (shell curl sometimes double-encodes)
+    if '%' in query and query.count('%') > 2:
+        try:
+            from urllib.parse import unquote
+            query = unquote(unquote(query))
+        except Exception:
+            pass
     
     try:
         top_k = min(int(request.args.get('top_k', 5)), 20)
