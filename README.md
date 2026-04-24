@@ -1353,21 +1353,42 @@ A: Daily or weekly recommended, depending on your data volume.
 
 - **Andrej Karpathy** - Programming Principles (Simplicity First, Surgical Changes)
 - **Aporia Labs** - LLM Wiki v2 (Confidence Scoring, Supersession, Forgetting)
-- **Anthropic** - OODA Loop / CraniMem Architecture
+- **Anthropic** - OIDA Loop / CraniMem Architecture
 - **Jacky** - QS professional, requirements originator for the entire system
 
 ### Tech Stack
 
-- **OpenClaw** - AI Assistant Framework
-- **BM25 (rank_bm25)** - Keyword Search
-- **Sentence Transformers** - Vector Embeddings
-- **Flask** - HTTP API
-- **Mermaid.js** - Diagram rendering
+| Category | Technology | Purpose |
+|----------|------------|---------|
+| Framework | **OpenClaw** | AI Assistant Framework |
+| Search | **rank-bm25** | BM25 keyword search |
+| Embeddings | **Ollama** (nomic-embed-text) | Vector embeddings |
+| API | **Flask** | HTTP search API |
+| Diagrams | **Mermaid.js** | Architecture diagrams |
+| Plugins | **memory-core, memory-wiki, lossless-claw** | Memory system |
+| Notebooks | **Obsidian** | Local knowledge base |
+| Database | **Notion API** | Project database integration |
 
-### Main Contributors
+### Key Contributors
 
-- **Jacky** - Product design, requirements
-- **Star** - System development, algorithm implementation
+| Name | Role | Contribution |
+|------|------|-------------|
+| **Jacky (期哥)** | Product design | Requirements, QS expertise |
+| **Star (阿星)** | System development | Algorithm implementation, agent integration |
+
+### Skills & Tools
+
+| Tool | Purpose | Author |
+|------|---------|--------|
+| **huashu-design** | HTML animation demo | 花叔 |
+| **Unsloth** | Local LLM research | unslothai |
+| **Claude Code** | Development workflow | Anthropic |
+
+### Acknowledgments
+
+- OpenClaw community for plugin ecosystem
+- Claude Design (Anthropic) for design workflow inspiration
+- All open-source contributors
 
 ---
 
