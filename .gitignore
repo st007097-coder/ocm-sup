@@ -26,3 +26,4 @@ scripts/continuity/traces_audit.jsonl
 
 # API state
 *.log
+MEMORY.md
