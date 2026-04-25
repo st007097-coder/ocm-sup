@@ -366,192 +366,89 @@ relationships:
 
 _Changelog 最後更新：2026-04-18_
 _Version: 2.0_
----
-
-## v2.1: Exact Match Boost（2026-04-21）
+## 🧬 v2.3: AI 失憶問題研究 — Proactive Memory System (2026-04-25)
 
 ### 當時情况
 
-- Triple-Stream Search 已實装，但有 Graph False Positive 問題
-- 期哥查「期哥」→ Graph 返回 Quantity Surveyor（相關）→ 但期哥想要「期哥」本人
-- 期哥話：「我地未做呢堆咩」— 提醒我 roadnap items 未做
+- 所有現有系統都係被動觸發（keyword trigger）
+- Active Memory → keyword trigger
+- Smart Recall Hook → keyword trigger
+- 根本問題：冇 proactive 機制
+- AI 依然會忘記做過嘅嘢，即使有完整 memory systems
 
-### 決定
+### 發現嘅 Root Cause
 
-做 **P0.2（Hit Rate 定義）** 和 **P0.3（Graph False Positive Analysis）**。
+所有現有系統都被動：等 user 問問題 → 先做 search
+冇主動發現新舊知識連接嘅機制
 
-### P0.2：Hit Rate 定義
+### 解決方案：Proactive Memory System
 
-**問題：** 之前沒有清楚定義「搵到」係乜意思
+#### Phase 1: Session Start Memory Load
+- Script: session_start_memory_load.py
+- 功能：Session 開始時自動 load 三層 context
+  - Must Keep Facts（压縮前 checkpoints）
+  - 上次 Session Summary
+  - 近 5 日 Memory
+- 位置: /root/.openclaw/workspace/scripts/
 
-**解決：** 創建三級定義
-- TOP1_HIT：第1個就啱
-- TOP3_HIT：第1-3個有一個啱
-- TOP5_HIT：第1-5個有一個相關
+#### Phase 2: Pre-compression Checkpoint
+- Script: pre_compression_checkpoint.py
+- 功能：压縮前自動識別重要 facts 保存去 must_keep_facts.md
+- 結果: 60 facts 被保存
 
-### P0.3：Graph False Positive Analysis
+#### Phase 3: Proactive Discovery Super Quick
+- Script: proactive_discovery_super_quick.py
+- 原理: 直接掃描 wiki 目錄，繞過慢速 LLM query
+- 性能提升: ~275 秒 → ~1 秒（275x faster）
+- 整合入: Consolidation Loop
 
-**問題：** 
-- 測試 14 個 queries，False Positive Rate = 93%
-- 幾乎所有 query 都被 Graph 返回的「相關」entities 搶走
+#### Phase 4: Session End Summary
+- Script: session_end_summary.py
+- 功能: Session 結束時自動生成 structured summary
+- 觸發: 用戶話「聽晚再傾」「下次再傾」或長 pause
 
-**分析：**
-| Query | 期望 | 實際 | 問題 |
-|-------|------|------|------|
-| 期哥 | 期哥本人 | Quantity Surveyor | 期哥→QS edge 太強 |
-| 古洞站 | 古洞站 | 期哥 | 期哥→古洞站 edge 太強 |
-| OpenClaw | OpenClaw | Hermes Agent | OpenClaw→Hermes edge 太強 |
+#### Phase 5: Session-Memory Hook
+- 發現: OpenClaw 内置 session-memory hook
+- 觸發: command:new, command:reset
+- 功能: 保存最近 15 條 messages 去 memory/YYYY-MM-DD-slug.md
+- 設定: 已添加到 openclaw.json
 
-**解決方案：** Exact Match Boost
+#### Phase 6: Consolidation Loop
+- Script: consolidation-loop.sh
+- 流程:
+  1. Episodic distillation（placeholder）
+  2. Proactive Discovery（~1 sec）
+  3. Pre-compression checkpoint
+- 總時間: ~280 秒 → ~2 秒（140x faster）
 
-當 query 精確匹配某 entity title，該 entity 被放到結果頂部（score = 10000）。
+### 完成嘅 Tasks
 
-代碼實現：
-```python
-def _exact_match_boost(query, bm25_results, boost_factor=50.0):
-    # 將精確匹配放到 BM25 results 頂部，score = 10000
+| Task | 狀態 | 備註 |
+|------|------|------|
+| Task 1: Active Memory 分析 | ✅ | keyword trigger 確認 |
+| Task 2: Smart Recall Hook 分析 | ✅ | keyword trigger 確認 |
+| Task 3: Session Start Memory Load | ✅ | 3-layer context |
+| Task 4: Pre-compression Checkpoint | ✅ | 60 facts saved |
+| Task 5: Proactive Discovery 整合 | ✅ | ~1 sec (275x faster) |
+| Task 6: 獨立 Cron Job | ✅ | 整合入 Consolidation Loop |
+| Task 7: OpenClaw Hooks 研究 | ✅ | session-memory hook 發現 |
 
-def _exact_match_graph_boost(query, graph_results):
-    # 將精確匹配放到 Graph results 頂部，score = 10000
-```
+### Benchmark 結果
 
-### 結果
+| Component | Before | After | Improvement |
+|-----------|--------|-------|-------------|
+| Proactive Discovery | ~275 sec | ~1 sec | 275x faster |
+| Total Loop Time | ~280 sec | ~2 sec | 140x faster |
+| Must Keep Facts | 0 | 60 | ✅ |
+| Session Start Load | 0 | 3 layers | ✅ |
 
-| 指標 | 修復前 | 修復後 |
-|------|---------|--------|
-| TOP1_HIT_RATE | 0% | **82.4%** (14/17) |
-| False Positive Rate | 93% | **17.6%** |
+### 關鍵教訓
 
-### 仍然失敗（3個）
-
-1. **Triple-Stream** → BM25（應該匹配 "Triple-Stream Search"）
-2. **Hermes Agent** → Hermes 接入即夢 CLI（應該匹配 "Hermes Agent"）
-3. **Lossless-Claw** → Hermes 接入即夢 CLI（應該匹配 "Lossless-Claw"）
-
-**原因：** Multi-word entity names 未完全處理（Boost logic 只做 exact match，唔做 substring match）
-
-### 教訓
-
-1. **Graph 太 aggressive** — 容易找到「相關」entities，但用家多數想要「精確」entities
-2. **Entity files 好多冇 body content** — 只有 frontmatter + relationships，BM25 搵唔到
-3. **Build first, document later** — 期哥提醒我要記錄進步/失敗
-
-### 下一步
-
-- [ ] P0.1：擴大 Benchmark Dataset（3 queries → 20+ queries）
-- [ ] 修復 Multi-word entity matching（Triple-Stream → "Triple-Stream Search"）
-
-
-## v3.0: P0 100% TOP1 HIT（2026-04-22）
-
-### 完成情况
-
-| Phase | 內容 | 日期 | 結果 |
-|-------|------|------|------|
-| P0.1 | Expand Benchmark | 2026-04-22 | 17 → 35 queries |
-| P0.2 | Hit Rate 定義 | 2026-04-22 | 三級定義建立 |
-| P0.3 | Exact Match Boost | 2026-04-22 | 59.3% → 81.5% |
-| P0.4 | Substring Matching | 2026-04-22 | 81.5% → 100% |
-| P0.5 | Add Missing Entities | 2026-04-22 | 100% ✅ |
-
-### 最終結果
-
-- **TOP1 Rate: 35/35 = 100%** 🎉
-- **TOP3 Rate: 35/35 = 100%**
-- **TOP5 Rate: 35/35 = 100%**
-- **0 個失敗 cases**
-
-### 新增 Entity Docs
-
-- `query-expansion.md`（1513 bytes）
-- `retention-scan.md`（1731 bytes）
-- `tavily.md`（1202 bytes）
-- `reciprocal-rank-fusion.md`（1423 bytes）
-
-### 技術突破
-
-1. **Exact Match Boost**：精確匹配 entity title 時 score = 10000
-2. **Substring/Prefix Matching**：處理 multi-word entities
-3. **Position-Aware Title Boost**：匹配位置越前 boost 分數越高
-4. **BM25 + Vector + Graph + RRF Fusion**：四流合併
-
-### 教訓
-
-1. **Cache corruption 要即時修復** — embedding cache JSON 損壞會導致 rebuild 失敗
-2. **Lazy load 係未來優化方向** — 全量 rebuild 3338 docs 需要 277 秒
-3. **100% 唔係終點** — 35 queries 係基本覆蓋，真實 usage 可能有不同的 queries
-
-### 下一步
-
-- [ ] P1.1：速度優化（Lazy load）
-- [ ] P1.2：Relevance Ranking 改善
-- [ ] P2：Evaluation 自動化（AB Test + Regression 檢測）
-
+1. 被動 vs 主動: 所有現有系統都被動，要加 proactive trigger
+2. 速度係關鍵: 慢速 scripts 冇人用，快先係道理
+3. Hook 系統: OpenClaw 内置 hook 可以利用，唔好自己重造
+4. 兩層備份: session-memory (raw) + session_end_summary (structured)
 
 ---
-
-## 🧬 v2.2: Continuity Layer 完成 (2026-04-24)
-
-### 當時情况
-
-- OCM Sup 已有 Triple-Stream Search (BM25 + Vector + Graph)
-- 但缺乏 `/new` carryover 和 structured follow-up 功能
-- 期哥話：「/new之後掉回寒暄，唔記得之前傾緊乜」
-
-### Phase 1 完成 (2026-04-22)
-
-1. **State Router** — 消息分類 (casual/staged/tracked)
-2. **Carryover Manager** — `/new` session continuity
-3. **Hook Lifecycle** — due/render/complete 鉤子
-
-### Phase 2 完成 (2026-04-24)
-
-4. **Frontstage Guard** — 防止內部邏輯泄露
-5. **OCM Graph Integration** — Wiki 實體整合
-6. **Daily Memory Traces** — 結構化蹤跡
-
-### Items 1-3 完成 (2026-04-24 下午)
-
-7. **Cron Setup** — `setup_cron.sh`
-8. **Telegram Bot** — `telegram_notify.py` + `setup_telegram.sh`
-9. **Real Conversation Test** — `real_conversation_test.py` (4/5 passed)
-
-### Benchmark 完成 (2026-04-24 下午)
-
-| Benchmark | 結果 | 評級 |
-|-----------|------|------|
-| Latency | P99: 419ms, Mean: 251ms | 🟡 Good |
-| Load | 18.7 qps, No errors | 🟢 Excellent |
-| Continuity | Mean: 39ms overall | 🟡 Good |
-
-### 新增文件
-
-```
-scripts/continuity/
-├── __init__.py
-├── state_router.py          (22KB)
-├── carryover.py             (17KB)
-├── continuity_state.py      (17KB)
-├── hook_lifecycle.py        (19KB)
-├── frontstage_guard.py      (9KB)
-├── ocm_graph_integration.py (20KB)
-├── daily_memory_trace.py    (15KB)
-├── setup_cron.sh            (6.6KB)
-├── setup_telegram.sh        (3.9KB)
-├── telegram_notify.py        (5.8KB)
-├── integration_test.py      (12.6KB)
-├── real_conversation_test.py (7.4KB)
-├── continuity_benchmark.py  (10.3KB)
-└── latency_benchmark.py     (5.5KB)
-
-continuity_api.py            (11.3KB) — HTTP API
-USAGE_CARRYOVER.md           (4.6KB) — 使用指南
-```
-
-### 學到嘅教訓
-
-1. **Lazy loading 好重要** — Vector loading 從 277s 降到 5s
-2. **RRF weights 要調** — Graph weight 1.5 太高，降到 0.8
-3. **測試先行** — Integration test 發現 93% 問題
-4. **Benchmark 必要** — 確認優化有效
-
+_Changelog 最後更新：2026-04-25_
+_Version: 2.3_

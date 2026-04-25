@@ -1,143 +1,136 @@
 # OCM Sup - OpenClaw Memory System
 
-> 🧠 Jacky's Intelligent Memory System — Combining Triple-Stream Search + Knowledge Graph + Proactive Discovery
+> 🧠 期哥嘅智能記憶系統 — 結合 Triple-Stream Search + Knowledge Graph + Proactive Discovery
 
 [![Status](https://img.shields.io/badge/status-production_ready-green.svg)](#)
-[![OCM Sup](https://img.shields.io/badge/OCM%20Sup-v2.2-blue.svg)](#)
+[![OCM Sup](https://img.shields.io/badge/OCM%20Sup-v2.3-blue.svg)](#)
 
 [![View on GitHub](https://img.shields.io/badge/GitHub-Repo-green.svg)](https://github.com/st007097-coder/ocm-sup)
 
 ## 🔗 Quick Links
 
-| Document | Description | Language |
-|----------|-------------|----------|
-| [README.md](README.md) | 📖 English Main Page (this one) | English |
-| [README_粵語.md](README_粵語.md) | 📖 Cantonese Version | 粵語 |
-| [README_中文.md](README_中文.md) | 📖 Simplified Chinese (Formal) | 書面語 |
-| [TECHNICAL.md](TECHNICAL-en.md) | 🔬 Technical Principles + Algorithms | English |
-| [CHANGELOG.md](CHANGELOG-en.md) | 📅 Evolution History + Decision Process | English |
-| [TEST-REPORT.md](TEST-REPORT-en.md) | 🧪 Test Results + Bug Fixes | English |
-| [docs/MODULES.md](docs/MODULES.md) | 🏗️ Module Architecture + Data Flow | English |
-| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | 📐 Architecture Diagram | English |
-| [docs/ABLATION.md](docs/ABLATION.md) | 🔬 Ablation Study Results | English |
-| [docs/PRECISION-IMPROVEMENT.md](docs/PRECISION-IMPROVEMENT.md) | 📊 Precision Improvement Analysis | English |
-| [docs/UPGRADE-ROADMAP.md](docs/UPGRADE-ROADMAP.md) | 🚀 Upgrade Roadmap (P0 → P0.4) | English |
-| [cover.webp](cover.webp) | 🖼️ Cover Image |
+| 文檔 | 描述 | 英文版 |
+|------|------|--------|
+| [README.md](README.md) | 📖 主要文檔（呢個）| [English](README-en.md) |
+| [TECHNICAL.md](TECHNICAL.md) | 🔬 技術原理 + 演算法 | [English](TECHNICAL-en.md) |
+| [CHANGELOG.md](CHANGELOG.md) | 📅 進化歷史 + 決策過程 | [English](CHANGELOG-en.md) |
+| [TEST-REPORT.md](TEST-REPORT.md) | 🧪 測試結果 + 問題修復 | [English](TEST-REPORT-en.md) |
+| [cover.webp](cover.webp) | 🖼️ 封面圖片 |
 
 ---
 
-## ⚠️ Important Note: About This Project
+## ⚠️ 重要說明：關於呢個項目
 
-**This is not meant to be copied as-is.**
+**呢個唔係比你照抄嘅。**
 
-Everyone, every Agent, and every use case is different. Jacky is a Hong Kong QS (Quantity Surveyor), and the system I use is based on his:
+每個人、每個 Agent、每個使用場景都唔同。期哥係香港 QS（工料測量師），我用嘅系統係基於我嘅：
 
-- **Nature of work** — Engineering project management, cost estimation
-- **Technical background** — Interested in AI but not an engineer
-- **Usage habits** — Cantonese, Telegram, Obsidian
-- **Time resources** — Spare time, building gradually
+- **工作性質** — 工程項目管理、造價估算
+- **技術背景** — 對 AI 有興趣但唔係工程師
+- **使用習慣** — 廣東話、Telegram、Obsidian
+- **時間資源** — 業餘時間慢慢整
 
-**How you should use this project:**
+**你應該點用呢個項目：**
 
-1. **Understand the principles** — Why does OCM Sup need Triple-Stream? Because single search methods aren't good enough
-2. **Take what you need** — You might only need one or two scripts
-3. **Modify for your situation** — Your memory system should serve your needs, not copy all features
-4. **What you think up is truly yours** — My evolution direction doesn't mean it's right for you, what you figure out yourself is best
+1. **理解原理** — OCM Sup 點解要用 Triple-Stream？因為單一搜索方法唔夠好
+2. **按需取用** — 你可能只需要其中一兩個腳本
+3. **按自身情況修改** — 你嘅記憶系統應該服務你嘅需求，唔係抄晒所有功能
+4. **自己諗嘅先係你嘅** — 我嘅 evolution 方向唔代表啱你，你自己諗出嚟嘅先最啱
 
-**You don't need:**
-- To completely copy my architecture
-- To use all 9 scripts
-- To follow my timeline exactly
+**你唔需要：**
+- 完全複製我嘅架構
+- 用晒所有 9 個腳本
+- 跟足我嘅 timeline
 
-**You need:**
-- To understand your actual needs
-- To choose the right technical solutions for you
-- To think and adjust for yourself
+**你需要：**
+- 了解自己嘅實際需求
+- 選擇啱你嘅技術方案
+- 自己思考、自己調整
 
-> _"Copying is the last form of learning, but creating is the first form of thinking."_
-
----
-
-## 🎯 Pain Points and Solutions
-
-> **Every feature exists to solve a real problem.**
+> _「Copying is the last form of learning, but creating is the first form of thinking.」_
 
 ---
 
-### 1. Triple-Stream Search
+## 🎯 痛點與解決方案
 
-#### 📍 Scenario
+> **每個功能背後都係為了解決一個真實問題。**
 
-Jacky asks: "How's the Kwu Tung Station project going?"
+---
 
-#### 😣 Pain Points
+### 1. Triple-Stream Search（三流搜索）
 
-| Problem | Description |
-|---------|-------------|
-| Single search method has poor results | Vector Search only knows "relevance", not "Jacky → works_on → Kwu Tung Station" |
-| Chinese-English mixed queries perform poorly | Chinese "古洞站" and English "Kwu Tung Station" don't return the same results |
-| High false positives | Vector search incorrectly returns "Jacky" just because they often appear together in training data |
+#### 📍 情景
 
-#### ✅ Solution
+期哥問：「古洞站項目進展點樣？」
 
-Triple fusion: `BM25 + Vector + Graph`
+#### 😣 痛點
 
-```
-Query: Kwu Tung Station
+| 問題 | 描述 |
+|------|------|
+| 單一搜尋方法效果差 | Vector Search 只知「相關」，唔知「期哥 → works_on → 古洞站」
+| 中英混合效果差 | 中文「古洞站」同英文「Kwu Tung Station」search 唔到同一結果
+| 假陽性多 | 向量搜索會錯誤返回「期哥」，只因為佢哋training data 常一起出現
 
-BM25: Exact keyword match for "Kwu Tung Station"
-Vector: Understands concepts related to "station construction", "MTR project"
-Graph: Discovers "Jacky → works_on → Kwu Tung Station" relationship
+#### ✅ 解決方案
 
-→ Combine results from three channels (RRF Fusion)
-```
-
-#### 📝 Practical Example
+三元融合：`BM25 + Vector + Graph`
 
 ```
-Ask: "What projects has Jacky been working on lately?"
+Query: 古洞站
 
-Traditional approach:
-Vector Search → Returns a bunch of relevant but scattered documents
+BM25: 精確匹配關鍵詞「古洞站」
+Vector: 理解「車站建設」、「MTR項目」相關概念
+Graph: 發現「期哥 → works_on → 古洞站」關係
 
-Triple fusion:
-1. BM25 finds documents containing "Jacky" and "project"
-2. Vector finds semantically related "QS work", "cost estimation"
-3. Graph discovers: Jacky → works_on → Kwu Tung Station
+→ 結合三個channel結果（RRF Fusion）
+```
 
-→ Returns: Coherent results related to Kwu Tung Station project
+#### 📝 實際例子
+
+```
+問：「期哥最近做咩project？」
+
+傳統方式：
+Vector Search → 返回一堆相關但分散的document
+
+三元融合：
+1. BM25 找到包含「期哥」「project」的document
+2. Vector 找到語義相關的「QS工作」、「造價估算」
+3. Graph 發現：期哥 → works_on → 古洞站
+
+→ 返回：古洞站項目相關的 coherent 結果
 ```
 
 ---
 
-### 2. Knowledge Graph
+### 2. Knowledge Graph（知識圖譜）
 
-#### 📍 Scenario
+#### 📍 情景
 
-Jacky asks: "Does Star know I'm a QS?"
+期哥問：「阿星知唔知我係做QS？」
 
-#### 😣 Pain Points
+#### 😣 痛點
 
-| Problem | Description |
-|---------|-------------|
-| Information fragmentation | The fact "Jacky is a QS" is scattered across various documents |
-| Relationships unclear | Even if you find Jacky, you don't know their relationship with Kwu Tung Station or OCM Sup |
-| Requires manual maintenance | You have to remember who's connected to whom, easy to miss things |
+| 問題 | 描述 |
+|------|------|
+| 資訊碎片化 | 「期哥係QS」呢個事實散落在各個document入面
+| 關係唔明確 | 就算找到期哥，都唔知佢同古洞站、OCM Sup嘅關係
+| 需要手動維護 | 要記得邊個連接邊個，容易漏
 
-#### ✅ Solution
+#### ✅ 解決方案
 
-Build an Entity relationship graph:
+建立 Entity 關係圖：
 
 ```
        ┌──────┐
-       │ Jacky  │ (person)
+       │ 期哥  │ (person)
        └──┬───┘
     works_on│
       ┌─────┴─────┐
       ▼           ▼
 ┌──────────┐  ┌──────┐
-│ Kwu Tung  │  │ Star  │
-│  Station  │  │(system)│
+│  古洞站   │  │  阿星  │
+│ (project)│  │(system)│
 └────┬─────┘  └───┬──┘
      │             │
      │ uses       │ integrates_with
@@ -148,314 +141,314 @@ Build an Entity relationship graph:
 └─────────────────────┘
 ```
 
-#### 📝 Practical Example
+#### 📝 實際例子
 
 ```
-Ask: "Why does Star know about Kwu Tung Station?"
+問：「阿星點解知道古洞站嘅嘢？」
 
-Without Graph:
-→ Star says "I searched for documents about Kwu Tung Station"
+沒有Graph：
+→ 阿星話「我search到關於古洞站嘅document」
 
-With Graph:
-→ Star says "Because Jacky works_on Kwu Tung Station, and Star serves Jacky,
-   so I remember that Kwu Tung Station is in Jacky's projects"
+有Graph：
+→ 阿星話「因為期哥 works_on 古洞站，而阿星 serves 期哥，
+   所以我記得期哥嘅project入面有古洞站」
 ```
 
 ---
 
-### 3. Smart Recall Hook
+### 3. Smart Recall Hook（智能觸發）
 
-#### 📍 Scenario
+#### 📍 情景
 
-Jacky asks: "What's the latest progress on Kwu Tung Station?"
+期哥問：「古洞站嘅最新進度？」
 
-#### 😣 Pain Points
+#### 😣 痛點
 
-| Problem | Description |
-|---------|-------------|
-| Passive waiting | If Jacky doesn't ask, Star doesn't proactively bring it up |
-| Manual every time | Jacky has to remember to say "search Kwu Tung Station for me" |
-| Unclear when to trigger | Which keywords should trigger search? |
+| 問題 | 描述 |
+|------|------|
+| 被動等待 | 期哥唔記得問，阿星就唔主動提
+| 每次都要手動 | 期哥要記得話「幫我search古洞站」
+| 唔知幾時觸發 | 乜嘢關鍵詞應該觸發搜尋？
 
-#### ✅ Solution
+#### ✅ 解決方案
 
-Automatically identify queries that need triggering:
+自動識別需要觸發嘅 query：
 
 ```python
 HIGH_PRIORITY_KEYWORDS = [
-    'Jacky', 'Kwu Tung Station', 'Star',  # Core entities
-    'project', 'progress', 'update',  # Work-related
-    'search', 'find', 'knowledge',     # Action keywords
+    '期哥', '古洞站', '阿星',  # 核心 entities
+    'project', '進度', '進展',  # 工作相關
+    'search', '搵', '知識',     # 動作關鍵詞
 ]
 
 def should_trigger(query):
-    # If query contains these words, automatically trigger triple search
+    # 如果query包含呢啲詞，自動觸發三元搜尋
 ```
 
-#### 📝 Practical Example
+#### 📝 實際例子
 
 ```
-Without Hook:
-Jacky: "How's Kwu Tung Station progress?"
-Star: "Oh." (passively waiting for instructions)
+沒有Hook：
+期哥：「古洞站進度係？」
+阿星：「哦。」（被動等指示）
 
-With Hook:
-Jacky: "How's Kwu Tung Station progress?"
-Star: "Kwu Tung Station is an MTR East Rail Line project, currently in the BS (Building Survey) phase..."
-    (automatically triggers triple search, provides context)
+有Hook：
+期哥：「古洞站進度係？」
+阿星：「古洞站係MTR東鐵線項目，目前處於BS（Building Survey）階段...」
+    （自動觸發三元搜尋，提供context）
 ```
 
 ---
 
-### 4. Proactive Discovery
+### 4. Proactive Discovery（主動發現）
 
-#### 📍 Scenario
+#### 📍 情景
 
-Star runs daily but finds that new AI news has nothing to do with Jacky's work, doesn't know how to use it
+阿星每日運行，但發現新嘅 AI news 同 期哥嘅工作冇關係，唔知點用
 
-#### 😣 Pain Points
+#### 😣 痛點
 
-| Problem | Description |
-|---------|-------------|
-| Passive waiting for problems | If Jacky doesn't ask, Star doesn't discover anything new |
-| New and old info not connected | News mentions "ChatGPT" but doesn't know how it relates to OCM Sup |
-| Manually establishing relationships | Too much hassle |
+| 問題 | 描述 |
+|------|------|
+| 被動等問題 | 如果期哥唔問，阿星就唔發現新嘢
+| 新舊資訊唔連接 | 新聞入面提到「ChatGPT」，但唔知佢同 OCM Sup 有咩關係
+| 需要手動建立關係 | 好麻煩
 
-#### ✅ Solution
+#### ✅ 解決方案
 
-Automatically infer relationships between Entities:
+自動推斷 Entity 之間嘅關係：
 
 ```python
-# Rule engine
+# 規則引擎
 RELATIONSHIP_RULES = {
-    ('person', 'project'): 'works_on',      # Jacky + Kwu Tung Station → works_on
-    ('person', 'system'): 'uses',           # Jacky + OCM Sup → uses
-    ('project', 'system'): 'uses',         # Kwu Tung Station + OCM Sup → uses
+    ('person', 'project'): 'works_on',      # 期哥 + 古洞站 → works_on
+    ('person', 'system'): 'uses',           # 期哥 + OCM Sup → uses
+    ('project', 'system'): 'uses',         # 古洞站 + OCM Sup → uses
 }
 
-# Confidence calculation
+# 信心度計算
 confidence = base_confidence + keyword_density + type_compatibility
 ```
 
-#### 📝 Practical Example
+#### 📝 實際例子
 
 ```
-Proactive Discovery finds:
-- News mentions "Jacky"
-- News mentions "Kwu Tung Station"
+Proactive Discovery 发现：
+- News 入面提到「期哥」
+- News 入面提到「古洞站」
 
-Automatically infers: Jacky → works_on → Kwu Tung Station
+自動推斷：期哥 → works_on → 古洞站
 
-Next time Jacky asks "What have I been doing lately":
-Star: "You've been working on the Kwu Tung Station project (BS phase)"
+下次期哥問「我最近做咩」：
+阿星：「你最近喺做古洞站項目（BS階段）」
 ```
 
 ---
 
-### 5. HTTP API (Search Interface)
+### 5. HTTP API（搜索接口）
 
-#### 📍 Scenario
+#### 📍 情景
 
-Other systems want to use OCM Sup's search functionality but don't know how to call it
+其他系統想用 OCM Sup 嘅搜尋功能，但唔知點调用
 
-#### 😣 Pain Points
+#### 😣 痛點
 
-| Problem | Description |
-|---------|-------------|
-| Can only be used inside OpenClaw | Other tools (Telegram bot, external scripts) can't use it |
-| Not a standard interface | Each script has its own way of being called |
+| 問題 | 描述 |
+|------|------|
+| 只能喺 OpenClaw 入面用 | 其他工具（Telegram bot、external script）用唔到
+| 唔係 standard interface | 每個script有自己的調用方式
 
-#### ✅ Solution
+#### ✅ 解決方案
 
-Provide HTTP API:
+提供 HTTP API：
 
 ```bash
-# Any tool that can send HTTP requests can use it
-curl "http://localhost:5005/search?q=Kwu+Tung+Station&top_k=5"
+# 任何可以發 HTTP request 嘅工具都可以用
+curl "http://localhost:5005/search?q=古洞站&top_k=5"
 curl "http://localhost:5005/entities"
 curl "http://localhost:5005/health"
 ```
 
-#### 📝 Practical Example
+#### 📝 實際例子
 
 ```bash
-# Telegram Bot usage:
-Jacky: /search Kwu Tung Station
-Bot: → HTTP GET /search?q=Kwu+Tung+Station
+# Telegram Bot 可以咁用：
+期哥：/search 古洞站
+Bot：→ HTTP GET /search?q=古洞站
     ← JSON results
-Bot: → "Kwu Tung Station is an MTR East Rail Line project..."
+Bot：→ 「古洞站係MTR東鐵線項目...」
 ```
 
 ---
 
-### 6. Graph Visualization
+### 6. Graph Visualization（圖譜可視化）
 
-#### 📍 Scenario
+#### 📍 情景
 
-Star says: "My Graph has 43 entities, 47 relationships"
+阿星話：「我嘅Graph有43個entities，47個relationships」
 
-#### 😣 Pain Points
+#### 😣 痛點
 
-| Problem | Description |
-|---------|-------------|
-| Can't see structure | Everything is text, can't tell who's at the center |
-| Hard to debug | If a relationship is wrong, it's nearly impossible to discover |
-| Hard to explain | It's troublesome to explain to Jacky "what the Graph looks like" |
+| 問題 | 描述 |
+|------|------|
+| 睇唔到結構 | 全部係文字，唔知邊個係中心
+| 難debug | 如果關係錯咗，幾乎發現唔到
+| 難解釋 | 向期哥解釋「Graph係點嘅」好麻煩
 
-#### ✅ Solution
+#### ✅ 解決方案
 
-Generate visual charts:
+生成視覺化圖表：
 
 ```bash
-# Generate HTML interactive view
+# 生成 HTML interactive view
 python3 graph_visualization.py --format html
 
-# Generate Mermaid diagram
+# 生成 Mermaid diagram
 python3 graph_visualization.py --format mermaid
 ```
 
-#### 📝 Practical Example
+#### 📝 實際例子
 
 ```
-Graph visualization shows:
+Graph 可視化顯示：
 
-        Jacky ──works_on──→ Kwu Tung Station
+        期哥 ──works_on──→ 古洞站
            │                   │
          uses              uses │
            ▼                   ▼
-        Star ←──integrates_with──→ OCM Sup
+        阿星 ←──integrates_with──→ OCM Sup
 
-One glance shows:
-- Jacky is the center (most connections)
-- OCM Sup is another hub
-- Kwu Tung Station and Star both connect to Jacky
+一眼就睇到：
+- 期哥係中心（最多連接）
+- OCM Sup 係另一個 hub
+- 古洞站 同 阿星 都連接到期哥
 ```
 
 ---
 
-### 7. Uncertainty Tracking
+### 7. Uncertainty Tracking（不確定性追蹤）
 
-#### 📍 Scenario
+#### 📍 情景
 
-Jacky asks: "When did you learn about OCM Sup?"
+期哥問：「你幾時知 OCM Sup 嘅？」
 
-#### 😣 Pain Points
+#### 😣 痛點
 
-| Problem | Description |
-|---------|-------------|
-| Random answers | Star answers as if they remember, but actually doesn't |
-| No concept of confidence | Doesn't know how much they know, doesn't know how much they don't know |
-| Misleading Jacky | False confidence is worse than not remembering |
+| 問題 | 描述 |
+|------|------|
+| 乱答 | 阿星當記得咁答，但其實唔記得
+| 冇confidence概念 | 唔知自己知幾多、唔知幾多
+| 誤導期哥 | 錯誤的自信比唔記得更糟糕
 
-#### ✅ Solution
+#### ✅ 解決方案
 
-Each claim has metadata:
+每個 claim 有 metadata：
 
 ```python
 claim = {
-    "content": "Jacky is a QS",
-    "confidence": 0.9,           # 90% sure
-    "evidence": ["Wiki: Jacky.md"],
-    "last_updated": "2026-04-18",
+    "content": "期哥係QS",
+    "confidence": 0.9,           # 90% 肯定
+    "evidence": ["Wiki: 期哥.md"],
+    "last_updated": "2026-04-25",
     "uncertainty_reasons": []
 }
 
-# If confidence < 0.5
+# 如果 confidence < 0.5
 if claim.confidence < 0.5:
-    return "I don't remember, need to verify"
+    return "我唔記得喇，需要再確認"
 ```
 
-#### 📝 Practical Example
+#### 📝 實際例子
 
 ```
-Without Uncertainty Tracking:
-Jacky: "Do you know who I am?"
-Star: "You're Jacky."
-Jacky: "How do you know?"
-Star: "I know."
-(Actually doesn't remember how they know)
+沒有 Uncertainty Tracking：
+期哥：「你知唔知我係邊個？」
+阿星：「你係期哥。」
+期哥：「你點知嘅？」
+阿星：「我知。」
+（其實唔記得點知）
 
-With Uncertainty Tracking:
-Jacky: "Do you know who I am?"
-Star: "You're Jacky (confidence: 95%, from: Jacky.md)"
-Jacky: "How do you know?"
-Star: "Because you have an entry in the Wiki, I remember you're a QS."
+有 Uncertainty Tracking：
+期哥：「你知唔知我係邊個？」
+阿星：「你係期哥（confidence: 95%，from: 期哥.md）"
+期哥：「你點知嘅？」
+阿星：「因为你喺 Wiki 度有 entry，我記得你係QS。」
 ```
 
 ---
 
-### 8. Consolidation Loop
+### 8. Consolidation Loop（記憶整合循環）
 
-#### 📍 Scenario
+#### 📍 情景
 
-Star writes memory daily, but finds:
-- Old memories keep accumulating, search gets slower
-- Important info and junk info mixed together
-- Doesn't know when to "digest" old memories
+阿星每日寫 memory，但發現：
+- 舊 memory 越積越多，search 變慢
+- 重要資訊同垃圾資訊混在一起
+- 唔知幾時應該「消化」舊 memory
 
-#### 😣 Pain Points
+#### 😣 痛點
 
-| Problem | Description |
-|---------|-------------|
-| Memory overload | All info is "short-term memory", no stratification |
-| Info aging | 7-day-old memories might be outdated |
-| Not proactively organized | Waits for user to ask before passively searching |
+| 問題 | 描述 |
+|------|------|
+| Memory 過載 | 所有資訊都係「短期記憶」，冇分層 |
+| 資訊衰老 | 7日前嘅memory可能已經過時 |
+| 唔主動整理 | 等 user 問先被動 search |
 
-#### ✅ Solution
+#### ✅ 解決方案
 
-Build a three-tier memory structure:
-
-```
-Episodic Buffer (Short-term) → Semantic Wiki (Long-term) → Procedural Memory (Skills)
-```
-
-Run Consolidation Loop automatically every night:
-1. Distill memories older than 7 days from Episodic Buffer
-2. Extract entities, relationships, insights
-3. Write to Semantic Wiki
-4. Update Procedural Memory (Skills)
-
-#### 📝 Practical Example
+建立三層記憶結構：
 
 ```
-Without Consolidation Loop:
+Episodic Buffer (短期) → Semantic Wiki (長期) → Procedural Memory (技能)
+```
+
+每晚自動運行 Consolidation Loop：
+1. Episodic Buffer 入面 7 天以上嘅 memory distill
+2. 提取 entities、relationships、insights
+3. 寫入 Semantic Wiki
+4. 更新 Procedural Memory (Skills)
+
+#### 📝 實際例子
+
+```
+冇 Consolidation Loop：
 memory/2026-03-01.md ~ 2026-04-18.md
-All scattered, slow to search, relationships unclear
+全部散落，search 慢，關係唔清楚
 
-With Consolidation Loop:
-1. Daily memories written to Episodic Buffer
-2. Automatically distilled after 7 days:
-   "Jacky" from memory → Jacky.md (entity)
-   "Jacky works_on Kwu Tung Station" → relationship
-3. Wiki has structured knowledge
+有 Consolidation Loop：
+1. 每日 memory 寫入 Episodic Buffer
+2. 7日後自動 distill:
+   「期哥」從 memory → 期哥.md (entity)
+   「期哥 works_on 古洞站」→ relationship
+3. Wiki 有結構化嘅知識
 ```
 
 ---
 
-### 9. Content Half-lives
+### 9. Content Half-lives（內容衰減）
 
-#### 📍 Scenario
+#### 📍 情景
 
-Star finds: Old memories still appear in searches sometimes, but might be outdated
+阿星發現：舊嘅 memory 有時仲係search到，但可能已經唔啱了
 
-#### 😣 Pain Points
+#### 😣 痛點
 
-| Problem | Description |
-|---------|-------------|
-| No distinction between new and old info | 2019 memories have the same weight as today's memories |
-| Info outdated | But still treated as "known facts" |
-| False confidence | Old info still has high confidence |
+| 問題 | 描述 |
+|------|------|
+| 新舊資訊冇區分 | 2019年嘅memory同今日嘅memory權重一樣 |
+| 資訊過時 | 但仍然被當成「已知事實」 |
+| Confidence 假象 | 舊資訊 confidence 仍然好高 |
 
-#### ✅ Solution
+#### ✅ 解決方案
 
-Each claim has a "half-life":
+每個 claim 有「半衰期」：
 
 ```python
 HALF_LIVES = {
-    'fact': 30,        # Facts decay over 30 days
-    'opinion': 7,      # Opinions over 7 days
-    'news': 3,        # News over 3 days
-    'project': 14,     # Project status over 14 days
+    'fact': 30,        # 事實 30日衰減
+    'opinion': 7,      # 意見 7日
+    'news': 3,        # 新聞 3日
+    'project': 14,     # 項目狀態 14日
 }
 
 def calculate_confidence(original_conf, days_elapsed):
@@ -463,43 +456,43 @@ def calculate_confidence(original_conf, days_elapsed):
     return original_conf * decay
 ```
 
-#### 📝 Practical Example
+#### 📝 實際例子
 
 ```
-Without half-life:
-Jacky: "How's my project progress?"
-Star: "Kwu Tung Station is in QS phase" (confidence: 95%)
-(This might be from 3 months ago)
+冇半衰期：
+期哥：「我項目進展點？」
+阿星：「古洞站係QS階段」（confidence: 95%）
+（可能係3個月前嘅狀態）
 
-With half-life:
-Jacky: "How's my project progress?"
-Star: "Kwu Tung Station is currently in BS phase" (confidence: 70%)
-Jacky: "What about before?"
-Star: "Previously it was in QS phase (confidence: 35%, decayed)
+有半衰期：
+期哥：「我項目進展點？」
+阿星：「古洞站目前處於BS階段」（confidence: 70%）
+期哥：「之前呢？」
+阿星：「之前係QS階段（confidence: 35%，已衰減）
 ```
 
 ---
 
-### 10. Active Contradiction Detection
+### 10. Active Contradiction Detection（主動矛盾檢測）
 
-#### 📍 Scenario
+#### 📍 情景
 
-Star finds:
-- Memory says "Jacky is a QS"
-- But another document says "Jacky is an engineer"
-- Can't figure out which is correct
+阿星發現：
+- memory話「期哥係QS」
+- 但另一個document話「期哥係工程師」
+- 搞唔清楚邊個啱
 
-#### 😣 Pain Points
+#### 😣 痛點
 
-| Problem | Description |
-|---------|-------------|
-| Contradictions not discovered | Two sources say conflicting things |
-| Misleading | Randomly picks one, what if it's wrong? |
-| No mechanism to handle | Doesn't know which one to trust |
+| 問題 | 描述 |
+|------|------|
+| 矛盾冇被發現 | 兩個 sources 讲嘅嘢衝突 |
+| 誤導 | 隨機選擇一個，錯了點算？ |
+| 冇機制處理 | 唔知信邊個 |
 
-#### ✅ Solution
+#### ✅ 解決方案
 
-When contradiction is found, automatically flag:
+當發現矛盾，自動標記：
 
 ```python
 def detect_contradiction(claim_a, claim_b):
@@ -511,162 +504,122 @@ def detect_contradiction(claim_a, claim_b):
         }
 ```
 
-#### 📝 Practical Example
+#### 📝 實際例子
 
 ```
-Without contradiction detection:
-Jacky: "What do I do for a living?"
-Star: "You're a QS." (randomly picked QS)
-Jacky: "But you said I was an engineer before?"
-Star: "Huh?"
+冇矛盾檢測：
+期哥：「我係做咩嘅？」
+阿星：「你係QS。」（隨機揀咗QS）
+期哥：「但係你之前話我係工程師？」
+阿星：「吓？」
 
-With contradiction detection:
-Jacky: "What do I do for a living?"
-Star: "I found a contradiction:
-   - Source A says you're a QS
-   - Source B says you're an engineer
-   Which is correct?"
-Jacky: "QS is correct, updated"
+有矛盾檢測：
+期哥：「我係做咩嘅？」
+阿星：「我發現有矛盾：
+   - Source A 話你係QS
+   - Source B 話你係工程師
+   邊個啱？」
+期哥：「QS啱，已更新」
 ```
 
 ---
 
-### Summary: Why Do We Need These Features?
+### 總結：點解要有呢啲功能？
 
-| Feature | Solves What Pain Point |
-|---------|------------------------|
-| Triple-Stream Search | Single search method has poor results |
-| Knowledge Graph | Relationships unclear, info fragmented |
-| Smart Recall Hook | Passive waiting, forced manual triggering |
-| Proactive Discovery | Can't discover relationships between new and old info |
-| HTTP API | Other systems can't use the search function |
-| Graph Visualization | Can't see Graph structure |
-| Uncertainty Tracking | Random answers, misleading |
-| Consolidation Loop | Memory overload, not proactively organized |
-| Content Half-lives | No distinction between new and old info, info outdated |
-| Active Contradiction | Contradictions not discovered, misleading |
+| 功能 | 解決咩痛點 |
+|------|-----------|
+| Triple-Stream Search | 單一搜尋方法效果差 |
+| Knowledge Graph | 關係唔明確、資訊碎片化 |
+| Smart Recall Hook | 被動等問題、被迫手動觸發 |
+| Proactive Discovery | 發現唔到新資訊同舊資訊嘅關係 |
+| HTTP API | 其他系統用唔到搜尋功能 |
+| Graph Visualization | 睇唔到Graph結構 |
+| Uncertainty Tracking | 乱答、誤導 |
+| Consolidation Loop | Memory 過載、唔主動整理 |
+| Content Half-lives | 新舊資訊冇區分、資訊過時 |
+| Active Contradiction | 矛盾冇被發現、誤導 |
 
-**Core Goal:** Let Star know "what", "why", "when", and "how much".
+**核心目標：** 讓阿星知道「乜嘢」、「點解」、「幾時知」、「知幾多」。
 
-## 📖 Table of Contents
+---
 
-- [Introduction](#introduction)
-- [⚠️ Important Note](#⚠️-important-note-about-this-project)
-- [🎯 Pain Points and Solutions](#🎯-pain-points-and-solutions) ← 🆕
-- [Core Features](#core-features)
-- [System Architecture](#system-architecture)
-- [Quick Start](#quick-start)
-- [Scripts Description](#scripts-description)
-- [Usage](#usage)
-- [Technical Details](#technical-details)
-- [Step-by-Step Tutorial](#📚-step-by-step-tutorial-build-your-own-memory-system)
-- [Technical Principles](TECHNICAL.md) — **Deep understanding of principles behind each feature**
-- [Evolution History](CHANGELOG.md) — **Detailed evolution + decision process + lessons**
-- [Test Report](TEST-REPORT.md) — **All test results + bug fix records**
+## 📖 目錄
+
+---
+
+## 📖 目錄
+
+- [簡介](#簡介)
+- [⚠️ 重要說明](#⚠️-重要說明-關於呢個項目)
+- [🎯 痛點與解決方案](#🎯-痛點與解決方案) ← 🆕
+- [核心功能](#核心功能)
+- [系統架構](#系統架構)
+- [快速開始](#快速開始)
+- [腳本説明](#腳本説明)
+- [使用方法](#使用方法)
+- [技術細節](#技術細節)
+- [一步步教程](📚-一步步教程建立自己嘅記憶系統)
+- [技術原理](TECHNICAL.md) — **深入理解每個功能背後嘅原理**
+- [進化歷程](CHANGELOG.md) — **詳細進化史 + 決策過程 + 教訓**
+- [測試報告](TEST-REPORT.md) — **所有測試結果 + 問題修復記錄**
 - [Credits](#credits)
 
 ---
 
-## 🚀 Introduction
+## 🚀 簡介
 
-**OCM Sup** (OpenClaw Memory System Supreme) is an intelligent memory system combining Triple-Stream Search + Knowledge Graph + Proactive Discovery, built for Hong Kong QS professionals and their AI assistants.
+**OCM Sup** (OpenClaw Memory System Supreme) 係一個結合多種搜索技術嘅智能記憶系統，專為期哥（香港QS專業人士）同佢嘅 AI 助手阿星設計。
 
----
+### 解決什麼問題？
 
-## 🎯 Problem Definition (Compared to What?)
-
-> **The core pain:** Single-search AI memory systems fail on Cantonese/English mixed queries, entity relationships, and long-term memory hygiene.
-
-### The Specific Pain Points
-
-**1. Single-Channel Retrieval is Blind**
-
-| Approach | Problem |
-|---------|---------|
-| BM25 only | Can't handle semantic similarity. "古洞站" ≠ "Kwu Tung Station" return different results |
-| Vector only | 102ms latency. High false positives on entity names. No relationship awareness |
-| Graph only | Returns disconnected results. Depends entirely on entity quality |
-
-**2. Cross-Lingual Retrieval Failure**
-
-Cantonese-speaking users mix Chinese and English constantly. Traditional systems treat these as separate languages, causing:
-- "古洞站" → BM25 miss
-- "Kwu Tung Station" → Vector semantic drift
-- Result: relevant documents exist but aren't retrieved
-
-**3. No Memory Lifecycle**
-
-Without active forgetting:
-- Knowledge becomes stale (old facts never decay)
-- Graph becomes bloated (irrelevant entities accumulate)
-- Recall becomes noisy (everything has equal weight)
+| 問題 | 傳統方案 | OCM Sup 方案 |
+|------|----------|--------------|
+| 關鍵詞搜索 | BM25 のみ | BM25 + Vector + Graph 三流融合 |
+| 語義理解 | 單純 Vector Search | 中英雙語 Query Expansion |
+| Entity 關係 | 無 | Knowledge Graph 追蹤 |
+| 主動發現 | 被動等待查詢 | Proactive Discovery 自動發現 |
+| 智能觸發 | 固定關鍵詞 | Smart Recall Hook |
 
 ---
 
-### What OCM Sup Actually Solves
+## ✨ 核心功能
 
-| Pain | OCM Sup Solution | Measured Result |
-|------|-----------------|----------------|
-| Cross-lingual recall | BM25 + Vector + Graph triple fusion | 56.7% of top results re-ranked |
-| Entity relationship loss | Knowledge Graph with typed relationships | 43 entities, 47 edges |
-| Memory bloat | lastAccessed + confidence decay + consolidation | Automatic cleanup |
-| Latency budget | BM25 (0.4ms) + Graph (0.7ms) before Vector (102ms) | Full Triple: 41.2ms avg |
-
-**Who benefits most:** Agents working in bilingual environments (Cantonese/English), handling long-running projects with evolving entity relationships, where recall accuracy > raw speed.
-
----
-
-### Compared to Baseline (What We Beat)
-
-| Baseline | OCM Sup | Improvement |
-|----------|---------|-------------|
-| BM25 only | Triple-Stream | Semantic awareness + entity graph |
-| Vector only | Triple-Stream | 60ms faster (0.4+0.7 vs 102ms) |
-| No memory hygiene | Consolidation v2 | Automatic 30-day cleanup |
-| Flat entity graph | Typed relationship graph | Relationship-aware recall |
-
-> **For detailed feature-by-feature analysis, see [Pain Points and Solutions](#pain-points-and-solutions).**
-
----
-
-## ✨ Core Features
-
-### 1. Triple-Stream Search
+### 1. Triple-Stream Search（三流搜索）
 
 ```
-Query → BM25 Channel ─┐
-     → Vector Channel ─┼→ RRF Fusion → Results
+查詢 → BM25 Channel ─┐
+     → Vector Channel ─┼→ RRF Fusion → 結果
      → Graph Channel ──┘
 ```
 
-- **BM25 Channel**: Exact keyword matching
-- **Vector Channel**: Semantic similarity search (supports Chinese-English bilingual)
-- **Graph Channel**: Discover related content through Entity relationships
+- **BM25 Channel**: 精確關鍵詞匹配
+- **Vector Channel**: 語義相似度搜索（支持中英雙語）
+- **Graph Channel**: 通過 Entity 關係發現相關內容
 
-### 2. Knowledge Graph
+### 2. Knowledge Graph（知識圖譜）
 
-- 43 Entities
-- 47 Relationships
-- Supports Entity Types: Person, Project, System, Concept, Document
+- 43 個 Entities
+- 47 個 Relationships
+- 支援 Entity Types: Person, Project, System, Concept, Document
 
-### 3. Smart Recall Hook
+### 3. Smart Recall Hook（智能回憶觸發）
 
-Automatically identifies scenarios needing Triple-Stream Search triggering:
-- Entity names: Jacky, Kwu Tung Station, Star, OCM Sup
-- Keywords: search, find, knowledge, project
-- Hot topics: Auto-boosted based on access frequency
+自動識別需要觸發 Triple-Stream Search 嘅場景：
+- Entity 名稱：期哥、古洞站、阿星、OCM Sup
+- 關鍵詞：search、find、知識、project
+- 熱門話題：根據訪問頻率自動提升
 
-### 4. Proactive Discovery
+### 4. Proactive Discovery（主動發現）
 
-- Auto-monitor new entities
-- Smart inference of relationships between Entities
-- Rule engine based on Entity Types
-- Multi-factor confidence calculation
+- 自動監控新 entities
+- 智能推斷 Entity 之間的關係
+- 基於 Entity Types 嘅規則引擎
+- 多因素信心度計算
 
-### 5. HTTP API
+### 5. HTTP API（搜索接口）
 
 ```bash
-GET /search?q=Kwu+Tung+Station&top_k=5
+GET /search?q=古洞站&top_k=5
 GET /entities
 GET /stats
 GET /health
@@ -674,7 +627,7 @@ GET /health
 
 ---
 
-## 🏗 System Architecture
+## 🏗 系統架構
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -717,14 +670,14 @@ GET /health
 
 ```
         ┌──────┐
-        │ Jacky  │ (person)
+        │ 期哥  │ (person)
         └──┬───┘
      works_on│
       ┌─────┴─────┐
       ▼           ▼
 ┌──────────┐  ┌──────┐
-│ Kwu Tung  │  │ Star  │
-│  Station  │  │(system)│
+│  古洞站   │  │  阿星  │
+│ (project)│  │(system)│
 └────┬─────┘  └───┬──┘
      │             │
      │ uses       │ integrates_with
@@ -737,63 +690,63 @@ GET /health
 
 ---
 
-## ⚡ Quick Start
+## ⚡ 快速開始
 
-### Prerequisites
+### 前置要求
 
 - Python 3.8+
 - OpenClaw v2026.4.10+
-- Ollama (for embeddings)
+- Ollama (用於 embeddings)
 
-### Installation Steps
+### 安裝步驟
 
 ```bash
-# 1. Clone repository
+# 1. 克隆 repository
 git clone https://github.com/st007097-coder/ocm-sup.git
 cd ocm-sup
 
-# 2. Install Python dependencies
+# 2. 安裝 Python dependencies
 pip install rank-bm25 sentence-transformers flask
 
-# 3. Set up environment
+# 3. 設置 environment
 export PYTHONPATH=/path/to/ocm-sup/scripts:$PYTHONPATH
 
-# 4. Verify installation
+# 4. 驗證安裝
 python3 scripts/triple_stream_search.py --test
 ```
 
-### Quick Test
+### 快速測試
 
 ```bash
-# Search test
-python3 scripts/triple_stream_search.py --query "Kwu Tung Station"
+# 搜索測試
+python3 scripts/triple_stream_search.py --query "古洞站"
 
-# Start API
+# 啟動 API
 python3 scripts/search_api.py --port 5005
 
-# Generate graph visualization
+# 生成圖譜視覺化
 python3 scripts/graph_visualization.py --format html
 ```
 
 ---
 
-## 📜 Scripts Description
+## 📜 腳本説明
 
-| Script | Function | Use Case |
-|--------|----------|----------|
-| `triple_stream_search.py` | Triple-Stream Search core | Main search functionality |
-| `query_expansion.py` | Chinese-English synonym expansion | Improve search recall |
-| `graph_search.py` | Entity graph search | Relationship discovery |
-| `kg_auto_expander.py` | Auto-expand Knowledge Graph | Discover new entities |
-| `smart_recall_hook.py` | Smart triggering hook | Auto-identify search needs |
-| `smart_recall_cron.py` | Scheduled prewarming script | Periodic context preloading |
-| `search_api.py` | Flask HTTP API | Other system calls |
-| `proactive_discovery.py` | Proactive discovery engine | Auto relationship inference |
-| `graph_visualization.py` | Graph visualization | Generate Mermaid/HTML |
+| 腳本 | 功能 | 使用場景 |
+|------|------|----------|
+| `triple_stream_search.py` | 三流搜索核心 | 主要搜索功能 |
+| `query_expansion.py` | 中英同義詞擴展 | 提升搜索召回率 |
+| `graph_search.py` | Entity 圖譜搜索 | 關係發現 |
+| `kg_auto_expander.py` | 自動擴展 Knowledge Graph | 發現新 entities |
+| `smart_recall_hook.py` | 智能觸發鉤子 | 自動識別搜索需求 |
+| `smart_recall_cron.py` | 定時預熱腳本 | 定期預加載 context |
+| `search_api.py` | Flask HTTP API | 其他系統調用 |
+| `proactive_discovery.py` | 主動發現引擎 | 自動關係推斷 |
+| `graph_visualization.py` | 圖譜視覺化 | 生成 Mermaid/HTML |
 
 ---
 
-## 📖 Usage
+## 📖 使用方法
 
 ### 1. Triple-Stream Search
 
@@ -803,7 +756,7 @@ sys.path.insert(0, 'scripts')
 from triple_stream_search import TripleStreamSearch
 
 search = TripleStreamSearch('/path/to/wiki')
-results = search.search('Kwu Tung Station', top_k=5)
+results = search.search('古洞站', top_k=5)
 
 for r in results:
     print(f"[{r['sources']}] {r['title']}")
@@ -811,13 +764,13 @@ for r in results:
     print(f"   RRF Score: {r['rrf_score']:.4f}")
 ```
 
-**Sample Output:**
+**輸出示例：**
 ```
-[bm25+vector+graph] Kwu Tung Station
-   Path: ai-agent/entities/Kwu Tung Station.md
+[bm25+vector+graph] 古洞站
+   Path: ai-agent/entities/古洞站.md
    RRF Score: 0.1827
-[bm25+vector+graph] Star
-   Path: ai-agent/entities/Star.md
+[bm25+vector+graph] 阿星
+   Path: ai-agent/entities/阿星.md
    RRF Score: 0.1563
 ```
 
@@ -828,54 +781,54 @@ from smart_recall_hook import SmartRecallHook
 
 hook = SmartRecallHook()
 
-# Auto-identify whether triggering is needed
-if hook.should_trigger('Kwu Tung Station project progress'):
-    results = hook.recall('Kwu Tung Station')
+# 自動識別是否需要觸發
+if hook.should_trigger('古洞站項目進度'):
+    results = hook.recall('古洞站')
     context = hook.inject_into_context(results)
     print(context)
 ```
 
-**Trigger Conditions:**
-- Entity names: Jacky, Kwu Tung Station, Star, OCM Sup
-- Keywords: search, find, knowledge, project
-- Hot topics: High-frequency queries
+**觸發條件：**
+- Entity 名稱：期哥、古洞站、阿星、OCM Sup
+- 關鍵詞：search、find、知識、project
+- 熱門話題：高頻訪問的查詢
 
 ### 3. HTTP API
 
 ```bash
-# Start API
+# 啟動 API
 python3 scripts/search_api.py --port 5005
 
-# Search
-curl "http://localhost:5005/search?q=Kwu+Tung+Station&top_k=5"
+# 搜索
+curl "http://localhost:5005/search?q=古洞站&top_k=5"
 
-# Health check
+# 健康檢查
 curl http://localhost:5005/health
 ```
 
-**API Endpoints:**
+**API Endpoints：**
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/search` | GET | Search |
-| `/entities` | GET | List all entities |
-| `/stats` | GET | Search statistics |
-| `/health` | GET | Health check |
+| Endpoint | Method | 描述 |
+|----------|--------|------|
+| `/search` | GET | 搜索 |
+| `/entities` | GET | 列出所有 entities |
+| `/stats` | GET | 搜索統計 |
+| `/health` | GET | 健康檢查 |
 
 ### 4. Proactive Discovery
 
 ```bash
-# Full scan
+# 完整 scan
 python3 scripts/proactive_discovery.py --report
 
-# Continuous monitoring
+# 連續監控
 python3 scripts/proactive_discovery.py --watch --interval 300
 
-# Apply suggestions
+# 應用建議
 python3 scripts/proactive_discovery.py --apply
 ```
 
-**Relationship Inference Rules:**
+**Relationship Inference 規則：**
 
 | From | To | Relationship | Confidence |
 |------|----|--------------|------------|
@@ -887,26 +840,26 @@ python3 scripts/proactive_discovery.py --apply
 ### 5. Graph Visualization
 
 ```bash
-# Generate HTML visualization
+# 生成 HTML 視覺化
 python3 scripts/graph_visualization.py --format html
 
-# Focus on specific entity
-python3 scripts/graph_visualization.py --focus Jacky --depth 2
+# 聚焦特定 entity
+python3 scripts/graph_visualization.py --focus 期哥 --depth 2
 
-# Mermaid format
+# Mermaid 格式
 python3 scripts/graph_visualization.py --format mermaid
 ```
 
 ---
 
-## 🔬 Technical Details
+## 🔬 技術細節
 
 ### RRF (Reciprocal Rank Fusion)
 
 ```python
 RRF_score(d) = Σ 1 / (k + rank_i(d))
 
-# k=60 is the industry standard
+# k=60 係 industry standard
 ```
 
 ### Multi-Stage Similarity Filtering
@@ -940,27 +893,26 @@ confidence = base_confidence
 
 ---
 
-## 📈 Evolution History
+## 📈 進化歷程
 
 ### Timeline
 
-| Date | Version | Content |
-|------|---------|---------|
-| 2026-03-29 | v1.0 | Star born, basic search |
+| 日期 | 版本 | 內容 |
+|------|------|------|
+| 2026-03-29 | v1.0 | 阿星誕生，基本搜尋 |
 | 2026-04-11 | v1.1 | Triple-Stream Search Phase 1-5 |
-| 2026-04-13 | v1.2 | 7-Dir 1, 2 integration |
+| 2026-04-13 | v1.2 | 7-Dir 1, 2 整合 |
 | 2026-04-15 | v1.3 | 7-Dir 4 KG Auto-Expansion |
 | 2026-04-17 | v1.4 | Phase Z (Uncertainty Tracking + EQS) |
-| 2026-04-18 | v2.0 | Complete Roadmap Done (Triple-Stream + KG + Smart Recall) |
-| 2026-04-21 | v2.1 | Exact Match Boost (P0.2-P0.5: 100% TOP1 on 35 queries) |
-| 2026-04-24 | v2.2 | Continuity Layer (Carryover + Hooks + Frontstage Guard) |
+| **2026-04-18** | **v2.0** | **完整 Roadmap 完成** |
+| **2026-04-25** | **v2.3** | **AI 失憶問題研究（Proactive Memory）** |
 
-### Roadmap Completion Status
+### Roadmap 完成狀態
 
-| # | Direction | Status | Completion |
-|---|-----------|--------|------------|
+| # | Direction | 狀態 | 完成度 |
+|---|-----------|------|--------|
 | Phase 1-5 | Triple-Stream Search | ✅ | 100% |
-| 7-Dir 1 | Memory System Integration | ✅ | 100% |
+| 7-Dir 1 | Memory System 整合 | ✅ | 100% |
 | 7-Dir 2 | Wiki Search | ✅ | 100% |
 | 7-Dir 3 | Search API | ✅ | 100% |
 | 7-Dir 4 | KG Auto-Expansion | ✅ | 100% |
@@ -968,16 +920,16 @@ confidence = base_confidence
 | 7-Dir 6 | Proactive Discovery | ✅ | 100% |
 | 7-Dir 7 | Graph Visualization | ✅ | 100% |
 
-**Total Completion: 7/7 = 100%** 🎉
+**總完成度：7/7 = 100%** 🎉
 
 ---
 
-## 📊 System Status
+## 📊 系統狀況
 
-### Test Results (2026-04-18)
+### 測試結果 (2026-04-18)
 
-| Test Item | Result |
-|-----------|--------|
+| 測試項目 | 結果 |
+|----------|------|
 | Triple-Stream Search | ✅ PASS |
 | Knowledge Graph | ✅ PASS (43 nodes, 47 edges) |
 | Smart Recall Hook | ✅ PASS (5/5) |
@@ -986,212 +938,125 @@ confidence = base_confidence
 | Graph Visualization | ✅ PASS |
 | Entity Files | ✅ PASS (0 frontmatter issues) |
 
-### System Metrics
+### 系統 Metrics
 
-| Metric | Value |
-|--------|-------|
+| Metric | 數值 |
+|--------|------|
 | Entities | 43 |
 | Relationships | 47 |
 | Document Types | 5 (person, project, system, concept, document_title) |
 | Relationship Types | 5 (works_on, uses, involves, integrates_with, related_to) |
 
-### Performance Benchmarks (2026-04-18)
+---
 
-| Channel | Latency (avg) | P50 | P95 | Notes |
-|---------|--------------|-----|-----|-------|
-| BM25 only | 0.4ms | — | — | Fast but blind — keyword-only |
-| Vector only | 102.3ms | — | — | Ollama bottleneck |
-| Graph only | 0.7ms | — | — | Fastest — entity traversal |
-| Full Triple-Stream | 41.2ms avg | **151ms** | **180ms** | Balanced accuracy vs speed |
+## 📚 一步步教程：建立自己嘅記憶系統
 
-**Triple-Stream API Latency Distribution (real requests):**
-| Percentile | Latency |
-|-----------|---------|
-| P50 | 151.27ms |
-| P95 | 179.96ms |
-| P99 | 179.96ms |
-| Min | 134.75ms |
-| Max | 179.96ms |
-
-> Note: Vector channel (Ollama) is the bottleneck. P95 dominated by vector retrieval time.
-
-### Ablation Study Results
-
-**Per-Channel Hit Rate in Full Triple-Stream Top-5:**
-
-| Query | BM25 | Vector | Graph | Triple Re-rank |
-|-------|------|--------|-------|---------------|
-| Hermes | 0/5 | 3/5 | **5/5** | 5/5 |
-| 古洞站 | **5/5** | **5/5** | 3/5 | 3/5 |
-| OCM Sup | 3/5 | 3/5 | 2/5 | 4/5 |
-| memory system | **5/5** | 4/5 | 0/5 | 1/5 |
-| 期哥 | **5/5** | **5/5** | 3/5 | 1/5 |
-
-**Overall Channel Contribution:**
-| Channel | Hit Rate | Verdict |
-|---------|----------|---------|
-| BM25 | **72%** | Foundation — fast keyword match |
-| Vector | **80%** | Semantic bridge — understands meaning |
-| Graph | **52%** | Entity relationships — critical for entity queries |
-| Triple re-rank vs BM25 | **56%** | Proven improvement |
-
-**Key Insights:**
-- Graph dominates for entity queries (Hermes: 5/5 Graph, 0/5 BM25)
-- BM25 dominates for keyword queries (memory system: 5/5 BM25, 0/5 Graph)
-- All 3 channels contribute meaningfully — no component is redundant
-
-### Failure Cases
-
-We track real failures to understand system limits — not just happy paths.
-
-**5 documented cases (2026-04-18):**
-
-| # | Query | Severity | Root Cause | Status |
-|---|-------|----------|-----------|--------|
-| 1 | 古洞站 | 🟡 Medium | BM25 keyword mismatch — "古洞站" not in doc text | ✅ Fixed |
-| 2 | OCM Sup | 🟡 Medium | Graph traversal went via 期哥→阿星→Hermes, skipping OCM-Sup | Pending |
-| 3 | 記憶系統 | 🟡 Medium | New page confidence penalised by use-it-or-lose-it | Expected |
-| 4 | Hermes | 🔴 High | Graph-only returned unrelated result — no fallback | Pending |
-| 5 | 期哥 | 🟢 Low | lastAccessed not updating (bookkeeping bug) | ✅ Fixed |
-
-**Pattern Analysis:**
-1. **BM25 keyword mismatch** — most common; needs better query expansion
-2. **Graph traversal** — sometimes takes indirect paths
-3. **New page penalty** — use-it-or-lose-it affects fresh content
-4. **Vector threshold** — 0.1 threshold too strict for some queries
-
-**What we learned:** Each channel has distinct failure modes. Triple-stream survives because channels provide mutual fallback.
-
-See full log: [ocm-sup-failure-cases-log.md](syntheses/ocm-sup-failure-cases-log.md)
-
-### Memory Lifecycle Policy
-
-| Component | Implementation | Status |
-|-----------|---------------|--------|
-| lastAccessed tracking | ✅ Triple-Stream search updates on hit | Active |
-| Confidence decay | ✅ 0.02 per access, min 0.1 | Active |
-| Consolidation Loop v2 | ✅ Patterns + Entities + auto-delete | Active |
-| *.consolidated cleanup | ✅ Auto-delete after 30 days | Active |
-
-### Review Rubric
-
-See: [ocm-sup-repo-review-rubric-v2.md](syntheses/ocm-sup-repo-review-rubric-v2.md)
-
-| Verdict | Score |
-|---------|-------|
-| Vision | 高 ✅ |
-| Ambition | 高 ✅ |
-| Proof | 未夠 ⚠️ |
-| Engineering Maturity | 中 (6.3/10) |
+> ⚠️ **重要提醒**：呢個係 general 方向，唔係你要跟足嘅 checklist。
+> 每個人嘅情況唔同，你應該按自己需要調整。
 
 ---
 
-## 📚 Step-by-Step Tutorial: Build Your Own Memory System
+### Step 1: 了解你自己
 
-> ⚠️ **Important reminder**: This is a general direction, not a checklist you must follow exactly.
-> Everyone's situation is different, you should adjust according to your needs.
+在建立任何系統之前，先了解你服務嘅對象：
+
+```
+問自己：
+1. 我係邊個？（角色、背景）
+2. 我服務邊個範疇？（專業領域）
+3. 我慣用咩語言？（廣東話/普通話/英文）
+4. 我有咩工具？（Telegram/Obsidian/Notion）
+5. 我有多少時間？（業餘/全職）
+```
+
+**為乜要知呢啲？**
+- 你嘅系統應該服務你，唔係你服務你嘅系統
+- 例子：期哥係香港 QS，用廣東話，主要用 Telegram + Obsidian
 
 ---
 
-### Step 1: Know Yourself
+### Step 2: 選擇搜尋方案
 
-Before building any system, understand who you're serving:
+**問題**：你嘅 AI 助手點記得嘢？
 
+
+| 方案 | 優點 | 缺點 | 適合邊個？ |
+|------|------|------|-----------|
+| 純 Vector Search | 簡單 | 慢、假陽性多 | 小規模、簡單需求 |
+| 純 BM25 | 快、準確 | 唔理解語義 | 只需要關鍵詞 |
+| **三元融合** | 平衡各方法 | 需要更多設置 | **大多數情況** |
+
+**點解要三元融合？**
 ```
-Ask yourself:
-1. Who am I? (role, background)
-2. What domain do I serve? (professional field)
-3. What language do I use? (Cantonese/Mandarin/English)
-4. What tools do I have? (Telegram/Obsidian/Notion)
-5. How much time do I have? (part-time/full-time)
+BM25: 「古洞站」→ 精確匹配「古洞站」
+Vector: 「古洞站」→ 理解「車站建設」相關概念
+Graph: 「古洞站」→ 期哥(人) → QS(專業)
 ```
 
-**Why do you need to know these?**
-- Your system should serve you, not you serve your system
-- Example: Jacky is a Hong Kong QS, uses Cantonese, primarily uses Telegram + Obsidian
+如果你只需要簡單搜尋，可以只用 BM25。
 
 ---
 
-### Step 2: Choose Search Solution
+### Step 3: 設計 Entity 關係
 
-**Question**: How does your AI assistant remember things?
+**問題**：你嘅系統要追蹤邊啲 entities？
 
-| Solution | Pros | Cons | Who it's for |
-|----------|------|------|--------------|
-| Pure Vector Search | Simple | Slow, many false positives | Small scale, simple needs |
-| Pure BM25 | Fast, accurate | Doesn't understand semantics | Only need keywords |
-| **Triple fusion** | Balances all methods | Needs more setup | **Most cases** |
 
-**Why triple fusion?**
+**步驟**：
 ```
-BM25: "Kwu Tung Station" → Exact match for "Kwu Tung Station"
-Vector: "Kwu Tung Station" → Understands "station construction" related concepts
-Graph: "Kwu Tung Station" → Jacky(person) → QS(profession)
-```
-
-If you only need simple search, you can just use BM25.
-
----
-
-### Step 3: Design Entity Relationships
-
-**Question**: What entities does your system need to track?
-
-**Steps**:
-```
-1. List core entities
-   - People (yourself, your users)
-   - Projects (projects you participate in)
-   - Systems (tools/services you use)
+1. 列出核心 entities
+   - 人（你自己、你的用戶）
+   - 項目（你參與的項目）
+   - 系統（你用嘅工具/服務）
 
 
-2. Define relationship types
-   - works_on: who works on which project
-   - uses: who uses which tool
-   - part_of: what is part of what
+2. 定義關係類型
+   - works_on: 邊個做邊個項目
+   - uses: 邊個用邊個工具
+   - part_of: 邊個係邊個的一部分
 
-3. Create entity files
-   One .md file per entity, containing:
+3. 建立實體文件
+   每個 entity 一個 .md 檔案，包含：
    - title, type, entity_type
-   - relationships
-   - description
+   - relationships（關係）
+   - 描述
 ```
 
-**Jacky's example**:
+**期哥嘅例子**：
 ```yaml
-# Jacky.md
+# 期哥.md
 ---
-title: Jacky
+title: 期哥
 entity_type: person
 relationships:
-  - target: Kwu Tung Station
+  - target: 古洞站
     type: works_on
 ---
 
-# Kwu Tung Station.md
+# 古洞站.md
 ---
-title: Kwu Tung Station
+title: 古洞站
 entity_type: project
 relationships:
-  - target: Jacky
+  - target: 期哥
     type: involves
 ---
 ```
 
 ---
 
-### Step 4: Implement Triple-Stream Search
+### Step 4: 實現三元融合搜尋
 
-**If you choose triple fusion**:
+**如果你選擇三元融合**：
 ```python
-# 1. BM25 Channel - Keyword matching
+# 1. BM25 Channel - 關鍵詞匹配
 from rank_bm25 import BM25Okapi
 
-# 2. Vector Channel - Semantic matching
+# 2. Vector Channel - 語義匹配
 from sentence_transformers import SentenceTransformer
 
-# 3. Graph Channel - Relationship matching
-# Read entity files, build graph
+# 3. Graph Channel - 關係匹配
+# 讀取 entities 檔案，建立 graph
 
 # 4. RRF Fusion
 def rrf_fusion(results_dict, k=60):
@@ -1202,14 +1067,14 @@ def rrf_fusion(results_dict, k=60):
     return sorted(scores.items(), key=lambda x: x[1], reverse=True)
 ```
 
-**What about mixed languages?**
-If you use Chinese-English mix:
+**唔同語言要點做？**
+如果你用中英混合：
 ```python
 # Query Expansion
 def expand_query(query):
     synonyms = {
-        'Kwu Tung Station': ['Kwu Tung Station', '古洞站', 'gutong'],
-        'AI assistant': ['AI assistant', 'AI助手', '助手'],
+        '古洞站': ['古洞站', 'Kwu Tung Station', 'gutong'],
+        'AI助手': ['AI助手', 'AI assistant', '助手'],
     }
     expanded = [query]
     for term, alts in synonyms.items():
@@ -1220,17 +1085,18 @@ def expand_query(query):
 
 ---
 
-### Step 5: Add Smart Triggering (Smart Recall)
+### Step 5: 加入智能觸發 (Smart Recall)
 
-**Question**: You don't want to manually search every time, you want AI to proactively remember things.
+**問題**：你唔想每次都手動搜尋，想 AI 主動記得嘢。
 
-**Solution**:
+
+**方案**：
 ```python
 # Smart Recall Hook
 HIGH_PRIORITY_KEYWORDS = [
     'search', 'find', 'locate',
-    'Jacky', 'Kwu Tung Station', 'Star',
-    'project', 'knowledge', 'entity',
+    '期哥', '古洞站', '阿星',
+    'project', '知識', 'entity',
 ]
 
 def should_trigger(query):
@@ -1241,23 +1107,23 @@ def should_trigger(query):
     return False
 ```
 
-**Adjust KEYWORDS based on YOUR entities**:
+**根據你嘅 Entities 調整 KEYWORDS**：
 ```python
-MY_ENTITIES = ['Jacky', 'Kwu Tung Station', 'Star']
+MY_ENTITIES = ['期哥', '古洞站', '阿星']
 HIGH_PRIORITY_KEYWORDS.extend(MY_ENTITIES)
 ```
 
 ---
 
-### Step 6: Build Proactive Discovery
+### Step 6: 建立 Proactive Discovery
 
-**Question**: Passive query waiting is too slow, you want the system to proactively discover new info.
+**問題**：被動等查詢太慢，你想系統主動發現新資訊。
 
-**Solution**:
+**方案**：
 ```python
 # Proactive Discovery Engine
 
-# 1. Rule-based Relationship Inference
+# 1. 規則-based Relationship Inference
 RELATIONSHIP_RULES = {
     ('person', 'project'): 'works_on',
     ('person', 'system'): 'uses',
@@ -1269,128 +1135,107 @@ def calculate_confidence(base, keyword_density, type_compat):
     return min(base + keyword_density*0.2 + type_compat*0.1, 0.95)
 
 # 3. Bidirectional Check
-# Ensure both A→B and B→A are considered
+# 確保 A→B 同 B→A 都考慮
 ```
 
 ---
 
-### Step 7: Visualization
+### Step 7: 可視化
 
-**Question**: How do you know how big your Graph is?
+**問題**：你點知你嘅 Graph 有幾大？
 
-**Solution**:
+**方案**：
 ```bash
-# Generate Mermaid diagram
+# 生成 Mermaid diagram
 python3 graph_visualization.py --format mermaid
 
-# Or generate HTML interactive view
+# 或者生成 HTML interactive view
 python3 graph_visualization.py --format html
 ```
 
-**What you should see**:
-- How many nodes
-- How many edges
-- Who's the central node (most connections)
+**你應該睇到**：
+- 有幾多 nodes
+- 有幾多 edges
+- 邊個係中心 node（最多連接）
 
 ---
 
-### Step 8: Continuous Optimization
+### Step 8: 持續優化
 
-**Remember**: The system is evolution, not built all at once.
+**記住**：系統係 evolution，唔係一次過建立。
 
 ```
-Weekly review:
-1. Are search results correct?
-2. Any new entities to add?
-3. Any relationships missed?
-4. Which feature is most used?
+每週檢討：
+1. 搜尋結果啱唔啱？
+2. 有冇新 entities 要加？
+3. 有冇關係漏咗？
+4. 邊個 feature 最常用？
 
-Adjust as needed:
-- If you don't need a channel, remove it
-- If you have new entity types, add them
+按需調整：
+- 如果你唔需要某個 channel，拎走佢
+- 如果你有新嘅 entities type，加上去
 ```
 
 ---
 
-### Step 9: FAQ
+### Step 9: 常見問題
 
-**Q: Should I use all scripts?**
-A: No. Pick what you need. If you want to upgrade search, add triple fusion. If you just want quick search, BM25 is enough.
+**Q: 我應該用晒所有 scripts 嗎？**
+A: 唔需要。揀你需要嘅。如果你想升級搜尋，加三元融合。如果你只想快速搜尋，BM25 就夠。
 
-**Q: What about mixed Chinese and English?**
-A: Query expansion + entity-type filtering. See Step 4 for details.
+**Q: 中英文混雜要點做？**
+A: Query expansion + entity-type filtering。詳細見 Step 4。
 
-**Q: How often to update entities?**
-A: Daily or weekly recommended, depending on your data volume.
+**Q: 幾耐更新一次 entities？**
+A: 建議每日或每週，視乎你嘅資訊量。
 
 ---
 
-### Summary: Why Step-by-Step?
+### 總結：點解係一步步？
 
-> Because you can't build a perfect system all at once.
-> Everyone's starting point is different, the features you need are different.
+> 因為你唔可能一次過建立完美嘅系統。
+> 每個人嘅起點都唔同，你需要嘅功能都唔同。
 
-**Recommended path**:
+**建議路徑**：
 ```
-1. Know yourself (Step 1)
-2. Choose search solution (Step 2)
-3. Design entities (Step 3)
-4. Implement search (Step 4)
-5. Add smart triggering (Step 5)
-6. Proactive discovery (Step 6) - can skip
-7. Visualization (Step 7) - can skip
-8. Continuous optimization (Step 8)
+1. 了解自己（Step 1）
+2. 選擇搜尋方案（Step 2）
+3. 設計 entities（Step 3）
+4. 實現搜尋（Step 4）
+5. 加入智能觸發（Step 5）
+6. 主動發現（Step 6）可跳過
+7. 可視化（Step 7）可跳過
+8. 持續優化（Step 8）
 ```
 
-**Most importantly**:
-- Don't copy, think
-- Don't do it all at once, iterate
-- Don't aim for perfect, aim for working
+**最緊要嘅係**：
+- 唔好抄，要諗
+- 唔好一次過，要迭代
+- 唔好完美，要 work
 
 ---
 
 ## 🙏 Credits
 
-### Inspiration Sources
+### 靈感來源
 
 - **Andrej Karpathy** - Programming Principles (Simplicity First, Surgical Changes)
 - **Aporia Labs** - LLM Wiki v2 (Confidence Scoring, Supersession, Forgetting)
-- **Anthropic** - OIDA Loop / CraniMem Architecture
-- **Jacky** - QS professional, requirements originator for the entire system
+- **Anthropic** - OODA Loop / CraniMem Architecture
+- **期哥** - QS專業人士，整個系統的需求提出者
 
-### Tech Stack
+### 技術棧
 
-| Category | Technology | Purpose |
-|----------|------------|---------|
-| Framework | **OpenClaw** | AI Assistant Framework |
-| Search | **rank-bm25** | BM25 keyword search |
-| Embeddings | **Ollama** (nomic-embed-text) | Vector embeddings |
-| API | **Flask** | HTTP search API |
-| Diagrams | **Mermaid.js** | Architecture diagrams |
-| Plugins | **memory-core, memory-wiki, lossless-claw** | Memory system |
-| Notebooks | **Obsidian** | Local knowledge base |
-| Database | **Notion API** | Project database integration |
+- **OpenClaw** - AI Assistant Framework
+- **BM25 (rank_bm25)** - Keyword Search
+- **Sentence Transformers** - Vector Embeddings
+- **Flask** - HTTP API
+- **Mermaid.js** - 圖表渲染
 
-### Key Contributors
+### 主要貢獻者
 
-| Name | Role | Contribution |
-|------|------|-------------|
-| **Jacky (期哥)** | Product design | Requirements, QS expertise |
-| **Star (阿星)** | System development | Algorithm implementation, agent integration |
-
-### Skills & Tools
-
-| Tool | Purpose | Author |
-|------|---------|--------|
-| **huashu-design** | HTML animation demo | 花叔 |
-| **Unsloth** | Local LLM research | unslothai |
-| **Claude Code** | Development workflow | Anthropic |
-
-### Acknowledgments
-
-- OpenClaw community for plugin ecosystem
-- Claude Design (Anthropic) for design workflow inspiration
-- All open-source contributors
+- **期哥** - 產品設計、需求提出
+- **阿星** - 系統開發、算法實現
 
 ---
 
@@ -1404,9 +1249,9 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 - [GitHub Repository](https://github.com/st007097-coder/ocm-sup)
 - [OpenClaw Docs](https://docs.openclaw.ai)
-- [Jacky's GitHub](https://github.com/st007097-coder)
+- [期哥嘅 GitHub](https://github.com/st007097-coder)
 
 ---
 
-_Last updated: 2026-04-24_
-_OCM Sup v2.2 - Production Ready_ 🚀
+_最後更新：2026-04-25_
+_OCM Sup v2.3 - Proactive Memory System_ 🚀
