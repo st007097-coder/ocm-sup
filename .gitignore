@@ -27,3 +27,49 @@ scripts/continuity/traces_audit.jsonl
 # API state
 *.log
 MEMORY.md
+
+# Personal configuration & memory
+MEMORY.md
+MEMORY.md.backup
+MEMORY.md.backup-20260411
+AGENTS.md
+AGENTS.md.bak
+AGENTS.md.full-backup
+SOUL.md
+USER.md
+IDENTITY.md
+BOOTSTRAP.md
+HEARTBEAT.md
+DREAMS.md
+TOOLS.md
+TOOLS.md.backup
+
+# Daily memory & session logs
+memory/
+Journal/
+
+# Logs & media
+logs/
+media/
+
+# Personal workspace files
+HEARTBEAT.md
+DREAMS.md
+
+# Obsidian & wiki local sync
+lossless-claw/
+mempalace/
+mem0/
+memU/
+everOS/
+
+# Claude & agent internals
+.claude/
+.learnings/
+.openclaw/
+
+# Temp & cache
+*.log
+*.tmp
+__pycache__/
+*.pyc
