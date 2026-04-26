@@ -452,3 +452,70 @@ _Version: 2.0_
 ---
 _Changelog 最後更新：2026-04-25_
 _Version: 2.3_
+
+## 🧬 v2.4: Memory Stability System (2026-04-26)
+
+### 當時情况
+
+GPT 分析指出架構問題：
+- Memory Write 不穩（LLM extraction non-deterministic）
+- Vector + Graph 不同步（memory 分裂）
+- Agent 無 memory selection 策略（context 污染）
+- Memory 無 lifecycle（只加不減）
+
+### 解決方案：Memory Stability System
+
+#### P0-1: Memory Write Gate
+- Script: memory_write_gate.py
+- 功能：pre-write validation（schema + content + dedup + canonicalization）
+- Rejection log: memory/logs/memory_rejects.log
+
+#### P0-2: Memory Transaction Sync
+- Script: memory_tx_sync.py
+- 功能：Single Source of Truth atomic sync
+- Flow: LLM extraction → structured JSON → derived (vector + graph)
+
+#### P1-1: Memory Consistency Checker
+- Script: memory_consistency_check.py
+- 功能：duplicate / contradiction / structural issue 檢測
+- Health score = 100 - (issues / total) * 20
+
+#### P1-2: Memory Relevance Filter
+- Script: memory_relevance_filter.py
+- Score = semantic_similarity * 0.6 + recency * 0.2 + importance * 0.2
+
+#### P2-1: Cross-Encoder Reranker
+- Script: memory_cross_encoder.py
+- 功能：Lightweight cross-encoder reranking
+- Combined score = cross_encoder * 0.5 + original_rrf * 0.5
+
+#### P2-2: Memory Pruning & Decay
+- Script: memory_pruning.py
+- 功能：lifecycle management
+- Decay: half-life 30 days, Prune: archive + delete
+
+### 整合：Consolidation Loop v2.4
+
+| Step | Module | Status |
+|------|--------|--------|
+| 0 | Memory Write Gate | ✅ |
+| 1 | Transaction Sync | ✅ |
+| 2 | Consistency Check | ✅ (Health: 100%) |
+| 3 | Relevance Filter ready | ✅ |
+| 4 | Cross-Encoder ready | ✅ |
+| 5 | Pruning status | ✅ |
+| 6 | Proactive Discovery | ✅ |
+| 7 | Pre-compression Checkpoint | ✅ |
+
+Total time: ~3 sec
+
+### 關鍵教訓
+
+1. Pre-write gate > post-write checkpoint：事前攔，唔係事後修
+2. Single source of truth：所有 derived data 來自同一 source
+3. Transaction log：失敗時可以 rollback
+4. Health score：量化系統健康狀態
+
+---
+_Changelog 最後更新：2026-04-26_
+_Version: 2.4_
