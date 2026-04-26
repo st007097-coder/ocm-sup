@@ -7,9 +7,6 @@ Uses wiki entities and their relationships for graph-based search
 import os
 import re
 import yaml
-import numpy as np
-import networkx as nx
-import community as community_louvain
 from pathlib import Path
 from collections import defaultdict
 from typing import List, Tuple, Dict, Set, Optional
@@ -26,7 +23,7 @@ class GraphNode:
     relationships: List[Dict]
     content_snippet: str = ""
 
-@dataclass
+@dataclass  
 class GraphEdge:
     """Represents a relationship between entities"""
     source_id: str
@@ -35,25 +32,15 @@ class GraphEdge:
     text: str = ""
 
 
-@dataclass
-class DocSource:
-    """Represents a document with its source files for overlap calculation"""
-    path: str
-    title: str
-    doc_type: str  # 'entity', 'concept', 'source', etc.
-    sources: List[str]  # List of source file paths (from frontmatter sources:[])
-    entity_id: str  # The entity ID this doc represents (if any)
-
-
 class GraphSearchChannel:
     """
     Graph-based search using wiki entities and relationships
     
-    Implements 4-Signal Relevance Model:
-    1. Direct link (×3.0) - entity relationships via [[wikilinks]]
-    2. Source overlap (×4.0) - pages sharing same raw source
-    3. Adamic-Adar (×1.5) - shared common neighbors
-    4. Type affinity (×1.0) - same page type bonus
+    Architecture:
+    - Load wiki entities with their relationships
+    - Build graph structure (nodes + edges)
+    - When query matches entity name, traverse relationships
+    - Return related entities and their source documents
     """
     
     def __init__(self, wiki_path: str = "/root/.openclaw/workspace/wiki"):
@@ -63,21 +50,8 @@ class GraphSearchChannel:
         self.edges: List[GraphEdge] = []
         self.entity_name_to_id: Dict[str, str] = {}  # lowercase name -> node id
         
-        # Source overlap support
-        self.all_docs: Dict[str, DocSource] = {}  # path -> DocSource for ALL docs
-        self.source_to_docs: Dict[str, Set[str]] = {}  # source_path -> set of doc paths
-        
-        # Adamic-Adar: neighbor sets for each node
-        self.node_neighbors: Dict[str, Set[str]] = {}  # node_id -> set of neighbor node_ids
-        
-        # P3.A: Path to entity mapping (for community context lookup)
-        self.path_to_entity_id: Dict[str, str] = {}  # path -> entity_id
-        
         self._load_entities()
-        self._load_all_docs_for_source_overlap()
         self._build_graph()
-        self._build_neighbor_sets()
-        self._detect_communities_louvain()  # P3: Louvain Community Detection
     
     def _extract_frontmatter(self, content: str) -> Optional[Dict]:
         """Extract YAML frontmatter from markdown"""
@@ -89,61 +63,22 @@ class GraphSearchChannel:
                 return None
         return None
     
-    def _load_all_docs_for_source_overlap(self):
-        """Load ALL wiki documents (not just entities) to support source overlap signal.
+    def _is_entity_file(self, filepath: Path) -> bool:
+        """Check if a file represents an entity"""
+        # Entities are typically in entities/ folder or have type: entity in frontmatter
+        if 'entities' in str(filepath):
+            return True
         
-        We need this because source overlap requires knowing which documents
-        share the same raw source files (from frontmatter sources:[]).
-        """
-        docs_loaded = 0
+        try:
+            with open(filepath, 'r', encoding='utf-8') as f:
+                content = f.read()
+            fm = self._extract_frontmatter(content)
+            if fm and fm.get('type') == 'entity':
+                return True
+        except:
+            pass
         
-        for root, dirs, files in os.walk(self.wiki_path):
-            dirs[:] = [d for d in dirs if not d.startswith('.')]
-            
-            for file in files:
-                if not file.endswith(('.md', '.markdown')):
-                    continue
-                
-                filepath = Path(root) / file
-                
-                try:
-                    with open(filepath, 'r', encoding='utf-8') as f:
-                        content = f.read()
-                    
-                    fm = self._extract_frontmatter(content)
-                    if not fm:
-                        continue
-                    
-                    rel_path = str(filepath.relative_to(self.wiki_path))
-                    title = fm.get('title', filepath.stem)
-                    doc_type = fm.get('type', fm.get('pageType', 'unknown'))
-                    sources = fm.get('sources', [])
-                    
-                    # Map entity_id for this doc (may be an entity or just a doc that references entities)
-                    entity_id = fm.get('id', '') or fm.get('title', '') or ''
-                    
-                    doc_source = DocSource(
-                        path=rel_path,
-                        title=str(title),
-                        doc_type=str(doc_type),
-                        sources=[str(s) for s in sources] if sources else [],
-                        entity_id=str(entity_id)
-                    )
-                    self.all_docs[rel_path] = doc_source
-                    
-                    # Build source -> docs reverse index
-                    for source in doc_source.sources:
-                        if source not in self.source_to_docs:
-                            self.source_to_docs[source] = set()
-                        self.source_to_docs[source].add(rel_path)
-                    
-                    docs_loaded += 1
-                    
-                except Exception as e:
-                    pass
-        
-        # print(f"Loaded {docs_loaded} docs for source overlap analysis")
-        # print(f"  Source references: {len(self.source_to_docs)} unique sources")
+        return False
     
     def _load_entities(self):
         """Load all entities from wiki"""
@@ -191,9 +126,6 @@ class GraphSearchChannel:
                     
                     self.nodes[node.id] = node
                     
-                    # P3.A: Map path -> entity_id
-                    self.path_to_entity_id[node.path] = node.id
-                    
                     # Index by lowercase name for search
                     self.entity_name_to_id[node.name.lower()] = node.id
                     self.entity_name_to_id[node.name] = node.id
@@ -208,9 +140,9 @@ class GraphSearchChannel:
                 except Exception as e:
                     pass
         
-        # print(f"Loaded {entities_loaded} entities")
-        # for node in self.nodes.values():
-        #     print(f"  - {node.name} ({node.id}): {len(node.relationships)} relationships")
+        print(f"Loaded {entities_loaded} entities")
+        for node in self.nodes.values():
+            print(f"  - {node.name} ({node.id}): {len(node.relationships)} relationships")
     
     def _build_graph(self):
         """Build edges from entity relationships"""
@@ -236,7 +168,7 @@ class GraphSearchChannel:
                     )
                     self.edges.append(edge)
         
-        # print(f"Built graph with {len(self.edges)} edges")
+        print(f"Built graph with {len(self.edges)} edges")
     
     def _find_matching_entities(self, query: str) -> List[str]:
         """Find entity IDs that match the query"""
@@ -264,158 +196,6 @@ class GraphSearchChannel:
                     matching_ids.add(node_id)
         
         return list(matching_ids)
-    
-    def _build_neighbor_sets(self):
-        """Build neighbor sets for Adamic-Adar calculation."""
-        for node in self.nodes.values():
-            neighbors = set()
-            for edge in self.edges:
-                if edge.source_id == node.id:
-                    neighbors.add(edge.target_id)
-                elif edge.target_id == node.id:
-                    neighbors.add(edge.source_id)
-            self.node_neighbors[node.id] = neighbors
-        
-        # print(f"Built neighbor sets for {len(self.node_neighbors)} nodes")
-    
-    def _detect_communities_louvain(self):
-        """Detect communities using Louvain algorithm.
-        
-        P3: Louvain Community Detection (2026-04-22)
-        - Runs once during initialization
-        - Caches community assignments for each entity
-        - Uses modularity optimization
-        """
-        if len(self.edges) == 0:
-            # print("Louvain: No edges, skipping community detection")
-            self.entity_to_community: Dict[str, int] = {}
-            self.communities: Dict[int, Set[str]] = {}
-            return
-        
-        # Build networkx graph from edges
-        G = nx.Graph()
-        for node in self.nodes.values():
-            G.add_node(node.id)
-        for edge in self.edges:
-            G.add_edge(edge.source_id, edge.target_id)
-        
-        # Run Louvain community detection
-        partition = community_louvain.best_partition(G, randomize=False)
-        
-        # Store entity -> community mapping
-        self.entity_to_community: Dict[str, int] = partition
-        
-        # Build communities -> members mapping
-        self.communities: Dict[int, Set[str]] = defaultdict(set)
-        for entity_id, community_id in partition.items():
-            self.communities[community_id].add(entity_id)
-        
-        # print(f"Louvain: Detected {len(self.communities)} communities from {len(partition)} entities")
-        
-        # Show top communities by size
-        community_sizes = sorted([(cid, len(members)) for cid, members in self.communities.items()], 
-                                  key=lambda x: x[1], reverse=True)
-        # print(f"  Top 5 communities by size: {community_sizes[:5]}")
-    
-    def get_entity_community(self, entity_id: str) -> Optional[int]:
-        """Get community ID for an entity."""
-        return self.entity_to_community.get(entity_id)
-    
-    def get_community_members(self, community_id: int) -> List[str]:
-        """Get all entity IDs in a community."""
-        return list(self.communities.get(community_id, []))
-    
-    def get_related_in_community(self, entity_id: str) -> List[Dict]:
-        """Get other entities in the same community as the given entity."""
-        community_id = self.entity_to_community.get(entity_id)
-        if community_id is None:
-            return []
-        
-        members = self.communities.get(community_id, set()) - {entity_id}
-        related = []
-        for mid in members:
-            node = self.nodes.get(mid)
-            if node:
-                related.append({
-                    'id': node.id,
-                    'name': node.name,
-                    'type': node.entity_type
-                })
-        return related
-    
-    def _calculate_source_overlap(self, query_doc_path: str, candidate_path: str) -> float:
-        """Calculate source overlap score between two documents.
-        
-        Signal: Source overlap (×4.0)
-        If two pages share the same raw source file, they are related.
-        """
-        if query_doc_path not in self.all_docs or candidate_path not in self.all_docs:
-            return 0.0
-        
-        query_sources = set(self.all_docs[query_doc_path].sources)
-        candidate_sources = set(self.all_docs[candidate_path].sources)
-        
-        if not query_sources or not candidate_sources:
-            return 0.0
-        
-        # Count shared sources
-        shared = query_sources & candidate_sources
-        
-        if not shared:
-            return 0.0
-        
-        # Score: more shared sources = higher score
-        # Using log scaling to prevent one doc dominating
-        return min(len(shared) / 2.0, 2.0)  # Max 2.0 for having 2+ shared sources
-    
-    def _calculate_adamic_adar(self, query_node_id: str, candidate_node_id: str) -> float:
-        """Calculate Adamic-Adar score between two nodes.
-        
-        Signal: Adamic-Adar (×1.5)
-        Pages that share common neighbors get higher scores.
-        Weighted by neighbor degree (rare connections = more signal).
-        """
-        if query_node_id not in self.node_neighbors or candidate_node_id not in self.node_neighbors:
-            return 0.0
-        
-        query_neighbors = self.node_neighbors[query_node_id]
-        candidate_neighbors = self.node_neighbors[candidate_node_id]
-        
-        if not query_neighbors or not candidate_neighbors:
-            return 0.0
-        
-        # Find common neighbors (excluding the two nodes themselves)
-        common = query_neighbors & candidate_neighbors
-        common = common - {query_node_id, candidate_node_id}
-        
-        if not common:
-            return 0.0
-        
-        # Adamic-Adar: sum of 1/log(degree) for each common neighbor
-        score = 0.0
-        for neighbor in common:
-            degree = len(self.node_neighbors.get(neighbor, set()))
-            if degree > 1:
-                score += 1.0 / (np.log(degree) + 0.1)  # +0.1 to avoid log(0)
-        
-        return min(score, 3.0)  # Cap at 3.0 to prevent overflow
-    
-    def _calculate_type_affinity(self, query_node_id: str, candidate_node_id: str) -> float:
-        """Calculate type affinity score.
-        
-        Signal: Type affinity (×1.0)
-        Bonus for same page type (entity↔entity, concept↔concept).
-        """
-        if query_node_id not in self.nodes or candidate_node_id not in self.nodes:
-            return 0.0
-        
-        query_type = self.nodes[query_node_id].entity_type
-        candidate_type = self.nodes[candidate_node_id].entity_type
-        
-        if query_type == candidate_type:
-            return 1.0
-        
-        return 0.0
     
     def _bfs_traverse(
         self, 
@@ -460,20 +240,14 @@ class GraphSearchChannel:
     
     def search_by_entities(self, query: str, max_depth: int = 2) -> List[Dict]:
         """
-        Search documents by traversing entity relationships.
-        
-        Implements 4-Signal Relevance Model scoring:
-        1. Direct link (×3.0) - from BFS path length
-        2. Source overlap (×4.0) - shared sources
-        3. Adamic-Adar (×1.5) - shared neighbors
-        4. Type affinity (×1.0) - same type bonus
+        Search documents by traversing entity relationships
         
         Args:
             query: Search query (may contain entity names)
             max_depth: Maximum BFS traversal depth
         
         Returns:
-            List of result dicts with 4-signal scores
+            List of result dicts with entity info and paths
         """
         # Find matching entities
         matching_entity_ids = self._find_matching_entities(query)
@@ -481,68 +255,37 @@ class GraphSearchChannel:
         if not matching_entity_ids:
             return []
         
-        # Get query node info for scoring signals
-        query_node = self.nodes.get(matching_entity_ids[0])
-        query_doc_path = query_node.path if query_node else None
-        query_type = query_node.entity_type if query_node else None
-        
         # Traverse graph from matching entities
         traversed = self._bfs_traverse(matching_entity_ids, max_depth=max_depth)
         
-        # Build results with 4-signal scoring
+        # Build results
         results = []
-        for node_id, base_score, path in traversed:
+        for node_id, score, path in traversed:
             node = self.nodes.get(node_id)
-            if not node:
-                continue
-            
-            # Calculate 4 signals
-            # Signal 1: Direct link (×3.0) - already encoded in base_score from BFS
-            direct_link_score = base_score * 3.0
-            
-            # Signal 2: Source overlap (×4.0)
-            source_overlap = self._calculate_source_overlap(query_doc_path, node.path)
-            source_overlap_score = source_overlap * 4.0
-            
-            # Signal 3: Adamic-Adar (×1.5)
-            adamic_adar = self._calculate_adamic_adar(matching_entity_ids[0], node_id)
-            adamic_adar_score = adamic_adar * 1.5
-            
-            # Signal 4: Type affinity (×1.0)
-            type_affinity = self._calculate_type_affinity(matching_entity_ids[0], node_id)
-            type_affinity_score = type_affinity * 1.0
-            
-            # Combined score
-            total_score = direct_link_score + source_overlap_score + adamic_adar_score + type_affinity_score
-            
-            # Find the edge that led to this result
-            edge_text = ""
-            if len(path) >= 2:
-                prev_id = path[-2]
-                for edge in self.edges:
-                    if edge.source_id == prev_id and edge.target_id == node_id:
-                        edge_text = f" --{edge.relationship_type}--> "
-                        break
-                    elif edge.target_id == prev_id and edge.source_id == node_id:
-                        edge_text = f" <--{edge.relationship_type}-- "
-                        break
-            
-            results.append({
-                'title': node.name,
-                'path': node.path,
-                'entity_type': node.entity_type,
-                'score': total_score,
-                'base_score': base_score,
-                'direct_link': direct_link_score,
-                'source_overlap': source_overlap_score,
-                'adamic_adar': adamic_adar_score,
-                'type_affinity': type_affinity_score,
-                'path_nodes': [self.nodes.get(nid, type('N', (), {'name': nid})()).name for nid in path],
-                'edge_info': edge_text,
-                'source': 'graph'
-            })
+            if node:
+                # Find the edge that led to this result
+                edge_text = ""
+                if len(path) >= 2:
+                    prev_id = path[-2]
+                    for edge in self.edges:
+                        if edge.source_id == prev_id and edge.target_id == node_id:
+                            edge_text = f" --{edge.relationship_type}--> "
+                            break
+                        elif edge.target_id == prev_id and edge.source_id == node_id:
+                            edge_text = f" <--{edge.relationship_type}-- "
+                            break
+                
+                results.append({
+                    'title': node.name,
+                    'path': node.path,
+                    'entity_type': node.entity_type,
+                    'score': score,
+                    'path_nodes': [self.nodes.get(nid, type('N', (), {'name': nid})()).name for nid in path],
+                    'edge_info': edge_text,
+                    'source': 'graph'
+                })
         
-        # Sort by total score
+        # Sort by score
         results.sort(key=lambda x: x['score'], reverse=True)
         
         return results[:20]

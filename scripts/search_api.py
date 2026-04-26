@@ -23,7 +23,6 @@ from datetime import datetime
 sys.path.insert(0, '/root/.openclaw/workspace/skills/triple-stream-search/scripts')
 
 from flask import Flask, request, jsonify
-import time
 from triple_stream_search import TripleStreamSearch
 
 app = Flask(__name__)
@@ -35,7 +34,6 @@ stats = {
     'queries': {},
     'last_query': None,
     'last_query_time': None,
-    'latencies': [],  # individual request latencies in ms
 }
 
 def init_search():
@@ -59,32 +57,7 @@ def health():
 @app.route('/stats')
 def get_stats():
     """Get search statistics"""
-    latencies = stats.get('latencies', [])
-    if latencies:
-        sorted_lat = sorted(latencies)
-        n = len(sorted_lat)
-        p50 = sorted_lat[int(n * 0.50)] if n > 0 else 0
-        p95 = sorted_lat[int(n * 0.95)] if n > 0 else 0
-        p99 = sorted_lat[int(n * 0.99)] if n > 0 else 0
-        latency_stats = {
-            'count': n,
-            'mean': round(sum(latencies) / n, 2),
-            'p50': round(p50, 2),
-            'p95': round(p95, 2),
-            'p99': round(p99, 2),
-            'min': round(min(latencies), 2),
-            'max': round(max(latencies), 2),
-        }
-    else:
-        latency_stats = {'count': 0}
-    
-    return jsonify({
-        'total_requests': stats.get('total_requests', 0),
-        'unique_queries': len(stats.get('queries', {})),
-        'latency_ms': latency_stats,
-        'last_query': stats.get('last_query'),
-        'last_query_time': stats.get('last_query_time'),
-    })
+    return jsonify(stats)
 
 @app.route('/search')
 def search_get():
@@ -95,28 +68,15 @@ def search_get():
         top_k: Number of results (default: 5, max: 20)
     """
     global stats
-    t0 = time.perf_counter()
     
     query = request.args.get('q', '')
-    # Flask/Werkzeug decodes URL parameters automatically for UTF-8
-    # But we add explicit handling for malformed encoding
     if not query:
         return jsonify({'error': 'Missing query parameter: q'}), 400
-    
-    # Handle double-URL-encoded queries (shell curl sometimes double-encodes)
-    if '%' in query and query.count('%') > 2:
-        try:
-            from urllib.parse import unquote
-            query = unquote(unquote(query))
-        except Exception:
-            pass
     
     try:
         top_k = min(int(request.args.get('top_k', 5)), 20)
     except ValueError:
         top_k = 5
-    
-    explain = request.args.get('explain', 'false').lower() == 'true'
     
     # Perform search
     results = search.search(query, top_k=top_k)
@@ -127,19 +87,10 @@ def search_get():
     stats['last_query'] = query
     stats['last_query_time'] = datetime.now().isoformat()
     
-    # Get query expansion for explanation
-    expansion = search.expander.expand_query(query)
-    expanded_query = expansion[0]
-    
-    # Run all three channels separately for explanation
-    bm25_results = search.search_bm25_expanded(query, top_k=top_k * 2)
-    vector_results = search.search_vector(query, top_k=top_k * 2)
-    graph_results = search.search_graph(query, top_k=top_k * 2)
-    
     # Format results
     formatted_results = []
     for r in results:
-        result = {
+        formatted_results.append({
             'title': r['title'],
             'path': r['path'],
             'rrf_score': round(r['rrf_score'], 4),
@@ -147,65 +98,15 @@ def search_get():
             'bm25_score': round(r['bm25_score'], 2),
             'vector_score': round(r.get('vector_score', 0), 3),
             'graph_score': round(r.get('graph_score', 0), 3),
-        }
-        
-        if explain:
-            # Find doc_idx for this result
-            doc_idx = None
-            for i, meta in enumerate(search.bm25_metadata):
-                if meta['path'] == r['path']:
-                    doc_idx = i
-                    break
-            
-            bm25_rank = next((i+1 for i, (di, s) in enumerate(bm25_results) if di == doc_idx), None)
-            vector_rank = next((i+1 for i, (di, s) in enumerate(vector_results) if di == doc_idx), None)
-            graph_rank = next((i+1 for i, (di, s) in enumerate(graph_results) if di == doc_idx), None)
-            
-            # Get graph path for this result
-            graph_path = None
-            for node_id, node in search.graph_channel.nodes.items():
-                if node.path == r['path']:
-                    path_parts = []
-                    for rel in node.relationships[:3]:
-                        path_parts.append(f"{node.name} --[{rel['type']}]--> {rel.get('target', '?')}")
-                    graph_path = path_parts
-                    break
-            
-            result['explain'] = {
-                'bm25_rank': bm25_rank,
-                'vector_rank': vector_rank,
-                'graph_rank': graph_rank,
-                'channels_used': r['sources'],
-                'expansion_used': r.get('expansion', []),
-            }
-            if graph_path:
-                result['explain']['graph_path'] = graph_path
-        
-        formatted_results.append(result)
+        })
     
-    response = {
+    return jsonify({
         'query': query,
-        'expanded_query': expanded_query,
         'top_k': top_k,
         'result_count': len(formatted_results),
         'results': formatted_results,
         'timestamp': datetime.now().isoformat(),
-    }
-    
-    if explain:
-        response['channel_stats'] = {
-            'bm25_candidates': len(bm25_results),
-            'vector_candidates': len(vector_results),
-            'graph_candidates': len(graph_results),
-            'final_ranked': len(results),
-        }
-    
-    # Record latency
-    latency_ms = (time.perf_counter() - t0) * 1000
-    stats['latencies'].append(latency_ms)
-    if len(stats['latencies']) > 1000:
-        stats['latencies'] = stats['latencies'][-1000:]
-    return jsonify(response)
+    })
 
 @app.route('/search', methods=['POST'])
 def search_post():
@@ -241,19 +142,10 @@ def search_post():
     stats['last_query'] = query
     stats['last_query_time'] = datetime.now().isoformat()
     
-    # Get query expansion for explanation
-    expansion = search.expander.expand_query(query)
-    expanded_query = expansion[0]
-    
-    # Run all three channels separately for explanation
-    bm25_results = search.search_bm25_expanded(query, top_k=top_k * 2)
-    vector_results = search.search_vector(query, top_k=top_k * 2)
-    graph_results = search.search_graph(query, top_k=top_k * 2)
-    
     # Format results
     formatted_results = []
     for r in results:
-        result = {
+        formatted_results.append({
             'title': r['title'],
             'path': r['path'],
             'rrf_score': round(r['rrf_score'], 4),
@@ -261,60 +153,15 @@ def search_post():
             'bm25_score': round(r['bm25_score'], 2),
             'vector_score': round(r.get('vector_score', 0), 3),
             'graph_score': round(r.get('graph_score', 0), 3),
-        }
-        
-        if explain:
-            # Find doc_idx for this result
-            doc_idx = None
-            for i, meta in enumerate(search.bm25_metadata):
-                if meta['path'] == r['path']:
-                    doc_idx = i
-                    break
-            
-            bm25_rank = next((i+1 for i, (di, s) in enumerate(bm25_results) if di == doc_idx), None)
-            vector_rank = next((i+1 for i, (di, s) in enumerate(vector_results) if di == doc_idx), None)
-            graph_rank = next((i+1 for i, (di, s) in enumerate(graph_results) if di == doc_idx), None)
-            
-            # Get graph path for this result
-            graph_path = None
-            for node_id, node in search.graph_channel.nodes.items():
-                if node.path == r['path']:
-                    path_parts = []
-                    for rel in node.relationships[:3]:
-                        path_parts.append(f"{node.name} --[{rel['type']}]--> {rel.get('target', '?')}")
-                    graph_path = path_parts
-                    break
-            
-            result['explain'] = {
-                'bm25_rank': bm25_rank,
-                'vector_rank': vector_rank,
-                'graph_rank': graph_rank,
-                'channels_used': r['sources'],
-                'expansion_used': r.get('expansion', []),
-            }
-            if graph_path:
-                result['explain']['graph_path'] = graph_path
-        
-        formatted_results.append(result)
+        })
     
-    response = {
+    return jsonify({
         'query': query,
-        'expanded_query': expanded_query,
         'top_k': top_k,
         'result_count': len(formatted_results),
         'results': formatted_results,
         'timestamp': datetime.now().isoformat(),
-    }
-    
-    if explain:
-        response['channel_stats'] = {
-            'bm25_candidates': len(bm25_results),
-            'vector_candidates': len(vector_results),
-            'graph_candidates': len(graph_results),
-            'final_ranked': len(results),
-        }
-    
-    return jsonify(response)
+    })
 
 @app.route('/entity/<entity_name>')
 def get_entity(entity_name):

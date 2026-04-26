@@ -66,31 +66,12 @@ class QueryExpander:
             # Quality terms
             "QS": {"quantity surveyor", "工料測量師", "QS"},
             "工料測量": {"quantity surveying", "工料測量", "QS"},
-            "工料測量師": {"quantity surveyor", "工料測量師", "QS", "工料測量"},
-            "估算": {"estimation", "估算", "estimate"},
-            "造價": {"cost", "造價", "costing", "造價"},
-            
-            # Construction / QS terms
-            "分判商": {"subcontractor", "分判商", "sub-contractor"},
-            "供應商": {"supplier", "供應商", "vendor"},
-            "投標": {"tendering", "投標", "bidding", "投標"},
-            "合約": {"contract", "合約", "agreement"},
             "工程": {"engineering", "工程", "construction"},
-            "工程合約": {"construction contract", "工程合約", "contract"},
-            "造價估算": {"cost estimation", "造價估算", "estimation"},
-            
-            # Distillation terms
-            "蒸餾": {"distillation", "蒸餾", "蒸餾"},
-            "知識蒸餾": {"knowledge distillation", "知識蒸餾", "distillation"},
-            
-            # Person entities
-            "期哥": {"Jacky", "期哥", "jacky", "積奇", "Jacky Evolution", "QS期哥"},
-            "阿星": {"Ah Sing", "阿星", "Star", "ah sing", "assistant", "AI助手", "助手"},
-            "Jacky": {"期哥", "Jacky", "jacky", "積奇"},
-            "Star": {"阿星", "Ah Sing", "Star", "assistant", "AI助手"},
+            "造價": {"cost", "造價", "costing"},
+            "估算": {"estimation", "估算", "estimate"},
             
             # Project terms
-            "古洞站": {"gutong station", "古洞站", "Kwu Tung Station", "Kwu Tung", "古洞"},
+            "古洞站": {"gutong station", "古洞站", "Kwu Tung Station"},
             "東鐵": {"East Rail", "east rail", "東鐵", "East Rail Line"},
             "東鐵線": {"East Rail Line", "east rail", "東鐵線", "East Rail"},
             "項目": {"project", "項目", "project"},
@@ -99,14 +80,8 @@ class QueryExpander:
             # OCM Sup concepts
             "OCM Sup": {"OCM Sup", "OCM-Sup", "ocm-sup", "OpenClaw Memory Supervisor"},
             "EvoMap": {"EvoMap", "evomap", "Evo Map"},
-            
-            # System entities (agents, tools)
-            "Hermes": {"Hermes", "hermes", "Hermes Agent", "hermes agent", "即夢", "即夢AI"},
-            "Hermes Agent": {"Hermes", "hermes agent", "Hermes Agent", "即夢", "即夢AI"},
-            "OpenClaw": {"OpenClaw", "openclaw", "Open Claw", "claw"},
-            "Claude": {"Claude", "claude", "Anthropic Claude", "claude ai"},
-            "即夢": {"即夢", "即夢AI", "Jiemeng", "Hermes", "hermes"},
-            "Telegram": {"Telegram", "telegram", "TG"},
+            "記憶增強": {"memory enhancement", "memory boost", "記憶增強"},
+            "記憶投射": {"memory projection", "projection", "記憶投射"},
             
             # Dreaming/Consolidation
             "Dreaming": {"dreaming", "Dreaming", "睡眠整合", "dream consolidation"},
@@ -161,10 +136,6 @@ class QueryExpander:
             "古洞站": ["古洞站", "Kwu Tung Station", "gutong station"],
             "知識圖譜": ["知識圖譜", "knowledge graph", "knowledge-graph"],
             "記憶蒸餾": ["memory distillation", "memory distill", "記憶蒸餾", "知識蒸餾"],
-            "Quantity Surveyor": ["Quantity Surveyor", "quantity surveyor", "工料測量師"],
-            "工料測量師": ["工料測量師", "Quantity Surveyor", "quantity surveyor"],
-            "知識蒸餾": ["知識蒸餾", "knowledge distillation", "memory distillation"],
-            "知識圖譜": ["知識圖譜", "knowledge graph", "knowledge-graph"],
         }
     
     def is_chinese(self, text: str) -> bool:
@@ -261,18 +232,8 @@ class QueryExpander:
         if all_expansions and len(all_expansions) <= 4:
             for i, expansion_set in enumerate(all_expansions):
                 if len(expansion_set) > 1:
-                    # Prioritize: 1 English + 1 other (if available)
-                    expansion_list = list(expansion_set)
-                    english_variants = [v for v in expansion_list if v and v[0].isascii()]
-                    other_variants = [v for v in expansion_list if v and not v[0].isascii()]
-                    selected = []
-                    if english_variants:
-                        selected.append(english_variants[0])
-                    if other_variants and len(selected) < 2:
-                        selected.append(other_variants[0])
-                    elif len(english_variants) > 1 and len(selected) < 2:
-                        selected.append(english_variants[1])
-                    for exp_term in selected:
+                    # Take top 2 expansions per token to limit combinations
+                    for exp_term in list(expansion_set)[:2]:
                         new_query = tokens[:i] + [exp_term] + tokens[i+1:]
                         new_phrase = ' '.join(new_query)
                         if new_phrase not in variants:
