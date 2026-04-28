@@ -187,19 +187,28 @@ class MemoryTransactionSync:
 |-----------|-------------------|--------|-------|
 | ContradictionDetector | memory_write_gate.py | ✅ DONE | Stage 0 contradiction check before validation |
 | TransactionManager | memory_tx_sync.py | ✅ DONE | Real atomic begin/commit/rollback |
-| UsageTracker | memory retrieval points | 🔴 PHASE 2 | Agent-level tracking (future work) |
-| PruningPolicy | storage adapters | 🔴 PHASE 2 | Scheduled cleanup (future work) |
+| UsageTracker | memory_retriever.py | ✅ DONE | Auto-track retrieval, mark_used, mark_decision helpers |
+| PruningPolicy | memory_pruning_adapter.py | ✅ DONE | Bridge to P3 storage, archive+delete |
 
 ### ✅ P4 Phase 1 Completed (2026-04-28)
 - `memory_write_gate.py` — Added P3 imports, Stage 0 contradiction check
 - `memory_tx_sync.py` — Replaced pseudo-atomic with TransactionManager, new P3 storage paths
 - Verified: Transaction write commits to all 3 layers (structured/vector/graph)
-- Verified: ContradictionDetector initialized and connected
-- Verified: UsageTracker initialized and connected
 
-### 🔴 P4 Phase 2 (Future)
-- UsageTracker: Integrate with agent memory retrieval (not wiki search)
-- PruningPolicy: Create storage adapters for existing memory format
+### ✅ P4 Phase 2 Completed (2026-04-28)
+- `memory_retriever.py` — Memory fact retrieval with automatic usage tracking
+  - `on_retrieve()` auto-called when facts accessed
+  - `mark_used()` and `mark_decision()` helpers for explicit tracking
+  - `get_utilization_report()` for monitoring
+- `memory_pruning_adapter.py` — Bridge P3 PruningPolicy to actual storage
+  - Loads facts from P3 structured storage
+  - Enriches with usage tracking data (access_count, used_in_output)
+  - Executes pruning with archive + delete from all layers
+
+### 🔴 P4 Phase 3 (Future)
+- Integration with OCM Sup cron jobs for scheduled pruning (03:00 HKT)
+- Integration with agent decision loop for `mark_decision()` calls
+- Cross-encoder normalization for better contradiction detection
 
 ---
 
