@@ -517,5 +517,40 @@ Total time: ~3 sec
 4. Health score：量化系統健康狀態
 
 ---
-_Changelog 最後更新：2026-04-26_
-_Version: 2.4_
+
+## 🧬 v2.4 P4: P3 Reliability Layer Integration (2026-04-28)
+
+### 當時情况
+
+P3 Reliability Layer 完成（39/40 tests passed），但組件係 isolated modules，未接入實際 memory pipeline。
+
+### P4 Phase 1 完成 ✅
+
+| 改動 | 檔案 | 狀態 |
+|------|------|------|
+| TransactionManager 整合 | memory_tx_sync.py | ✅ |
+| ContradictionDetector 整合 | memory_write_gate.py | ✅ |
+| UsageTracker 初始化 | memory_write_gate.py | ✅ |
+
+### 具體變更
+
+1. **memory_tx_sync.py** — 偽 atomic 邏輯 → P3 TransactionManager（真正 begin/commit/rollback）
+2. **memory_write_gate.py** — 加入 Stage 0 contradiction check
+3. **Storage paths** — 改為 P3 標準位置（`~/.openclaw/ocm-sup/`）
+
+### 驗證結果
+
+```
+✅ Transaction write commits to all 3 layers
+✅ ContradictionDetector initialized and connected
+✅ UsageTracker initialized and connected
+```
+
+### P4 Phase 2 (未開始)
+
+- UsageTracker agent-level integration
+- PruningPolicy storage adapters
+
+---
+_Changelog 最後更新：2026-04-28_
+_Version: 2.4 P4 Phase 1_

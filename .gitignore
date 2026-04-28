@@ -7,3 +7,15 @@ scripts/cantonese_to_formal.py
 # OS files
 .DS_Store
 *.swp
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+build/
+dist/
+.eggs/
+*.egg-info/
+.pytest_cache/
+

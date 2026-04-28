@@ -1,0 +1,66 @@
+{
+  "turns": [
+    {
+      "role": "user",
+      "text": "麻煩你幫我跟進古洞站項目進度",
+      "timestamp": "2026-04-24T15:23:14.813455",
+      "metadata": {
+        "classification": "tracked_followup"
+      }
+    },
+    {
+      "role": "user",
+      "text": "我感覺有啲攰",
+      "timestamp": "2026-04-24T15:23:14.893218",
+      "metadata": {
+        "classification": "tracked_followup"
+      }
+    },
+    {
+      "role": "user",
+      "text": "呢個係私人資料，保密",
+      "timestamp": "2026-04-24T15:23:14.975874",
+      "metadata": {
+        "classification": "tracked_followup"
+      }
+    },
+    {
+      "role": "user",
+      "text": "我哋之前研究緊融合方案，繼續傾",
+      "timestamp": "2026-04-24T15:23:15.006212",
+      "metadata": {
+        "classification": "casual_chat"
+      }
+    },
+    {
+      "role": "user",
+      "text": "幫我記住我哋研究緊OCM Sup",
+      "timestamp": "2026-04-24T15:23:15.162304",
+      "metadata": {
+        "classification": "tracked_followup"
+      }
+    }
+  ],
+  "pending_topic": {
+    "id": "incident_45723d36",
+    "entity_name": "記住我哋研究緊OCM Sup",
+    "event_type": "delegated_task",
+    "context_before": null,
+    "event_core": "記住我哋研究緊OCM Sup",
+    "followup_focus": "跟進任務：記住我哋研究緊OCM Sup",
+    "causal_memory": {
+      "facts": [
+        "記住我哋研究緊OCM Sup"
+      ],
+      "state": "delegated",
+      "open_loop": "記住我哋研究緊OCM Sup",
+      "time_anchor": "2026-04-24 15:23",
+      "followup_focus_code": "task_delegation"
+    },
+    "created": "2026-04-24T15:23:15.119601",
+    "status": "active",
+    "last_accessed": "2026-04-24T15:23:15.119601"
+  },
+  "updated": "2026-04-24T15:23:15.162304",
+  "pending_topic_id": "incident_45723d36"
+}

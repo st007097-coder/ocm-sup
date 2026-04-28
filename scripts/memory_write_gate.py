@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
 """
 Memory Write Gate
-OCM Sup v2.4 - P0-1
+OCM Sup v2.4 - P4
 
 Pre-write validator for memory extraction.
-Ensures all memory writes go through schema validation, deduplication, and canonicalization.
+Ensures all memory writes go through:
+  1. Contradiction check (P3 - semantic conflict detection)
+  2. Schema validation (structure + types)
+  3. Content validation (non-empty, reasonable length)
+  4. Deduplication (check against existing memory)
+  5. Canonicalization (normalize entities)
 
 Schema:
 {
@@ -28,18 +33,27 @@ from pathlib import Path
 from datetime import datetime, timezone
 from typing import List, Dict, Optional, Tuple
 
+# P3 Reliability Components
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from p3_reliability.contradiction import ContradictionDetector
+from p3_reliability.usage import UsageTracker
 
 VALID_TYPES = {"fact", "lesson", "preference", "decision", "insight", "constraint", "habit", "goal", "project", "episode", "reflection"}
 
 REJECT_LOG = Path("/root/.openclaw/workspace/logs/memory_rejects.log")
 REJECT_LOG.parent.mkdir(parents=True, exist_ok=True)
 
+# P3 Storage paths
+OCM_SUP_BASE = Path("~/.openclaw/ocm-sup").expanduser()
+STRUCTURED_DIR = OCM_SUP_BASE / "structured"
+
 
 class MemoryWriteGate:
     """
-    Memory Write Gate - Pre-write validator
+    Memory Write Gate - Pre-write validator (P4)
     
     Validation stages:
+    0. Contradiction check (P3 - semantic conflict detection)
     1. Schema validation (structure + types)
     2. Content validation (non-empty, reasonable length)
     3. Deduplication (check against existing memory)
@@ -55,6 +69,57 @@ class MemoryWriteGate:
         self.memory_db_path.parent.mkdir(parents=True, exist_ok=True)
         self.entity_map = self._load_entity_map()
         self._memory_cache = self._load_memory_cache()
+        
+        # P3 Components
+        self._contradiction_detector = ContradictionDetector()
+        self._usage_tracker = UsageTracker()
+        
+        # Load existing facts from P3 structured store for contradiction detection
+        self._all_facts = self._load_all_facts()
+    
+    def _load_all_facts(self) -> Dict[str, str]:
+        """Load all facts from P3 structured store for contradiction detection."""
+        facts = {}
+        if STRUCTURED_DIR.exists():
+            for f in STRUCTURED_DIR.glob("*.json"):
+                try:
+                    with open(f) as fp:
+                        data = json.load(fp)
+                        fact_id = data.get("entity_id", f.stem)
+                        fact_text = f"{data.get('subject', '')} {data.get('action', '')}"
+                        facts[fact_id] = fact_text
+                except:
+                    pass
+        return facts
+    
+    def _check_contradiction(self, memory: Dict, fact_id: str) -> Tuple[bool, List]:
+        """
+        P4: Check for semantic contradictions before validation.
+        
+        Returns:
+            (has_high_confidence_contradiction, list_of_contradictions)
+        """
+        fact_text = f"{memory.get('subject')} {memory.get('action')}"
+        if not fact_text.strip() or len(fact_text.strip()) < 5:
+            return False, []
+        
+        contradictions = self._contradiction_detector.check_fact(
+            fact_id, fact_text, self._all_facts
+        )
+        
+        if not contradictions:
+            return False, []
+        
+        # Flag high-confidence contradictions (>0.8)
+        high_conf = [c for c in contradictions if c.llm_confidence > 0.8]
+        
+        # Log all contradictions
+        for c in contradictions:
+            self._contradiction_detector.add_contradiction(c)
+            print(f"⚠️  Contradiction: [{c.fact_a_id}] ↔ [{c.fact_b_id}] "
+                  f"(conf={c.llm_confidence:.2f}): {c.llm_explanation}")
+        
+        return len(high_conf) > 0, contradictions
     
     def _load_entity_map(self) -> Dict[str, str]:
         """Load entity canonicalization map."""
@@ -80,10 +145,19 @@ class MemoryWriteGate:
     def validate(self, memory: Dict) -> Tuple[bool, str, Optional[Dict]]:
         """
         Validate a memory entry.
+        P4: Now includes Stage 0 - Contradiction Check.
         
         Returns:
             (is_valid, rejection_reason, canonicalized_memory)
         """
+        
+        # === Stage 0: Contradiction Check (P3) ===
+        fact_id = memory.get("id") or self._generate_id(memory)
+        has_contradiction, contradictions = self._check_contradiction(memory, fact_id)
+        
+        # Note: We log contradictions but don't block writes (future: add blocking mode)
+        if has_contradiction:
+            print(f"⚠️  High-confidence contradiction detected for {fact_id}")
         
         # === Stage 1: Schema Validation ===
         if not isinstance(memory, dict):

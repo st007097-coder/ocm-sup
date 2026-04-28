@@ -1,0 +1,1102 @@
+{
+  "items": [
+    {
+      "id": "hook_3fbc4ba8",
+      "incident_id": "incident_test_001",
+      "entity_name": "OCM Sup 融合研究",
+      "event_type": "delegated_task",
+      "followup_focus": "繼續分析融合方案",
+      "causal_memory": {
+        "facts": [
+          "OCM Sup + openclaw-continuity 融合"
+        ],
+        "state": "delegated",
+        "time_anchor": "2026-04-24 14:00"
+      },
+      "created": "2026-04-24T14:26:33.793697",
+      "status": "dispatched",
+      "last_due_check": "2026-04-24T14:58:00.083873",
+      "last_dispatch": "2026-04-24T14:58:00.138908",
+      "dispatch_count": 1,
+      "cooldown_until": "2026-04-24T15:28:00.138927",
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_5b95c287",
+      "incident_id": "incident_5d359b44",
+      "entity_name": "古洞站項目進度",
+      "event_type": "delegated_task",
+      "followup_focus": "檢查項目進度",
+      "causal_memory": {
+        "facts": [
+          "古洞站項目",
+          "QS工作"
+        ],
+        "state": "delegated",
+        "time_anchor": "2026-04-24 14:47"
+      },
+      "created": "2026-04-24T14:47:30.686609",
+      "status": "closed",
+      "last_due_check": "2026-04-24T14:47:30.712585",
+      "last_dispatch": "2026-04-24T14:47:30.750701",
+      "dispatch_count": 1,
+      "cooldown_until": "2026-04-24T15:17:30.750750",
+      "parked_until": null,
+      "closure_reason": "resolved",
+      "closure_time": "2026-04-24T14:47:30.778275"
+    },
+    {
+      "id": "hook_d771a27e",
+      "incident_id": "test_incident_0",
+      "entity_name": "Test Topic 0",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 0",
+      "causal_memory": {
+        "facts": [
+          "test fact 0"
+        ]
+      },
+      "created": "2026-04-24T15:23:15.753180",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787836",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_5e137d5b",
+      "incident_id": "test_incident_1",
+      "entity_name": "Test Topic 1",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 1",
+      "causal_memory": {
+        "facts": [
+          "test fact 1"
+        ]
+      },
+      "created": "2026-04-24T15:23:15.763470",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787845",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_32ef2d04",
+      "incident_id": "test_incident_2",
+      "entity_name": "Test Topic 2",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 2",
+      "causal_memory": {
+        "facts": [
+          "test fact 2"
+        ]
+      },
+      "created": "2026-04-24T15:23:15.791940",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787847",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_4de229d2",
+      "incident_id": "test_incident_3",
+      "entity_name": "Test Topic 3",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 3",
+      "causal_memory": {
+        "facts": [
+          "test fact 3"
+        ]
+      },
+      "created": "2026-04-24T15:23:15.813985",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787849",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_afef05e9",
+      "incident_id": "test_incident_4",
+      "entity_name": "Test Topic 4",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 4",
+      "causal_memory": {
+        "facts": [
+          "test fact 4"
+        ]
+      },
+      "created": "2026-04-24T15:23:15.839491",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787850",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_8d833412",
+      "incident_id": "test_incident_5",
+      "entity_name": "Test Topic 5",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 5",
+      "causal_memory": {
+        "facts": [
+          "test fact 5"
+        ]
+      },
+      "created": "2026-04-24T15:23:15.867745",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787852",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_0f1c794f",
+      "incident_id": "test_incident_6",
+      "entity_name": "Test Topic 6",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 6",
+      "causal_memory": {
+        "facts": [
+          "test fact 6"
+        ]
+      },
+      "created": "2026-04-24T15:23:15.892425",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787853",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_d8d8af1f",
+      "incident_id": "test_incident_7",
+      "entity_name": "Test Topic 7",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 7",
+      "causal_memory": {
+        "facts": [
+          "test fact 7"
+        ]
+      },
+      "created": "2026-04-24T15:23:15.920458",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787855",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_c8a05e24",
+      "incident_id": "test_incident_8",
+      "entity_name": "Test Topic 8",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 8",
+      "causal_memory": {
+        "facts": [
+          "test fact 8"
+        ]
+      },
+      "created": "2026-04-24T15:23:15.947639",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787856",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_c8fc6541",
+      "incident_id": "test_incident_9",
+      "entity_name": "Test Topic 9",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 9",
+      "causal_memory": {
+        "facts": [
+          "test fact 9"
+        ]
+      },
+      "created": "2026-04-24T15:23:15.975782",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787858",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_87b6ec3c",
+      "incident_id": "test_incident_10",
+      "entity_name": "Test Topic 10",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 10",
+      "causal_memory": {
+        "facts": [
+          "test fact 10"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.007622",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787859",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_b32b6151",
+      "incident_id": "test_incident_11",
+      "entity_name": "Test Topic 11",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 11",
+      "causal_memory": {
+        "facts": [
+          "test fact 11"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.038296",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787861",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_8bdf29ec",
+      "incident_id": "test_incident_12",
+      "entity_name": "Test Topic 12",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 12",
+      "causal_memory": {
+        "facts": [
+          "test fact 12"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.070296",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787862",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_e89250b0",
+      "incident_id": "test_incident_13",
+      "entity_name": "Test Topic 13",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 13",
+      "causal_memory": {
+        "facts": [
+          "test fact 13"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.100129",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787864",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_8a17ae4b",
+      "incident_id": "test_incident_14",
+      "entity_name": "Test Topic 14",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 14",
+      "causal_memory": {
+        "facts": [
+          "test fact 14"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.133659",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787865",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_4e946bd3",
+      "incident_id": "test_incident_15",
+      "entity_name": "Test Topic 15",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 15",
+      "causal_memory": {
+        "facts": [
+          "test fact 15"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.167683",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787867",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_fe0a44d5",
+      "incident_id": "test_incident_16",
+      "entity_name": "Test Topic 16",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 16",
+      "causal_memory": {
+        "facts": [
+          "test fact 16"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.198935",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787868",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_b890ad03",
+      "incident_id": "test_incident_17",
+      "entity_name": "Test Topic 17",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 17",
+      "causal_memory": {
+        "facts": [
+          "test fact 17"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.229498",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787870",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_b1d01762",
+      "incident_id": "test_incident_18",
+      "entity_name": "Test Topic 18",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 18",
+      "causal_memory": {
+        "facts": [
+          "test fact 18"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.257417",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787872",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_4cf989d1",
+      "incident_id": "test_incident_19",
+      "entity_name": "Test Topic 19",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 19",
+      "causal_memory": {
+        "facts": [
+          "test fact 19"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.292105",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787873",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_6bbb07a7",
+      "incident_id": "test_incident_20",
+      "entity_name": "Test Topic 20",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 20",
+      "causal_memory": {
+        "facts": [
+          "test fact 20"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.321670",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787875",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_74349d55",
+      "incident_id": "test_incident_21",
+      "entity_name": "Test Topic 21",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 21",
+      "causal_memory": {
+        "facts": [
+          "test fact 21"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.355323",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787876",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_2b32719c",
+      "incident_id": "test_incident_22",
+      "entity_name": "Test Topic 22",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 22",
+      "causal_memory": {
+        "facts": [
+          "test fact 22"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.391981",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787878",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_a2de07d1",
+      "incident_id": "test_incident_23",
+      "entity_name": "Test Topic 23",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 23",
+      "causal_memory": {
+        "facts": [
+          "test fact 23"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.422908",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787880",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_cedc6cbc",
+      "incident_id": "test_incident_24",
+      "entity_name": "Test Topic 24",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 24",
+      "causal_memory": {
+        "facts": [
+          "test fact 24"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.452757",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787881",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_98496859",
+      "incident_id": "test_incident_25",
+      "entity_name": "Test Topic 25",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 25",
+      "causal_memory": {
+        "facts": [
+          "test fact 25"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.494123",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787883",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_b8ba9d65",
+      "incident_id": "test_incident_26",
+      "entity_name": "Test Topic 26",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 26",
+      "causal_memory": {
+        "facts": [
+          "test fact 26"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.527701",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787884",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_e0c24c1b",
+      "incident_id": "test_incident_27",
+      "entity_name": "Test Topic 27",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 27",
+      "causal_memory": {
+        "facts": [
+          "test fact 27"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.557808",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787886",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_f5688ef6",
+      "incident_id": "test_incident_28",
+      "entity_name": "Test Topic 28",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 28",
+      "causal_memory": {
+        "facts": [
+          "test fact 28"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.583571",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787887",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_012626af",
+      "incident_id": "test_incident_29",
+      "entity_name": "Test Topic 29",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 29",
+      "causal_memory": {
+        "facts": [
+          "test fact 29"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.609902",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787889",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_fd8c5d7f",
+      "incident_id": "test_incident_30",
+      "entity_name": "Test Topic 30",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 30",
+      "causal_memory": {
+        "facts": [
+          "test fact 30"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.641925",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787890",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_ba1b7175",
+      "incident_id": "test_incident_31",
+      "entity_name": "Test Topic 31",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 31",
+      "causal_memory": {
+        "facts": [
+          "test fact 31"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.672421",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787892",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_904cfdf3",
+      "incident_id": "test_incident_32",
+      "entity_name": "Test Topic 32",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 32",
+      "causal_memory": {
+        "facts": [
+          "test fact 32"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.701534",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787893",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_92ee2852",
+      "incident_id": "test_incident_33",
+      "entity_name": "Test Topic 33",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 33",
+      "causal_memory": {
+        "facts": [
+          "test fact 33"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.731269",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787895",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_6316c481",
+      "incident_id": "test_incident_34",
+      "entity_name": "Test Topic 34",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 34",
+      "causal_memory": {
+        "facts": [
+          "test fact 34"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.762308",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787896",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_4a8ca54c",
+      "incident_id": "test_incident_35",
+      "entity_name": "Test Topic 35",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 35",
+      "causal_memory": {
+        "facts": [
+          "test fact 35"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.812109",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787898",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_03985845",
+      "incident_id": "test_incident_36",
+      "entity_name": "Test Topic 36",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 36",
+      "causal_memory": {
+        "facts": [
+          "test fact 36"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.847322",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787899",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_f17b36ff",
+      "incident_id": "test_incident_37",
+      "entity_name": "Test Topic 37",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 37",
+      "causal_memory": {
+        "facts": [
+          "test fact 37"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.878066",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787901",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_7caaabc2",
+      "incident_id": "test_incident_38",
+      "entity_name": "Test Topic 38",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 38",
+      "causal_memory": {
+        "facts": [
+          "test fact 38"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.906913",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787903",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_35f5a9ff",
+      "incident_id": "test_incident_39",
+      "entity_name": "Test Topic 39",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 39",
+      "causal_memory": {
+        "facts": [
+          "test fact 39"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.935088",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787904",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_4ec4198e",
+      "incident_id": "test_incident_40",
+      "entity_name": "Test Topic 40",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 40",
+      "causal_memory": {
+        "facts": [
+          "test fact 40"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.959009",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787906",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_872d431b",
+      "incident_id": "test_incident_41",
+      "entity_name": "Test Topic 41",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 41",
+      "causal_memory": {
+        "facts": [
+          "test fact 41"
+        ]
+      },
+      "created": "2026-04-24T15:23:16.987099",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787907",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_a6b626a5",
+      "incident_id": "test_incident_42",
+      "entity_name": "Test Topic 42",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 42",
+      "causal_memory": {
+        "facts": [
+          "test fact 42"
+        ]
+      },
+      "created": "2026-04-24T15:23:17.017451",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787909",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_9e1fe822",
+      "incident_id": "test_incident_43",
+      "entity_name": "Test Topic 43",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 43",
+      "causal_memory": {
+        "facts": [
+          "test fact 43"
+        ]
+      },
+      "created": "2026-04-24T15:23:17.052264",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787910",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_48f1b880",
+      "incident_id": "test_incident_44",
+      "entity_name": "Test Topic 44",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 44",
+      "causal_memory": {
+        "facts": [
+          "test fact 44"
+        ]
+      },
+      "created": "2026-04-24T15:23:17.088465",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787912",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_b7384a03",
+      "incident_id": "test_incident_45",
+      "entity_name": "Test Topic 45",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 45",
+      "causal_memory": {
+        "facts": [
+          "test fact 45"
+        ]
+      },
+      "created": "2026-04-24T15:23:17.117398",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787913",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_99f2481a",
+      "incident_id": "test_incident_46",
+      "entity_name": "Test Topic 46",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 46",
+      "causal_memory": {
+        "facts": [
+          "test fact 46"
+        ]
+      },
+      "created": "2026-04-24T15:23:17.145921",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787915",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_0ec275c3",
+      "incident_id": "test_incident_47",
+      "entity_name": "Test Topic 47",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 47",
+      "causal_memory": {
+        "facts": [
+          "test fact 47"
+        ]
+      },
+      "created": "2026-04-24T15:23:17.175136",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787916",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_b30d8c56",
+      "incident_id": "test_incident_48",
+      "entity_name": "Test Topic 48",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 48",
+      "causal_memory": {
+        "facts": [
+          "test fact 48"
+        ]
+      },
+      "created": "2026-04-24T15:23:17.214076",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787918",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    },
+    {
+      "id": "hook_cd3d07c6",
+      "incident_id": "test_incident_49",
+      "entity_name": "Test Topic 49",
+      "event_type": "delegated_task",
+      "followup_focus": "Follow up on topic 49",
+      "causal_memory": {
+        "facts": [
+          "test fact 49"
+        ]
+      },
+      "created": "2026-04-24T15:23:17.251147",
+      "status": "due",
+      "last_due_check": "2026-04-24T15:23:18.787919",
+      "last_dispatch": null,
+      "dispatch_count": 0,
+      "cooldown_until": null,
+      "parked_until": null,
+      "closure_reason": null,
+      "closure_time": null
+    }
+  ],
+  "updated": "2026-04-24T15:23:17.275354"
+}

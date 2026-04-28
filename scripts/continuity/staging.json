@@ -1,0 +1,81 @@
+{
+  "items": [
+    {
+      "id": "staged_9bcb4b27",
+      "created": "2026-04-24T14:15:22.003701",
+      "updated": "2026-04-24T14:15:22.003701",
+      "entity_name": "幫我記住我哋研究緊OCM Sup融合方案",
+      "event_type": "parked_topic",
+      "context_before": null,
+      "event_core": "幫我記住我哋研究緊OCM Sup融合方案",
+      "followup_focus": "回顧：幫我記住我哋研究緊OCM Sup融合方案",
+      "causal_memory": {
+        "facts": [
+          "幫我記住我哋研究緊OCM Sup融合方案"
+        ],
+        "state": "staged",
+        "open_loop": "幫我記住我哋研究緊OCM Sup融合方案",
+        "time_anchor": "2026-04-24 14:15"
+      },
+      "confidence": 0.8
+    },
+    {
+      "id": "staged_c67fe8a4",
+      "created": "2026-04-24T14:15:22.209987",
+      "updated": "2026-04-24T14:15:22.209987",
+      "entity_name": "麻煩你幫我跟進古洞站項目進度",
+      "event_type": "parked_topic",
+      "context_before": null,
+      "event_core": "麻煩你幫我跟進古洞站項目進度",
+      "followup_focus": "回顧：麻煩你幫我跟進古洞站項目進度",
+      "causal_memory": {
+        "facts": [
+          "麻煩你幫我跟進古洞站項目進度"
+        ],
+        "state": "staged",
+        "open_loop": "麻煩你幫我跟進古洞站項目進度",
+        "time_anchor": "2026-04-24 14:15"
+      },
+      "confidence": 0.8
+    },
+    {
+      "id": "staged_52472b53",
+      "created": "2026-04-24T14:16:35.631591",
+      "updated": "2026-04-24T14:16:35.631591",
+      "entity_name": "幫我記住我哋研究緊OCM Sup融合方案",
+      "event_type": "parked_topic",
+      "context_before": null,
+      "event_core": "幫我記住我哋研究緊OCM Sup融合方案",
+      "followup_focus": "回顧：幫我記住我哋研究緊OCM Sup融合方案",
+      "causal_memory": {
+        "facts": [
+          "幫我記住我哋研究緊OCM Sup融合方案"
+        ],
+        "state": "staged",
+        "open_loop": "幫我記住我哋研究緊OCM Sup融合方案",
+        "time_anchor": "2026-04-24 14:16"
+      },
+      "confidence": 0.8
+    },
+    {
+      "id": "staged_e6d2c887",
+      "created": "2026-04-24T14:16:35.897687",
+      "updated": "2026-04-24T14:16:35.897687",
+      "entity_name": "麻煩你幫我跟進古洞站項目進度",
+      "event_type": "parked_topic",
+      "context_before": null,
+      "event_core": "麻煩你幫我跟進古洞站項目進度",
+      "followup_focus": "回顧：麻煩你幫我跟進古洞站項目進度",
+      "causal_memory": {
+        "facts": [
+          "麻煩你幫我跟進古洞站項目進度"
+        ],
+        "state": "staged",
+        "open_loop": "麻煩你幫我跟進古洞站項目進度",
+        "time_anchor": "2026-04-24 14:16"
+      },
+      "confidence": 0.8
+    }
+  ],
+  "updated": "2026-04-24T14:16:35.897687"
+}

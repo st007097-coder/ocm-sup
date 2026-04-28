@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """
 Memory Transaction Sync
-OCM Sup v2.4 - P0-2
+OCM Sup v2.4 - P4
 
 Single Source of Truth for memory writes.
 LLM extraction → structured JSON → derived (vector + graph)
 Ensures atomic sync between all memory stores.
+
+Now uses P3 TransactionManager for real atomicity (begin/commit/rollback).
 
 Usage:
     python3 memory_tx_sync.py --action write --memory <json_file>
@@ -23,188 +25,167 @@ from pathlib import Path
 from datetime import datetime, timezone
 from typing import List, Dict, Optional, Tuple
 
+# P3 TransactionManager
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from p3_reliability.transaction import TransactionManager
+from p3_reliability.contradiction import ContradictionDetector
+from p3_reliability.usage import UsageTracker
+
+# Storage paths - now using P3 standard locations
+OCM_SUP_BASE = Path("~/.openclaw/ocm-sup").expanduser()
+STRUCTURED_DIR = OCM_SUP_BASE / "structured"
+VECTOR_DIR = OCM_SUP_BASE / "embeddings"
+GRAPH_DIR = OCM_SUP_BASE / "graph"
+TX_DIR = OCM_SUP_BASE / "transactions"
+
+# Ensure directories exist
+for d in [STRUCTURED_DIR, VECTOR_DIR, GRAPH_DIR, TX_DIR]:
+    d.mkdir(parents=True, exist_ok=True)
+
 
 class MemoryTransactionSync:
     """
     Memory Transaction Sync - Atomic write to all stores
     
-    Flow:
-    1. Write structured JSON (source of truth)
-    2. Sync to vector store (embedding)
-    3. Sync to graph store (entities + relations)
+    Flow (P4):
+    1. Contradiction check (P3 ContradictionDetector)
+    2. BEGIN TRANSACTION (P3 TransactionManager)
+    3. Write structured JSON (source of truth)
+    4. Sync to vector store (embedding)
+    5. Sync to graph store (entities + relations)
+    6. COMMIT or ROLLBACK
     
-    Transaction log ensures consistency + rollback on failure.
+    Uses P3 TransactionManager for real atomicity.
     """
     
     def __init__(
         self,
-        tx_dir: str = "/root/.openclaw/workspace/memory/transactions",
-        struct_dir: str = "/root/.openclaw/workspace/memory/structured",
-        vector_cache: str = "/root/.openclaw/workspace/memory/vector_store.jsonl",
-        graph_path: str = "/root/.openclaw/workspace/memory/graph_store.jsonl",
+        tx_dir: str = None,
+        struct_dir: str = None,
+        vector_cache: str = None,
+        graph_path: str = None,
     ):
-        self.tx_dir = Path(tx_dir)
-        self.struct_dir = Path(struct_dir)
-        self.vector_cache = Path(vector_cache)
-        self.graph_path = Path(graph_path)
+        # Use P3 standard paths by default
+        self.tx_dir = Path(tx_dir) if tx_dir else TX_DIR
+        self.struct_dir = Path(struct_dir) if struct_dir else STRUCTURED_DIR
+        self.vector_cache = Path(vector_cache) if vector_cache else (VECTOR_DIR / "vectors.jsonl")
+        self.graph_path = Path(graph_path) if graph_path else (GRAPH_DIR / "graph.jsonl")
         
-        for p in [self.tx_dir, self.struct_dir]:
+        # Ensure directories exist
+        for p in [self.tx_dir, self.struct_dir, self.vector_cache.parent, self.graph_path.parent]:
             p.mkdir(parents=True, exist_ok=True)
+        
+        # P3 Components
+        self._tx_manager = TransactionManager()
+        self._contradiction_detector = ContradictionDetector()
+        self._usage_tracker = UsageTracker()
+        
+        # Load existing facts for contradiction detection
+        self._all_facts_cache = self._load_all_facts()
     
     def _id(self, memory: Dict) -> str:
         content = f"{memory.get('type')}:{memory.get('subject')}:{memory.get('action')}"
         return hashlib.sha256(content.encode()).hexdigest()[:16]
     
-    def _write_structured(self, memory: Dict) -> Path:
-        """Write to structured JSON (source of truth)."""
-        mem_id = self._id(memory)
-        struct_file = self.struct_dir / f"{mem_id}.json"
-        
-        entry = {
-            **memory,
-            "id": mem_id,
-            "created_at": datetime.now(timezone.utc).isoformat(),
-        }
-        
-        with open(struct_file, "w") as f:
-            json.dump(entry, f, ensure_ascii=False, indent=2)
-        
-        return struct_file
+    def _load_all_facts(self) -> Dict[str, str]:
+        """Load all existing facts for contradiction detection."""
+        facts = {}
+        if self.struct_dir.exists():
+            for f in self.struct_dir.glob("*.json"):
+                try:
+                    with open(f) as fp:
+                        data = json.load(fp)
+                        fact_id = data.get("id", f.stem)
+                        fact_text = f"{data.get('subject', '')} {data.get('action', '')}"
+                        facts[fact_id] = fact_text
+                except:
+                    pass
+        return facts
     
-    def _sync_vector(self, memory: Dict) -> bool:
-        """Sync to vector store (append to vector cache)."""
-        mem_id = memory.get("id", self._id(memory))
+    def _check_contradiction(self, memory: Dict, mem_id: str) -> List:
+        """Check for semantic contradictions before writing."""
+        fact_text = f"{memory.get('subject')} {memory.get('action')}"
+        if not fact_text.strip():
+            return []
         
-        vector_entry = {
-            "id": mem_id,
-            "type": memory.get("type"),
-            "subject": memory.get("subject"),
-            "action": memory.get("action"),
-            "embedding_text": f"{memory.get('subject')} {memory.get('action')}",
-            "timestamp": datetime.now(timezone.utc).isoformat(),
-        }
-        
-        # Append to vector cache
-        with open(self.vector_cache, "a") as f:
-            f.write(json.dumps(vector_entry, ensure_ascii=False) + "\n")
-        
-        return True
-    
-    def _sync_graph(self, memory: Dict) -> bool:
-        """Sync to graph store (entity + relationship extraction)."""
-        mem_id = memory.get("id", self._id(memory))
-        
-        # Extract entities from subject
-        subject = memory.get("subject", "")
-        
-        graph_entry = {
-            "id": mem_id,
-            "type": memory.get("type"),
-            "subject": subject,
-            "action": memory.get("action"),
-            "entities": self._extract_entities(subject),
-            "relations": self._extract_relations(memory),
-            "timestamp": datetime.now(timezone.utc).isoformat(),
-        }
-        
-        # Append to graph store
-        with open(self.graph_path, "a") as f:
-            f.write(json.dumps(graph_entry, ensure_ascii=False) + "\n")
-        
-        return True
-    
-    def _extract_entities(self, text: str) -> List[str]:
-        """Simple entity extraction from text."""
-        # Very simple - just split by common delimiters and filter
-        # In production, use NER
-        entities = []
-        for part in text.replace("/", " ").replace("-", " ").split():
-            part = part.strip(".,:;()[]{}")
-            if part and len(part) > 1 and part[0].isupper():
-                entities.append(part)
-        return list(set(entities))[:10]  # Limit to 10
-    
-    def _extract_relations(self, memory: Dict) -> List[Dict]:
-        """Extract relations from memory."""
-        relations = []
-        mem_type = memory.get("type", "")
-        
-        # Infer relations based on type
-        if mem_type == "decision":
-            relations.append({
-                "type": "causes",
-                "from": memory.get("subject"),
-                "to": "outcome",
-            })
-        elif mem_type == "lesson":
-            relations.append({
-                "type": "learned_from",
-                "from": memory.get("subject"),
-                "to": memory.get("action", "")[:50],
-            })
-        
-        return relations
-    
-    def _write_transaction(self, memory: Dict, success: bool, details: str):
-        """Log transaction to transaction log."""
-        tx_entry = {
-            "timestamp": datetime.now(timezone.utc).isoformat(),
-            "memory_id": memory.get("id", self._id(memory)),
-            "success": success,
-            "details": details,
-            "memory": memory,
-        }
-        
-        tx_file = self.tx_dir / f"{datetime.now(timezone.utc).strftime('%Y%m%d')}.jsonl"
-        with open(tx_file, "a") as f:
-            f.write(json.dumps(tx_entry, ensure_ascii=False) + "\n")
+        results = self._contradiction_detector.check_fact(
+            mem_id, fact_text, self._all_facts_cache
+        )
+        return results
     
     def write(self, memory: Dict) -> Tuple[bool, str]:
         """
-        Atomic write: structured → vector + graph.
+        P4: Atomic write using TransactionManager.
+        
+        Flow:
+        1. Generate entity_id
+        2. Contradiction check (non-blocking)
+        3. BEGIN TRANSACTION
+        4. Write structured + vector + graph
+        5. COMMIT or ROLLBACK
         
         Returns:
             (success, message)
         """
-        mem_id = self._id(memory)
+        entity_id = memory.get("id") or self._id(memory)
+        
+        # Step 1: Contradiction check (non-blocking, log only)
+        contradictions = self._check_contradiction(memory, entity_id)
+        if contradictions:
+            for c in contradictions:
+                print(f"⚠️  Contradiction detected: {c.fact_a_id} ↔ {c.fact_b_id} "
+                      f"(confidence: {c.llm_confidence:.2f})")
+                self._contradiction_detector.add_contradiction(c)
+        
+        # Step 2: Atomic transaction
+        payload = {"entity_id": entity_id, "memory": memory}
         
         try:
-            # Step 1: Write structured (source of truth)
-            struct_file = self._write_structured(memory)
+            with self._tx_manager.begin("write_fact", payload) as tx:
+                # Write structured (source of truth)
+                struct_data = {
+                    "entity_id": entity_id,
+                    "type": memory.get("type"),
+                    "subject": memory.get("subject"),
+                    "action": memory.get("action"),
+                    "confidence": memory.get("confidence", 0.5),
+                    "created_at": datetime.now(timezone.utc).isoformat(),
+                    "metadata": {k: v for k, v in memory.items()
+                                 if k not in ["type", "subject", "action", "id", "confidence"]}
+                }
+                self._tx_manager.write_structured(struct_data)
+                
+                # Write vector (embedding text)
+                self._tx_manager.write_vector({
+                    "entity_id": entity_id,
+                    "embedding_text": f"{memory.get('subject')} {memory.get('action')}",
+                    "timestamp": datetime.now(timezone.utc).isoformat()
+                })
+                
+                # Write graph (entities + relations)
+                subject = memory.get("subject", "")
+                self._tx_manager.write_graph({
+                    "entity_id": entity_id,
+                    "subject": subject,
+                    "type": memory.get("type"),
+                    "entities": self._extract_entities(subject),
+                    "relations": self._extract_relations(memory),
+                    "timestamp": datetime.now(timezone.utc).isoformat()
+                })
             
-            # Step 2: Sync to vector
-            vec_ok = self._sync_vector({**memory, "id": mem_id})
+            # Transaction committed successfully
+            # Update local cache
+            self._all_facts_cache[entity_id] = f"{memory.get('subject')} {memory.get('action')}"
             
-            # Step 3: Sync to graph
-            graph_ok = self._sync_graph({**memory, "id": mem_id})
-            
-            # Step 4: Log transaction (success)
-            self._write_transaction(memory, True, f"OK: {struct_file}")
-            
-            return True, f"COMMITTED: {mem_id}"
+            return True, f"COMMITTED: {entity_id}"
             
         except Exception as e:
-            # Rollback: remove from all stores
-            self._rollback(mem_id)
-            self._write_transaction(memory, False, f"ROLLBACK: {str(e)}")
+            # Transaction rolled back automatically
             return False, f"FAILED: {str(e)}"
-    
-    def _rollback(self, mem_id: str):
-        """Rollback a failed transaction."""
-        # Remove from structured
-        struct_file = self.struct_dir / f"{mem_id}.json"
-        if struct_file.exists():
-            struct_file.unlink()
-        
-        # Note: Can't easily remove from vector/graph without rewriting
-        # This is a known limitation - rely on verify/repair
     
     def verify(self) -> Dict:
         """
-        Verify consistency across all stores.
-        
-        Returns:
-            verification report
+        P4: Use TransactionManager's reconciliation capabilities.
         """
         report = {
             "structured_count": 0,
@@ -219,48 +200,97 @@ class MemoryTransactionSync:
         if self.struct_dir.exists():
             report["structured_count"] = len(list(self.struct_dir.glob("*.json")))
         
-        # Count vector
-        if self.vector_cache.exists():
-            with open(self.vector_cache) as f:
-                report["vector_count"] = sum(1 for _ in f)
+        # Count vector (new format: one JSON per entity)
+        if VECTOR_DIR.exists():
+            report["vector_count"] = len(list(VECTOR_DIR.glob("*.json")))
         
         # Count graph
-        if self.graph_path.exists():
-            with open(self.graph_path) as f:
-                report["graph_count"] = sum(1 for _ in f)
+        if GRAPH_DIR.exists():
+            report["graph_count"] = len(list(GRAPH_DIR.glob("*.json")))
         
-        # Check for orphaned entries (in vector but not in structured)
-        if self.vector_cache.exists():
-            with open(self.vector_cache) as f:
-                for line in f:
-                    try:
-                        entry = json.loads(line.strip())
-                        struct_file = self.struct_dir / f"{entry['id']}.json"
-                        if not struct_file.exists():
-                            report["missing_in_vector"].append(entry['id'])
-                    except:
-                        pass
+        # Check consistency: find entities missing in some layers
+        all_ids = set()
+        for d in [self.struct_dir, VECTOR_DIR, GRAPH_DIR]:
+            if d.exists():
+                all_ids.update(f.stem for f in d.glob("*.json"))
+        
+        for eid in all_ids:
+            struct_exists = (self.struct_dir / f"{eid}.json").exists()
+            vector_exists = (VECTOR_DIR / f"{eid}.json").exists()
+            graph_exists = (GRAPH_DIR / f"{eid}.json").exists()
+            
+            if not vector_exists:
+                report["missing_in_vector"].append(eid)
+            if not graph_exists:
+                report["missing_in_graph"].append(eid)
+            if not (struct_exists and vector_exists and graph_exists):
+                report["inconsistent"].append(eid)
         
         return report
     
     def repair(self) -> Tuple[int, int]:
         """
-        Attempt to repair inconsistencies.
-        
-        Returns:
-            (repaired_count, failed_count)
+        P4: Attempt to repair inconsistencies using transaction semantics.
         """
         report = self.verify()
         repaired = 0
         failed = 0
         
-        # Re-sync orphaned entries
-        for mem_id in report.get("missing_in_vector", []):
-            # Try to find in vector/graph and rewrite structured
-            # This is a best-effort repair
-            failed += 1
+        for eid in report.get("inconsistent", []):
+            # Try to reconstruct missing layers from structured (source of truth)
+            struct_file = self.struct_dir / f"{eid}.json"
+            if not struct_file.exists():
+                failed += 1
+                continue
+            
+            try:
+                with open(struct_file) as f:
+                    data = json.load(f)
+                
+                # Re-write to missing layers using transaction
+                payload = {"entity_id": eid, "memory": data}
+                
+                with self._tx_manager.begin("repair", payload) as tx:
+                    if not (VECTOR_DIR / f"{eid}.json").exists():
+                        self._tx_manager.write_vector({
+                            "entity_id": eid,
+                            "embedding_text": f"{data.get('subject', '')} {data.get('action', '')}"
+                        })
+                    if not (GRAPH_DIR / f"{eid}.json").exists():
+                        self._tx_manager.write_graph({
+                            "entity_id": eid,
+                            "subject": data.get("subject", ""),
+                            "entities": self._extract_entities(data.get("subject", ""))
+                        })
+                
+                repaired += 1
+            except Exception as e:
+                print(f"Failed to repair {eid}: {e}")
+                failed += 1
         
         return repaired, failed
+    
+    def _extract_entities(self, text: str) -> List[str]:
+        """Simple entity extraction from text."""
+        entities = []
+        for part in text.replace("/", " ").replace("-", " ").split():
+            part = part.strip(".,:;()[]{}")
+            if part and len(part) > 1 and part[0].isupper():
+                entities.append(part)
+        return list(set(entities))[:10]
+    
+    def _extract_relations(self, memory: Dict) -> List[Dict]:
+        """Extract relations from memory."""
+        relations = []
+        mem_type = memory.get("type", "")
+        
+        if mem_type == "decision":
+            relations.append({"type": "causes", "from": memory.get("subject"), "to": "outcome"})
+        elif mem_type == "lesson":
+            relations.append({"type": "learned_from", "from": memory.get("subject"),
+                            "to": memory.get("action", "")[:50]})
+        
+        return relations
 
 
 def main():
