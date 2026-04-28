@@ -194,6 +194,10 @@ class MemoryTransactionSync:
             # Update local cache
             self._all_facts_cache[entity_id] = f"{memory.get('subject')} {memory.get('action')}"
             
+            # v3.5 Phase 3: Trigger async post-processing
+            from hybrid_layer.postprocess_worker import run_postprocess_async
+            run_postprocess_async(contradiction=True, pruning=True, metrics=True)
+            
             return True, f"COMMITTED: {entity_id}"
             
         except Exception as e:

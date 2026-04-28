@@ -29,6 +29,7 @@ from .idempotency_guard import is_duplicate, make_id, check_only, clear
 from .retry_utils import retry, retry_with_fallback
 from .vector_batcher import add_to_batch, start_background_worker, stop_background_worker, get_buffer_size, force_flush
 from .embedding_cache import get, set, has, clear, count, get_stats
+from .postprocess_worker import run_postprocess_async, run_postprocess_sync
 
 __all__ = [
     # Async runner
@@ -56,4 +57,7 @@ __all__ = [
     "clear",
     "count",
     "get_stats",
+    # Post-process worker
+    "run_postprocess_async",
+    "run_postprocess_sync",
 ]
