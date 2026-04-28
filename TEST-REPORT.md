@@ -1,124 +1,95 @@
-# OCM Sup — 測試報告
+# OCM Sup - Test Report
 
-> 📅 最新更新：2026-04-28
-> 版本：v2.6
+> 📅 最新更新：2026-04-29
+> 版本：v3
 
 ---
 
-## 📋 測試版本總覽
+## 🧪 Comprehensive Test Suite
+
+**位置：** `tests/comprehensive_test.py`
+
+**用法：**
+```bash
+python tests/comprehensive_test.py
+python tests/comprehensive_test.py --verbose
+python tests/comprehensive_test.py --benchmark-only
+```
+
+---
+
+## 📋 Test Suites
+
+### TEST 1: Memory Reliability Layer (v2.6)
+
+| # | 測試項目 | 結果 | 詳情 |
+|---|----------|------|------|
+| 1.1 | TransactionManager | ✅ PASS | Atomic commit + rollback |
+| 1.2 | UsageTracker | ✅ PASS | on_retrieve/on_output tracking |
+| 1.3 | HealthMetrics | ✅ PASS | Health score 99.97% |
+
+### TEST 2: Hybrid Layer (v3) - Reliability
+
+| # | 測試項目 | 結果 | 詳情 |
+|---|----------|------|------|
+| 2.1 | Idempotency Guard | ✅ PASS | First allowed, second blocked |
+| 2.2 | Retry Utility | ✅ PASS | 3 attempts to success |
+
+### TEST 3: Integration - memory_tx_sync.py
+
+| # | 測試項目 | 結果 | 詳情 |
+|---|----------|------|------|
+| 3.1 | Idempotency in write | ✅ PASS | Duplicate blocked before write |
+| 3.2 | Vector Batching | ✅ PASS | 15 writes in 3.4s |
+
+### TEST 4: Post-processing
+
+| # | 測試項目 | 結果 | 詳情 |
+|---|----------|------|------|
+| 4.1 | Post-process worker | ✅ PASS | async contradiction/pruning/metrics |
+
+---
+
+## 📊 Benchmark Results
+
+| 指標 | 數值 |
+|------|------|
+| **Write Latency (avg)** | ~229ms |
+| **Batch Size** | 8 items |
+| **Cache Entries** | 16 |
+| **Health Score** | 79.98% |
+| **Total Facts** | 33 |
+
+---
+
+## 🧪 歷史測試版本
 
 | 版本 | 日期 | 測試者 | 結果 | 備註 |
 |------|------|--------|------|------|
-| v2.0 | 2026-04-18 | Main Agent | 7/7 ✅ | Triple-Stream + Graph |
-| v2.3 | 2026-04-25 | Main Agent | 7/7 ✅ | AI 失憶問題解決 |
+| v3 | 2026-04-29 | Comprehensive Test | 8/8 ✅ | All systems |
 | v2.6 | 2026-04-28 | Main Agent | 4/4 ✅ | Memory Reliability Layer |
+| v2.5 | 2026-04-28 | Main Agent | P3 ✅ | P4 Integration |
+| v2.3 | 2026-04-25 | Main Agent | 7/7 ✅ | AI 失憶問題解決 |
+| v2.0 | 2026-04-18 | Main Agent | 7/7 ✅ | Triple-Stream + Graph |
 
 ---
 
-## 🧪 v2.6 (Memory Reliability Layer) 測試結果
+## 🚀 測試命令
 
-**日期:** 2026-04-28
+```bash
+# 全面測試（包含 benchmark）
+python tests/comprehensive_test.py
 
-### Test Suite: test_memory_reliability.py
+# 只跑 benchmark
+python tests/comprehensive_test.py --benchmark-only
 
-| # | 測試項目 | 結果 | 詳情 |
-|---|----------|------|------|
-| 1 | TransactionManager | ✅ PASS | commit/rollback 正常 |
-| 2 | UsageTracker | ✅ PASS | retrieve/output tracking 正常 |
-| 3 | AdaptivePruning | ✅ PASS | score calculation 正確 |
-| 4 | HealthMetrics | ✅ PASS | health score 計算正常 |
+# 詳細輸出
+python tests/comprehensive_test.py --verbose
 
-**結論:** 4/4 PASS ✅
-
----
-
-### 測試詳情
-
-```
-=== Testing TransactionManager ===
-✅ Transaction committed successfully
-✅ Structured storage verified
-
-=== Testing UsageTracker ===
-✅ Usage tracking verified: {'retrieve_count': 2, 'used_in_output': True}
-
-=== Testing AdaptivePruning ===
-✅ Pruning dry-run: 1 eligible for pruning
-   Old fact score: 0.76 (should be high)
-   New fact score: 0.403 (should be low)
-✅ Pruning score calculation verified
-
-=== Testing HealthMetrics ===
-✅ Health metrics computed:
-   Total facts: 3
-   Health score: 93.28%
-   Duplicate rate: 33.33%
-   Unused rate: 0.00%
+# 舊測試（v2.6 modules）
+python tests/test_memory_reliability.py
 ```
 
 ---
 
-## 🧪 Integration Tests
-
-| Script | 狀態 | 備註 |
-|--------|------|------|
-| memory_tx_sync.py | ✅ | Uses new TransactionManager + ContradictionEngine |
-| memory_retriever.py | ✅ | Uses new UsageTracker |
-| memory_write_gate.py | ✅ | Uses new ContradictionEngine + UsageTracker |
-| memory_pruning_adapter.py | ✅ | Uses new AdaptivePruning |
-
----
-
-## 🧪 v2.5 (P4 Integration) 測試結果
-
-**日期:** 2026-04-28
-
-### P3 Reliability Layer Tests
-
-| # | 測試項目 | 結果 | 詳情 |
-|---|----------|------|------|
-| 1 | TransactionManager | ✅ | Atomic begin/commit/rollback |
-| 2 | ContradictionDetector | ✅ | 39/40 passed (1 test isolation issue) |
-| 3 | UsageTracker | ✅ | on_retrieve/on_output tracking |
-| 4 | PruningPolicy | ✅ | Score-based pruning |
-
-**結論:** P3 Reliability Layer functional ✅
-
----
-
-## 🧪 v2.3 (AI 失憶問題) 測試結果
-
-**日期:** 2026-04-25
-
-| Phase | 內容 | 結果 |
-|-------|------|------|
-| P0.1 | Expand Benchmark | 27 queries |
-| P0.4 | Substring Matching | **81.5% TOP1** |
-| P0.5 | Add Missing Entities | **100% TOP1** |
-| P1.1 | Lazy Vector Loading | Init: 277s → **~5s** |
-| P1.2 | RRF 權重調整 | BM25=1.5, Vector=1.0, Graph=0.8 |
-| P1.3 | Cross-lingual | 中英對照 synonyms |
-
-**結論:** 全部 P0/P1 benchmarks 完成 ✅
-
----
-
-## 🧪 v2.0 (7-Dir 完成) 測試結果
-
-**日期:** 2026-04-18
-
-| # | 測試項目 | 結果 |
-|---|----------|------|
-| 1 | Triple-Stream Search | ✅ 6/6 queries |
-| 2 | Graph Status | ✅ 43 nodes, 47 edges |
-| 3 | Smart Recall Hook | ✅ 5/5 trigger |
-| 4 | Proactive Discovery | ✅ ~1s 完成 |
-| 5 | Search API | ✅ Flask API |
-| 6 | Graph Visualization | ✅ |
-| 7 | Entity Files | ✅ 43 files |
-
-**結論:** 7/7 PASS ✅
-
----
-
-_最後更新：2026-04-28_
+_最後更新：2026-04-29_

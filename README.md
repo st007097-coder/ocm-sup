@@ -3,7 +3,7 @@
 > 🧠 智能記憶管理系統 — 為 24/7 AI 助手而生
 
 [![Status](https://img.shields.io/badge/status-production_ready-green.svg)](#)
-[![Version](https://img.shields.io/badge/OCM%20Sup-v2.6-blue.svg)](#)
+[![Version](https://img.shields.io/badge/OCM%20Sup-v3-blue.svg)](#)
 [![Python](https://img.shields.io/badge/Python-3.11+-green.svg)](#)
 
 **OCM Sup = OpenClaw Memory Supervisor**
@@ -14,15 +14,25 @@
 
 ## ✨ 核心功能
 
+### v2.6 - Memory Reliability Layer（核心可靠性）
+
 | 功能 | 描述 |
 |------|------|
-| 🔍 **Triple-Stream Search** | BM25 + Vector + Graph 三路搜索，準確率 90.6% |
 | 🔄 **Transaction + Rollback** | Atomic writes + crash recovery，生產級可靠性 |
 | ⚠️ **Contradiction Detection** | Sentence transformer 矛盾檢測 |
 | 📊 **Usage Tracking** | 追蹤邊個事實被使用 |
 | 🧹 **Adaptive Pruning** | Score-based 自動清理低價值記憶 |
 | 📈 **Health Metrics** | 健康指標可視化監控 |
-| 🚀 **Proactive Discovery** | ~1 秒完成知識發現 |
+
+### v3 - Hybrid Layer（性能優化）
+
+| 功能 | 描述 |
+|------|------|
+| 🔒 **Idempotency Guard** | 防止重複寫入，確保 data consistency |
+| ⚡ **Vector Batching** | Batch embeddings（8條/批），大幅降低 latency |
+| 🗃️ **Embedding Cache** | Cache embeddings，相同句子唔再 embed |
+| 🔁 **Async Post-processing** | Background 執行 contradiction/pruning/metrics |
+| ↩️ **Retry Utility** | Exponential backoff retry，確保任務完成 |
 
 ---
 
@@ -35,22 +45,17 @@
                       │
                       ▼
 ┌─────────────────────────────────────────────────────────┐
-│              Smart Recall Hook                            │
-│         (自動判斷是否需要觸發記憶)                        │
-└─────────────────────┬───────────────────────────────────┘
-                      │
-                      ▼
-┌─────────────────────────────────────────────────────────┐
-│              Triple-Stream Search                         │
-│  ┌─────────┐  ┌─────────┐  ┌─────────┐                 │
-│  │  BM25   │→ │ Vector  │→ │  Graph  │→ RRF Fusion     │
-│  └─────────┘  └─────────┘  └─────────┘                 │
-└─────────────────────┬───────────────────────────────────┘
-                      │
-                      ▼
-┌─────────────────────────────────────────────────────────┐
-│              Memory Reliability Layer                     │
+│              Memory Reliability Layer (v2.6)              │
 │  Transaction Manager + Contradiction + Usage + Pruning  │
+└─────────────────────┬───────────────────────────────────┘
+                      │
+                      ▼
+┌─────────────────────────────────────────────────────────┐
+│                Hybrid Layer (v3)                          │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────┐  │
+│  │ Idempotency │  │   Vector    │  │  Post-process   │  │
+│  │   Guard     │→ │  Batching   │→ │  (async)        │  │
+│  └─────────────┘  └─────────────┘  └─────────────────┘  │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -66,8 +71,16 @@ OCM-Sup/
 │   ├── usage_tracker.py         # 使用追蹤
 │   ├── adaptive_pruning.py      # 智能清理
 │   └── health_metrics.py        # 健康監控
+├── hybrid_layer/                  # v3 性能優化
+│   ├── idempotency_guard.py     # 防止重複寫入
+│   ├── async_runner.py          # Background thread
+│   ├── retry_utils.py          # Retry with backoff
+│   ├── vector_batcher.py        # Batch embeddings
+│   ├── embedding_cache.py       # Cache embeddings
+│   └── postprocess_worker.py   # Async post-processing
 ├── scripts/                      # 記憶管理腳本
 ├── tests/                        # 測試
+│   └── comprehensive_test.py   # 全面測試 + Benchmark
 └── docs/                        # 文檔
 ```
 
@@ -76,17 +89,17 @@ OCM-Sup/
 ## 🚀 快速開始
 
 ```bash
+# 全面測試 + Benchmark
+python tests/comprehensive_test.py
+
 # 搜索記憶
 python scripts/triple_stream_search.py --query "古洞站"
 
-# 寫入新記憶
+# 寫入新記憶（自動 idempotency + batching）
 python scripts/memory_tx_sync.py --action write --memory data.json
 
 # 健康檢查
 python scripts/memory_pruning_adapter.py --status
-
-# 運行測試
-python tests/test_memory_reliability.py
 ```
 
 ---
@@ -95,10 +108,13 @@ python tests/test_memory_reliability.py
 
 | 指標 | 數值 |
 |------|------|
-| Triple-Stream 準確率 | **90.6%** (vs 31.2% baseline) |
-| Proactive Discovery | **~1 秒** (275x提速) |
-| Health Score | **93.28%** |
-| 測試通過率 | **4/4** |
+| **Write Latency** | ~229ms avg (with batching) |
+| **Cache Hit** | 相同句子唔再 embed |
+| **Health Score** | >79% |
+| **Idempotency** | ✅ 防止重複寫入 |
+| **Batch Size** | 8 items per batch |
+| **Triple-Stream 準確率** | **90.6%** (vs 31.2% baseline) |
+| **Proactive Discovery** | **~1 秒** (275x提速) |
 
 ---
 
@@ -116,13 +132,46 @@ python tests/test_memory_reliability.py
 
 ## 🎯 與 OpenClaw 內建記憶對比
 
-| 方面 | OpenClaw 內建 | OCM Sup |
-|------|---------------|---------|
-| 搜索 | 單一 semantic | Triple-Stream |
-| 可靠性 | Session hooks | Transaction + Rollback |
+| 方面 | OpenClaw 內建 | OCM Sup v3 |
+|------|---------------|------------|
+| 搜索 | 單一 semantic | Triple-Stream ✅ |
+| 可靠性 | Session hooks | Transaction + Rollback ✅ |
 | 衝突檢測 | ❌ | ✅ |
-| 記憶清理 | Dreaming/Promotion | Adaptive Score |
-| 主動發現 | 被動 trigger | Proactive |
+| 記憶清理 | Dreaming/Promotion | Adaptive Score + Pruning ✅ |
+| 主動發現 | 被動 trigger | Proactive ✅ |
+| Idempotency | ❌ | ✅ |
+| Vector Batching | ❌ | ✅ |
+| Async Post-processing | ❌ | ✅ |
+
+---
+
+## 🧪 測試結果（最後更新：2026-04-29）
+
+```
+============================================================
+OCM Sup v3 - Comprehensive System Test
+============================================================
+
+TEST 1: Memory Reliability Layer (v2.6)
+  ✓ TransactionManager: PASS
+  ✓ UsageTracker: PASS
+  ✓ HealthMetrics: PASS (99.97%)
+
+TEST 2: Hybrid Layer (v3) - Reliability
+  ✓ Idempotency Guard: PASS
+  ✓ Retry Utility: PASS
+
+TEST 3: Integration - memory_tx_sync.py
+  ✓ Idempotency in write: PASS
+  ✓ Vector Batching: PASS (15 writes / 3.4s)
+
+TEST 4: Post-processing
+  ✓ Health score: 79.98%
+  ✓ Total facts: 33
+  ✓ Post-processing: PASS
+
+ALL TESTS PASSED ✓
+```
 
 ---
 
@@ -132,4 +181,4 @@ MIT
 
 ---
 
-_Last updated: 2026-04-28 | v2.6_
+_Last updated: 2026-04-29 | v3_
