@@ -1,6 +1,6 @@
 """
 Embedding Cache
-OCM Sup v3.5 - Hybrid
+OCM Sup v3 - Hybrid
 
 Cache embeddings to avoid re-embedding identical texts.
 大幅減少 API call 成本和 latency。

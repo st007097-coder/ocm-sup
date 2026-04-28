@@ -1,6 +1,6 @@
 """
 Idempotency Guard
-OCM Sup v3.5 - Hybrid
+OCM Sup v3 - Hybrid
 
 防止同一 memory 重複寫入。
 Based on content hash - same text = same memory.

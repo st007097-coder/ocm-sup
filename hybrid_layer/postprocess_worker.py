@@ -1,6 +1,6 @@
 """
 Post-process Worker
-OCM Sup v3.5 - Hybrid
+OCM Sup v3 - Hybrid
 
 Async post-processing: contradiction check, pruning, metrics
 Runs in background to avoid blocking main write path.
@@ -15,7 +15,7 @@ Usage:
 import threading
 from typing import Optional
 
-# v3.5: Import retry utilities
+# v3: Import retry utilities
 from hybrid_layer.retry_utils import retry
 
 

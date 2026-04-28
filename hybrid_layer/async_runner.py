@@ -1,6 +1,6 @@
 """
 Async Runner
-OCM Sup v3.5 - Hybrid
+OCM Sup v3 - Hybrid
 
 最簡單的 background task 執行器。
 使用 threading 而非 asyncio - 低侵入、立即可用。

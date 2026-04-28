@@ -1,6 +1,6 @@
 """
 Retry Utilities
-OCM Sup v3.5 - Hybrid
+OCM Sup v3 - Hybrid
 
 簡單的 retry 工具，帶 exponential backoff。
 

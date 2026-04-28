@@ -1,5 +1,5 @@
 """
-Hybrid Layer - OCM Sup v3.5
+Hybrid Layer - OCM Sup v3
 
 選擇性非同步層 - 將慢操作解耦，保持同步主流程。
 

@@ -1,6 +1,6 @@
 """
 Vector Batcher
-OCM Sup v3.5 - Hybrid
+OCM Sup v3 - Hybrid
 
 Batch embeddings for reduced latency and cost.
 Buffers memories and flushes in batches.
@@ -40,7 +40,7 @@ _flush_lock = threading.Lock()
 _worker_thread: Optional[threading.Thread] = None
 _stop_event = threading.Event()
 
-# v3.5: Embedding cache integration
+# v3: Embedding cache integration
 try:
     from hybrid_layer.embedding_cache import get as cache_get, set as cache_set
     HAS_CACHE = True
@@ -96,7 +96,7 @@ def _flush_batch():
     # Extract texts
     texts = [item["text"] for item in batch]
     
-    # v3.5: Check cache first to avoid re-embedding
+    # v3: Check cache first to avoid re-embedding
     if HAS_CACHE:
         cached_vectors = []
         to_embed = []
