@@ -1,6 +1,6 @@
 # OCM Sup
 
-> 🧠 智能記憶管理系統 — 為 24/7 AI 助手而生
+> 🧠 Intelligent Memory Management System — Built for 24/7 AI Assistants
 
 [![Status](https://img.shields.io/badge/status-production_ready-green.svg)](#)
 [![Version](https://img.shields.io/badge/OCM%20Sup-v2.6-blue.svg)](#)
@@ -8,25 +8,25 @@
 
 **OCM Sup = OpenClaw Memory Supervisor**
 
-為 AI 助手構建嘅生產級記憶管理系統，大幅降低長期運行嘅 token 成本，令 24/7 主動式 AI 助手成為可能。
+A production-grade memory management system for AI assistants, drastically reducing token costs for always-on operation and making 24/7 proactive AI practical.
 
 ---
 
-## ✨ 核心功能
+## ✨ Key Features
 
-| 功能 | 描述 |
-|------|------|
-| 🔍 **Triple-Stream Search** | BM25 + Vector + Graph 三路搜索，準確率 90.6% |
-| 🔄 **Transaction + Rollback** | Atomic writes + crash recovery，生產級可靠性 |
-| ⚠️ **Contradiction Detection** | Sentence transformer 矛盾檢測 |
-| 📊 **Usage Tracking** | 追蹤邊個事實被使用 |
-| 🧹 **Adaptive Pruning** | Score-based 自動清理低價值記憶 |
-| 📈 **Health Metrics** | 健康指標可視化監控 |
-| 🚀 **Proactive Discovery** | ~1 秒完成知識發現 |
+| Feature | Description |
+|---------|-------------|
+| 🔍 **Triple-Stream Search** | BM25 + Vector + Graph, 90.6% accuracy |
+| 🔄 **Transaction + Rollback** | Atomic writes + crash recovery |
+| ⚠️ **Contradiction Detection** | Sentence transformer based |
+| 📊 **Usage Tracking** | Track which facts are used |
+| 🧹 **Adaptive Pruning** | Score-based memory cleanup |
+| 📈 **Health Metrics** | Visual health monitoring |
+| 🚀 **Proactive Discovery** | ~1 second knowledge discovery |
 
 ---
 
-## 🏗️ 系統架構
+## 🏗️ Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -36,7 +36,6 @@
                       ▼
 ┌─────────────────────────────────────────────────────────┐
 │              Smart Recall Hook                            │
-│         (自動判斷是否需要觸發記憶)                        │
 └─────────────────────┬───────────────────────────────────┘
                       │
                       ▼
@@ -45,7 +44,7 @@
 │  ┌─────────┐  ┌─────────┐  ┌─────────┐                 │
 │  │  BM25   │→ │ Vector  │→ │  Graph  │→ RRF Fusion     │
 │  └─────────┘  └─────────┘  └─────────┘                 │
-└─────────────────────┬───────────────────────────────────┘
+└─────────────────────────────────────────────────────────┘
                       │
                       ▼
 ┌─────────────────────────────────────────────────────────┐
@@ -56,73 +55,73 @@
 
 ---
 
-## 📁 目錄結構
+## 📁 Project Structure
 
 ```
 OCM-Sup/
-├── memory_reliability_layer/     # v2.6 核心記憶可靠性
+├── memory_reliability_layer/     # v2.6 Core Memory Reliability
 │   ├── tx_manager.py             # Atomic transactions
-│   ├── contradiction.py          # 矛盾檢測
-│   ├── usage_tracker.py         # 使用追蹤
-│   ├── adaptive_pruning.py      # 智能清理
-│   └── health_metrics.py        # 健康監控
-├── scripts/                      # 記憶管理腳本
-├── tests/                        # 測試
-└── docs/                        # 文檔
+│   ├── contradiction.py          # Contradiction detection
+│   ├── usage_tracker.py         # Usage tracking
+│   ├── adaptive_pruning.py      # Smart cleanup
+│   └── health_metrics.py        # Health monitoring
+├── scripts/                      # Memory management scripts
+├── tests/                        # Tests
+└── docs/                        # Documentation
 ```
 
 ---
 
-## 🚀 快速開始
+## 🚀 Quick Start
 
 ```bash
-# 搜索記憶
+# Search memory
 python scripts/triple_stream_search.py --query "古洞站"
 
-# 寫入新記憶
+# Write new memory
 python scripts/memory_tx_sync.py --action write --memory data.json
 
-# 健康檢查
+# Health check
 python scripts/memory_pruning_adapter.py --status
 
-# 運行測試
+# Run tests
 python tests/test_memory_reliability.py
 ```
 
 ---
 
-## 📊 性能指標
+## 📊 Performance
 
-| 指標 | 數值 |
-|------|------|
-| Triple-Stream 準確率 | **90.6%** (vs 31.2% baseline) |
-| Proactive Discovery | **~1 秒** (275x提速) |
+| Metric | Value |
+|--------|-------|
+| Triple-Stream Accuracy | **90.6%** (vs 31.2% baseline) |
+| Proactive Discovery | **~1 second** (275x speedup) |
 | Health Score | **93.28%** |
-| 測試通過率 | **4/4** |
+| Test Pass Rate | **4/4** |
 
 ---
 
-## 📚 文檔
+## 📚 Documentation
 
-| 文檔 | 描述 |
-|------|------|
-| [README.md](README.md) | 📖 主要文檔 |
-| [COMPREHENSIVE_SUMMARY.md](docs/COMPREHENSIVE_SUMMARY.md) | 📋 全面性總結 |
-| [TECHNICAL.md](TECHNICAL.md) | 🔬 技術原理 |
-| [CHANGELOG.md](CHANGELOG.md) | 📅 進化歷史 |
-| [TEST-REPORT.md](TEST-REPORT.md) | 🧪 測試報告 |
+| Doc | Description |
+|-----|-------------|
+| [README.md](README.md) | 📖 Main documentation (Chinese) |
+| [COMPREHENSIVE_SUMMARY.md](docs/COMPREHENSIVE_SUMMARY.md) | 📋 Comprehensive summary |
+| [TECHNICAL.md](TECHNICAL.md) | 🔬 Technical details |
+| [CHANGELOG.md](CHANGELOG.md) | 📅 Evolution history |
+| [TEST-REPORT.md](TEST-REPORT.md) | 🧪 Test report |
 
 ---
 
-## 🎯 與 OpenClaw 內建記憶對比
+## 🎯 vs OpenClaw Built-in Memory
 
-| 方面 | OpenClaw 內建 | OCM Sup |
-|------|---------------|---------|
-| 搜索 | 單一 semantic | Triple-Stream |
-| 可靠性 | Session hooks | Transaction + Rollback |
-| 衝突檢測 | ❌ | ✅ |
-| 記憶清理 | Dreaming/Promotion | Adaptive Score |
-| 主動發現 | 被動 trigger | Proactive |
+| Aspect | OpenClaw Built-in | OCM Sup |
+|-------|-------------------|---------|
+| Search | Single semantic | Triple-Stream |
+| Reliability | Session hooks | Transaction + Rollback |
+| Contradiction | ❌ | ✅ |
+| Memory Cleanup | Dreaming/Promotion | Adaptive Score |
+| Proactive | Passive trigger | Proactive |
 
 ---
 
