@@ -30,6 +30,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from memory_reliability_layer import TransactionManager
 from memory_reliability_layer import ContradictionEngine as ContradictionDetector
 from memory_reliability_layer import UsageTracker
+from memory_reliability_layer import is_duplicate as check_idempotency
 
 # Storage paths - now using P3 standard locations
 OCM_SUP_BASE = Path("~/.openclaw/ocm-sup").expanduser()
@@ -127,13 +128,18 @@ class MemoryTransactionSync:
         Returns:
             (success, message)
         """
+        # v3.5: Idempotency check - prevent duplicate writes
+        if check_idempotency(memory):
+            entity_id = memory.get("id") or self._id(memory)
+            return False, f"DUPLICATE: {entity_id}"
+        
         entity_id = memory.get("id") or self._id(memory)
         
         # Step 1: Contradiction check (non-blocking, log only)
         contradictions = self._check_contradiction(memory, entity_id)
         if contradictions:
             for c in contradictions:
-                print(f"⚠️  Contradiction detected: {mem_id} ↔ {c.get('fact_id')} "
+                print(f"⚠️  Contradiction detected: {entity_id} ↔ {c.get('fact_id')} "
                       f"(similarity: {c.get('similarity', 0):.2f})")
             self._contradiction_detector.run_full_scan()  # Log to file
         

@@ -28,6 +28,7 @@ from .contradiction import ContradictionEngine, ContradictionResult
 from .usage_tracker import UsageTracker, UsageStats
 from .adaptive_pruning import AdaptivePruning, PruningResult
 from .health_metrics import HealthMetrics, HealthReport
+from .idempotency_guard import is_duplicate, make_id
 from . import config
 
 __all__ = [
@@ -40,5 +41,7 @@ __all__ = [
     "PruningResult",
     "HealthMetrics",
     "HealthReport",
+    "is_duplicate",
+    "make_id",
     "config"
 ]

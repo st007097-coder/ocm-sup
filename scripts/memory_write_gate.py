@@ -37,6 +37,7 @@ from typing import List, Dict, Optional, Tuple
 sys.path.insert(0, str(Path(__file__).parent.parent))
 from memory_reliability_layer import ContradictionEngine as ContradictionDetector
 from memory_reliability_layer import UsageTracker
+from memory_reliability_layer import is_duplicate as check_idempotency
 
 VALID_TYPES = {"fact", "lesson", "preference", "decision", "insight", "constraint", "habit", "goal", "project", "episode", "reflection"}
 
@@ -107,19 +108,22 @@ class MemoryWriteGate:
             fact_id, fact_text, self._all_facts
         )
         
-        if not contradictions:
+        if not contradictions.found:
             return False, []
         
+        # Get list of contradicting facts
+        contradicting_list = contradictions.contradicting_facts or []
+        
         # Flag high-confidence contradictions (>0.8)
-        high_conf = [c for c in contradictions if c.llm_confidence > 0.8]
+        high_conf = [c for c in contradicting_list if c.get('similarity', 0) > 0.8]
         
         # Log all contradictions
-        for c in contradictions:
-            self._contradiction_detector.add_contradiction(c)
-            print(f"⚠️  Contradiction: [{c.fact_a_id}] ↔ [{c.fact_b_id}] "
-                  f"(conf={c.llm_confidence:.2f}): {c.llm_explanation}")
+        for c in contradicting_list:
+            self._contradiction_detector.run_full_scan()
+            print(f"⚠️  Contradiction: [{fact_id}] ↔ [{c.get('fact_id')}] "
+                  f"(similarity={c.get('similarity', 0):.2f})")
         
-        return len(high_conf) > 0, contradictions
+        return len(high_conf) > 0, contradicting_list
     
     def _load_entity_map(self) -> Dict[str, str]:
         """Load entity canonicalization map."""
@@ -150,6 +154,10 @@ class MemoryWriteGate:
         Returns:
             (is_valid, rejection_reason, canonicalized_memory)
         """
+        
+        # === v3.5: Idempotency Check ===
+        if check_idempotency(memory):
+            return False, "DUPLICATE", None
         
         # === Stage 0: Contradiction Check (P3) ===
         fact_id = memory.get("id") or self._generate_id(memory)
