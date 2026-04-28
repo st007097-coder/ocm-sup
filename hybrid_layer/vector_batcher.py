@@ -4,6 +4,7 @@ OCM Sup v3.5 - Hybrid
 
 Batch embeddings for reduced latency and cost.
 Buffers memories and flushes in batches.
+Uses embedding cache to avoid re-embedding identical texts.
 
 Usage:
     from hybrid_layer.vector_batcher import add_to_batch, start_background_worker
@@ -38,6 +39,13 @@ _flush_lock = threading.Lock()
 # Background worker
 _worker_thread: Optional[threading.Thread] = None
 _stop_event = threading.Event()
+
+# v3.5: Embedding cache integration
+try:
+    from hybrid_layer.embedding_cache import get as cache_get, set as cache_set
+    HAS_CACHE = True
+except ImportError:
+    HAS_CACHE = False
 
 
 def _default_embed(texts: List[str]) -> List[List[float]]:
@@ -88,15 +96,52 @@ def _flush_batch():
     # Extract texts
     texts = [item["text"] for item in batch]
     
-    # Batch embedding
-    try:
-        vectors = _default_embed(texts)
-    except Exception as e:
-        print(f"[VECTOR_BATCHER] Embed failed: {e}")
-        # On failure, re-add to buffer
-        with _lock:
-            _buffer.extendleft(reversed(batch))
-        return
+    # v3.5: Check cache first to avoid re-embedding
+    if HAS_CACHE:
+        cached_vectors = []
+        to_embed = []
+        to_embed_idx = []
+        
+        for i, text in enumerate(texts):
+            cached = cache_get(text)
+            if cached is not None:
+                cached_vectors.append((i, cached))
+            else:
+                to_embed.append(text)
+                to_embed_idx.append(i)
+        
+        # Embed only uncached texts
+        new_vectors = []
+        if to_embed:
+            try:
+                new_vectors = _default_embed(to_embed)
+                # Save to cache
+                for text, vec in zip(to_embed, new_vectors):
+                    cache_set(text, vec)
+            except Exception as e:
+                print(f"[VECTOR_BATCHER] Embed failed: {e}")
+                # On failure, re-add to buffer
+                with _lock:
+                    _buffer.extendleft(reversed(batch))
+                return
+        
+        # Merge results
+        final_vectors = [None] * len(texts)
+        for i, vec in cached_vectors:
+            final_vectors[i] = vec
+        for i, vec in zip(to_embed_idx, new_vectors):
+            final_vectors[i] = vec
+        
+        vectors = final_vectors
+    else:
+        # No cache available, embed all
+        try:
+            vectors = _default_embed(texts)
+        except Exception as e:
+            print(f"[VECTOR_BATCHER] Embed failed: {e}")
+            with _lock:
+                _buffer.extendleft(reversed(batch))
+            return
     
     # Write to store
     for item, vector in zip(batch, vectors):

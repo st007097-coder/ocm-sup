@@ -32,6 +32,9 @@ from memory_reliability_layer import ContradictionEngine as ContradictionDetecto
 from memory_reliability_layer import UsageTracker
 from memory_reliability_layer import is_duplicate as check_idempotency
 
+# v3.5: Vector Batching
+from hybrid_layer.vector_batcher import add_to_batch, start_background_worker
+
 # Storage paths - now using P3 standard locations
 OCM_SUP_BASE = Path("~/.openclaw/ocm-sup").expanduser()
 STRUCTURED_DIR = OCM_SUP_BASE / "structured"
@@ -80,6 +83,9 @@ class MemoryTransactionSync:
         self._tx_manager = TransactionManager()
         self._contradiction_detector = ContradictionDetector()
         self._usage_tracker = UsageTracker()
+        
+        # v3.5: Start vector batcher background worker
+        start_background_worker()
         
         # Load existing facts for contradiction detection
         self._all_facts_cache = self._load_all_facts()
@@ -161,12 +167,17 @@ class MemoryTransactionSync:
                 }
                 self._tx_manager.write_structured(tx, struct_data)
                 
-                # Write vector (embedding text)
-                self._tx_manager.write_vector(tx, {
-                    "entity_id": entity_id,
-                    "embedding_text": f"{memory.get('subject')} {memory.get('action')}",
-                    "timestamp": datetime.now(timezone.utc).isoformat()
-                })
+                # v3.5: Vector write - use batching for speed
+                # Synchronous version:
+                # self._tx_manager.write_vector(tx, {
+                #     "entity_id": entity_id,
+                #     "embedding_text": f"{memory.get('subject')} {memory.get('action')}",
+                #     "timestamp": datetime.now(timezone.utc).isoformat()
+                # })
+                
+                # Async batching version - much faster, non-blocking
+                embedding_text = f"{memory.get('subject')} {memory.get('action')}"
+                add_to_batch(entity_id, embedding_text)
                 
                 # Write graph (entities + relations)
                 subject = memory.get("subject", "")
