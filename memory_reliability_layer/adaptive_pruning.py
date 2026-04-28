@@ -81,7 +81,14 @@ class AdaptivePruning:
         """
         # Get timestamp
         timestamp = fact.get("timestamp") or fact.get("created_at") or time.time()
-        age_days = (time.time() - timestamp) / 86400  # Convert to days
+        # Handle string timestamps
+        if isinstance(timestamp, str):
+            try:
+                from datetime import datetime
+                timestamp = datetime.fromisoformat(timestamp.replace("Z", "+00:00")).timestamp()
+            except:
+                timestamp = time.time()
+        age_days = (time.time() - float(timestamp)) / 86400  # Convert to days
         
         # Get importance (0.0 to 1.0, higher = more important = lower prune score)
         importance_str = fact.get("importance", "UNKNOWN")

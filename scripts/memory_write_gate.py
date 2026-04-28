@@ -33,10 +33,10 @@ from pathlib import Path
 from datetime import datetime, timezone
 from typing import List, Dict, Optional, Tuple
 
-# P3 Reliability Components
+# Memory Reliability Layer (v2.6)
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from p3_reliability.contradiction import ContradictionDetector
-from p3_reliability.usage import UsageTracker
+from memory_reliability_layer import ContradictionEngine as ContradictionDetector
+from memory_reliability_layer import UsageTracker
 
 VALID_TYPES = {"fact", "lesson", "preference", "decision", "insight", "constraint", "habit", "goal", "project", "episode", "reflection"}
 

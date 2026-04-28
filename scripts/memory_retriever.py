@@ -21,9 +21,9 @@ from pathlib import Path
 from datetime import datetime, timezone
 from typing import List, Dict, Optional, Tuple
 
-# P3 components
+# Memory Reliability Layer (v2.6)
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from p3_reliability.usage import UsageTracker
+from memory_reliability_layer import UsageTracker
 
 # Storage paths (P3 standard)
 OCM_SUP_BASE = Path("~/.openclaw/ocm-sup").expanduser()

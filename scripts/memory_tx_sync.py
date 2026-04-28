@@ -25,11 +25,11 @@ from pathlib import Path
 from datetime import datetime, timezone
 from typing import List, Dict, Optional, Tuple
 
-# P3 TransactionManager
+# Memory Reliability Layer (v2.6)
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from p3_reliability.transaction import TransactionManager
-from p3_reliability.contradiction import ContradictionDetector
-from p3_reliability.usage import UsageTracker
+from memory_reliability_layer import TransactionManager
+from memory_reliability_layer import ContradictionEngine as ContradictionDetector
+from memory_reliability_layer import UsageTracker
 
 # Storage paths - now using P3 standard locations
 OCM_SUP_BASE = Path("~/.openclaw/ocm-sup").expanduser()
@@ -111,7 +111,7 @@ class MemoryTransactionSync:
         results = self._contradiction_detector.check_fact(
             mem_id, fact_text, self._all_facts_cache
         )
-        return results
+        return results if results.found else []
     
     def write(self, memory: Dict) -> Tuple[bool, str]:
         """
@@ -133,9 +133,9 @@ class MemoryTransactionSync:
         contradictions = self._check_contradiction(memory, entity_id)
         if contradictions:
             for c in contradictions:
-                print(f"⚠️  Contradiction detected: {c.fact_a_id} ↔ {c.fact_b_id} "
-                      f"(confidence: {c.llm_confidence:.2f})")
-                self._contradiction_detector.add_contradiction(c)
+                print(f"⚠️  Contradiction detected: {mem_id} ↔ {c.get('fact_id')} "
+                      f"(similarity: {c.get('similarity', 0):.2f})")
+            self._contradiction_detector.run_full_scan()  # Log to file
         
         # Step 2: Atomic transaction
         payload = {"entity_id": entity_id, "memory": memory}
@@ -153,10 +153,10 @@ class MemoryTransactionSync:
                     "metadata": {k: v for k, v in memory.items()
                                  if k not in ["type", "subject", "action", "id", "confidence"]}
                 }
-                self._tx_manager.write_structured(struct_data)
+                self._tx_manager.write_structured(tx, struct_data)
                 
                 # Write vector (embedding text)
-                self._tx_manager.write_vector({
+                self._tx_manager.write_vector(tx, {
                     "entity_id": entity_id,
                     "embedding_text": f"{memory.get('subject')} {memory.get('action')}",
                     "timestamp": datetime.now(timezone.utc).isoformat()
@@ -164,7 +164,7 @@ class MemoryTransactionSync:
                 
                 # Write graph (entities + relations)
                 subject = memory.get("subject", "")
-                self._tx_manager.write_graph({
+                self._tx_manager.write_graph(tx, {
                     "entity_id": entity_id,
                     "subject": subject,
                     "type": memory.get("type"),

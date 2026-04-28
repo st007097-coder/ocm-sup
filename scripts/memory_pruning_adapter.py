@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
 Memory Pruning Adapter
-OCM Sup v2.4 - P4 Phase 2
+OCM Sup v2.6 - P4 Phase 2
 
-Bridges P3 PruningPolicy with actual P3 storage layers.
-Reads facts from structured storage + usage tracking, executes pruning.
+Bridges Memory Reliability Layer (v2.6) with existing storage.
+Loads facts from P3 storage paths, enriches with usage data,
+executes pruning using AdaptivePruning.
 
 Usage:
     python3 memory_pruning_adapter.py --dry-run
@@ -20,10 +21,9 @@ from pathlib import Path
 from datetime import datetime, timezone
 from typing import List, Dict, Optional, Tuple
 
-# P3 components
+# Memory Reliability Layer (v2.6)
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from p3_reliability.pruning import PruningPolicy, PruneScorer
-from p3_reliability.usage import UsageTracker
+from memory_reliability_layer import AdaptivePruning, UsageTracker
 
 # Storage paths (P3 standard)
 OCM_SUP_BASE = Path("~/.openclaw/ocm-sup").expanduser()
@@ -39,19 +39,19 @@ for d in [STRUCTURED_DIR, VECTOR_DIR, GRAPH_DIR, ARCHIVE_DIR]:
 
 class MemoryPruningAdapter:
     """
-    Adapter that connects P3 PruningPolicy to P3 storage layers.
+    Adapter that connects v2.6 AdaptivePruning to P3 storage layers.
     
     Flow:
     1. Load facts from structured storage
     2. Enrich with usage tracking data
-    3. Run PruningPolicy to score and rank facts
+    3. Run AdaptivePruning to score and rank facts
     4. Execute pruning (archive + delete) based on scores
     """
     
     def __init__(self, threshold: float = 0.7):
-        self._pruning_policy = PruningPolicy(threshold=threshold)
+        self._pruner = AdaptivePruning(threshold=threshold)
         self._usage_tracker = UsageTracker()
-        self._scorer = PruneScorer(threshold=threshold)
+        self._usage_data = self._usage_tracker._data  # Direct access for efficiency
     
     def _load_facts(self) -> List[Dict]:
         """Load facts from structured storage and enrich with usage data."""
@@ -78,10 +78,9 @@ class MemoryPruningAdapter:
                         "created_at": data.get("created_at"),
                         "importance": data.get("metadata", {}).get("importance", "UNKNOWN"),
                         # From usage tracking
-                        "access_count": usage_stats.get("retrieve_count", 0),
+                        "retrieve_count": usage_stats.get("retrieve_count", 0),
                         "used_in_output": usage_stats.get("used_in_output", False),
-                        "decision_influenced_count": usage_stats.get("decision_influenced_count", 0),
-                        "last_accessed": usage_stats.get("last_retrieved"),
+                        "last_retrieved": usage_stats.get("last_retrieved"),
                     }
                     facts.append(enriched)
             except Exception as e:
@@ -133,23 +132,22 @@ class MemoryPruningAdapter:
     def status(self) -> Dict:
         """Get pruning status without executing."""
         facts = self._load_facts()
-        ranked = self._scorer.rank(facts)
+        usage_data = {f["entity_id"]: {"count": f.get("retrieve_count", 0)} for f in facts}
         
-        prune_eligible = [f for f, score in ranked if score > self._scorer.threshold]
+        # Use pruner directly for status
+        result = self._pruner.execute(facts, usage_data, dry_run=True, max_prune=10)
         
         return {
             "total_facts": len(facts),
-            "prune_eligible": len(prune_eligible),
-            "threshold": self._scorer.threshold,
-            "top_prune_candidates": [
+            "prune_eligible": result.pruned_count,
+            "threshold": self._pruner.threshold,
+            "top_candidates": [
                 {
-                    "entity_id": f.get("entity_id"),
-                    "subject": (f.get("subject") or "")[:50],
-                    "score": self._scorer.compute(f),
-                    "access_count": f.get("access_count", 0),
-                    "used_in_output": f.get("used_in_output", False)
+                    "fact_id": pf.get("fact_id"),
+                    "subject": (pf.get("subject") or "")[:50],
+                    "score": pf.get("score", 0)
                 }
-                for f, _ in ranked[:10]
+                for pf in result.facts[:10]
             ]
         }
     
@@ -160,17 +158,17 @@ class MemoryPruningAdapter:
         Returns detailed report.
         """
         facts = self._load_facts()
-        result = self._pruning_policy.execute(
-            facts,
-            dry_run=True,
-            get_fact_text=self._get_fact_text
-        )
+        usage_data = {f["entity_id"]: {"count": f.get("retrieve_count", 0)} for f in facts}
         
-        # Add additional info
-        result["threshold"] = self._scorer.threshold
-        result["status"] = "dry_run"
+        result = self._pruner.execute(facts, usage_data, dry_run=True, max_prune=50)
         
-        return result
+        return {
+            "dry_run": True,
+            "total_facts": len(facts),
+            "pruned_count": result.pruned_count,
+            "threshold": self._pruner.threshold,
+            "facts": result.facts
+        }
     
     def execute(self, max_prune: int = 50) -> Dict:
         """
@@ -183,54 +181,23 @@ class MemoryPruningAdapter:
             execution report
         """
         facts = self._load_facts()
-        ranked = self._scorer.rank(facts)
+        usage_data = {f["entity_id"]: {"count": f.get("retrieve_count", 0)} for f in facts}
         
-        # Filter to only prune-eligible
-        eligible = [(f, score) for f, score in ranked if score > self._scorer.threshold]
-        
-        pruned_count = 0
-        archived_count = 0
-        failed_count = 0
-        pruned_facts = []
-        
-        for fact, score in eligible[:max_prune]:
-            fact_id = fact.get("entity_id")
-            fact_text = self._get_fact_text(fact)
-            
-            # Archive first
-            try:
-                self._pruning_policy.archiver.archive(fact_id, fact_text, fact)
-                archived_count += 1
-            except Exception as e:
-                print(f"Failed to archive {fact_id}: {e}")
-                failed_count += 1
-                continue
-            
-            # Then delete from layers
-            if self._delete_from_layers(fact_id):
-                pruned_count += 1
-                pruned_facts.append({
-                    "entity_id": fact_id,
-                    "subject": (fact.get("subject") or "")[:50],
-                    "score": score,
-                    "archived": True
-                })
-            else:
-                failed_count += 1
+        result = self._pruner.execute(facts, usage_data, dry_run=False, max_prune=max_prune)
         
         return {
             "status": "executed",
             "total_facts": len(facts),
-            "pruned_count": pruned_count,
-            "archived_count": archived_count,
-            "failed_count": failed_count,
-            "threshold": self._scorer.threshold,
-            "pruned_facts": pruned_facts
+            "pruned_count": result.pruned_count,
+            "archived_count": result.archived_count,
+            "failed_count": result.failed_count,
+            "threshold": self._pruner.threshold,
+            "facts": result.facts
         }
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Memory Pruning Adapter")
+    parser = argparse.ArgumentParser(description="Memory Pruning Adapter (v2.6)")
     parser.add_argument("--dry-run", action="store_true", help="Dry run (no actual deletion)")
     parser.add_argument("--execute", action="store_true", help="Execute pruning")
     parser.add_argument("--status", action="store_true", help="Show pruning status")
@@ -243,31 +210,31 @@ def main():
     
     if args.status:
         status = adapter.status()
-        print("=== Memory Pruning Status ===")
+        print("=== Memory Pruning Status (v2.6) ===")
         print(f"Total facts: {status['total_facts']}")
         print(f"Prune-eligible: {status['prune_eligible']}")
         print(f"Threshold: {status['threshold']}")
-        print("\nTop prune candidates:")
-        for c in status['top_prune_candidates']:
-            print(f"  [{c['score']:.3f}] {c['entity_id']}: {c['subject']}... "
-                  f"(access={c['access_count']}, used={c['used_in_output']})")
+        if status['top_candidates']:
+            print("\nTop prune candidates:")
+            for c in status['top_candidates']:
+                print(f"  [{c['score']:.3f}] {c['fact_id']}: {c['subject']}...")
         return
     
     if args.dry_run:
         result = adapter.dry_run()
-        print("=== Pruning Dry Run ===")
+        print("=== Pruning Dry Run (v2.6) ===")
         print(f"Total facts: {result['total_facts']}")
         print(f"Would prune: {result['pruned_count']}")
         print(f"Threshold: {result['threshold']}")
-        if result['pruned_facts']:
+        if result['facts']:
             print("\nWould delete:")
-            for pf in result['pruned_facts'][:10]:
-                print(f"  [{pf.get('score', 0):.3f}] {pf.get('entity_id')}")
+            for pf in result['facts'][:10]:
+                print(f"  [{pf.get('score', 0):.3f}] {pf.get('fact_id')}")
         return
     
     if args.execute:
         result = adapter.execute(max_prune=args.max_prune)
-        print("=== Pruning Executed ===")
+        print("=== Pruning Executed (v2.6) ===")
         print(f"Pruned: {result['pruned_count']}")
         print(f"Archived: {result['archived_count']}")
         print(f"Failed: {result['failed_count']}")
@@ -275,7 +242,7 @@ def main():
     
     # Default: show dry run
     result = adapter.dry_run()
-    print("=== Pruning Dry Run (default) ===")
+    print("=== Pruning Dry Run (v2.6 - default) ===")
     print(f"Total facts: {result['total_facts']}")
     print(f"Would prune: {result['pruned_count']} (threshold={result['threshold']})")
 
