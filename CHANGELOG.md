@@ -28,6 +28,9 @@
 | 2026-04-15 | v0.7 | Phase X + Phase Y 完成 (ClawMem + CraniMem) |
 | 2026-04-17 | v0.9 | Phase Z 完成 (Uncertainty Tracking + EQS) |
 | **2026-04-18** | **v2.0** | **7-Dir 全部完成** |
+| 2026-04-25 | v2.3 | AI 失憶問題研究 — Proactive Memory System |
+| 2026-04-26 | v2.4 | Memory Stability System (P0-P2) |
+| **2026-04-28** | **v2.5** | **P3 Reliability Layer + P4 Integration** |
 
 ---
 
@@ -518,7 +521,7 @@ Total time: ~3 sec
 
 ---
 
-## 🧬 v2.4 P4: P3 Reliability Layer Integration (2026-04-28)
+## 🧬 v2.5: P3 Reliability Layer + P4 Integration (2026-04-28)
 
 ### 當時情况
 
@@ -546,11 +549,11 @@ P3 Reliability Layer 完成（39/40 tests passed），但組件係 isolated modu
 ✅ UsageTracker initialized and connected
 ```
 
-### P4 Phase 2 (未開始)
+### P4 Phase 2 ✅ (2026-04-28)
 
-- UsageTracker agent-level integration
-- PruningPolicy storage adapters
+- `memory_retriever.py` — Memory retrieval with UsageTracker (on_retrieve, mark_used, mark_decision)
+- `memory_pruning_adapter.py` — Bridge PruningPolicy to P3 storage
 
 ---
 _Changelog 最後更新：2026-04-28_
-_Version: 2.4 P4 Phase 1_
+_Version: 2.5_
