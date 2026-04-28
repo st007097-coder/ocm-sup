@@ -3,7 +3,7 @@
 > 🧠 期哥嘅智能記憶系統 — 結合 Triple-Stream Search + Knowledge Graph + Proactive Discovery
 
 [![Status](https://img.shields.io/badge/status-production_ready-green.svg)](#)
-[![OCM Sup](https://img.shields.io/badge/OCM%20Sup-v2.5-blue.svg)](#)
+[![OCM Sup](https://img.shields.io/badge/OCM%20Sup-v2.6-blue.svg)](#)
 
 [![View on GitHub](https://img.shields.io/badge/GitHub-Repo-green.svg)](https://github.com/st007097-coder/ocm-sup)
 
@@ -1254,4 +1254,4 @@ MIT License - See [LICENSE](LICENSE) for details.
 ---
 
 _最後更新：2026-04-28_
-_OCM Sup v2.5 - P3 Reliability + P4 Integration_ 🚀
+_OCM Sup v2.6 - Memory Reliability Layer_ 🚀

@@ -31,6 +31,7 @@
 | 2026-04-25 | v2.3 | AI 失憶問題研究 — Proactive Memory System |
 | 2026-04-26 | v2.4 | Memory Stability System (P0-P2) |
 | **2026-04-28** | **v2.5** | **P3 Reliability Layer + P4 Integration** |
+| 2026-04-28 | v2.6 | Memory Reliability Layer (user skeleton + P3 merged) |
 
 ---
 
@@ -556,4 +557,57 @@ P3 Reliability Layer 完成（39/40 tests passed），但組件係 isolated modu
 
 ---
 _Changelog 最後更新：2026-04-28_
-_Version: 2.5_
+_Version: 2.6_
+
+---
+
+## 🧬 v2.6: Memory Reliability Layer (2026-04-28)
+
+### 當時情况
+
+期哥提出用戶建議的 skeleton approach：
+- 5個核心模組（簡潔、flat）
+- Sentence transformer 做 contradiction detection
+- 唔需要 LLM（省成本）
+- 保持 P3 的 Transaction rollback 概念
+
+### 融合方案
+
+用戶 skeleton 簡潔 + P3 可靠性 = v2.6 memory_reliability_layer
+
+### 新目錄結構
+
+```
+memory_reliability_layer/
+├── __init__.py
+├── config.py
+├── tx_manager.py        # Transaction + rollback
+├── contradiction.py     # Sentence transformer
+├── usage_tracker.py     # Simple count-based
+├── adaptive_pruning.py  # Score-based pruning
+└── health_metrics.py    # Health indicators
+```
+
+### Phase 1: Implementation ✅
+
+所有模組 implement，4/4 tests passed
+
+### Phase 2: Integration ✅
+
+更新所有 scripts 使用新 modules：
+- memory_tx_sync.py
+- memory_retriever.py
+- memory_write_gate.py
+- memory_pruning_adapter.py
+
+### Phase 3: Test & Verify ✅
+
+所有 tests passing，integration verified
+
+### Phase 4: Deprecate P3 ✅
+
+p3_reliability/ 標記為 deprecated
+
+---
+
+_Version: 2.6_
