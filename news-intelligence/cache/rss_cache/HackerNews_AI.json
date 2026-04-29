@@ -1,12 +1,39 @@
 {
   "feed": "HackerNews AI",
-  "fetched_at": "2026-04-29T08:51:50.718022",
+  "fetched_at": "2026-04-29T09:09:51.679617",
   "items": [
+    {
+      "title": "Fuck Off AI Music",
+      "link": "http://fuckoffaimusic.com/",
+      "published": "2026-04-29 01:03",
+      "summary": "Article URL: http://fuckoffaimusic.com/\nComments URL: https://news.ycombinator.com/item?id=47942952\nPoints: 1\n# Comments: 0",
+      "source": "HackerNews AI",
+      "category": "AI/Tech",
+      "language": "en"
+    },
+    {
+      "title": "From One AI to Any AI: JetBrains rethinks the approach to AI tooling [video]",
+      "link": "https://www.youtube.com/watch?v=J8fHU4WFd_c",
+      "published": "2026-04-29 01:02",
+      "summary": "Article URL: https://www.youtube.com/watch?v=J8fHU4WFd_c\nComments URL: https://news.ycombinator.com/item?id=47942940\nPoints: 1\n# Comments: 0",
+      "source": "HackerNews AI",
+      "category": "AI/Tech",
+      "language": "en"
+    },
+    {
+      "title": "AI Killed the MVP. What's Next?",
+      "link": "https://www.indiehackers.com/post/ai-killed-the-mvp-whats-next-JIWTsjBRFuC4K87voEFk",
+      "published": "2026-04-29 00:52",
+      "summary": "Article URL: https://www.indiehackers.com/post/ai-killed-the-mvp-whats-next-JIWTsjBRFuC4K87voEFk\nComments URL: https://news.ycombinator.com/item?id=47942876\nPoints: 1\n# Comments: 0",
+      "source": "HackerNews AI",
+      "category": "AI/Tech",
+      "language": "en"
+    },
     {
       "title": "Tencent used Anthropic's Claude to fine-tune it's new Hy3 AI model",
       "link": "https://www.reuters.com/world/china/chinese-companies-used-claude-improve-own-models-anthropic-says-2026-02-23/",
       "published": "2026-04-29 00:35",
-      "summary": "Article URL: https://www.reuters.com/world/china/chinese-companies-used-claude-improve-own-models-anthropic-says-2026-02-23/\nComments URL: https://news.ycombinator.com/item?id=47942759\nPoints: 1\n# Comments: 0",
+      "summary": "Article URL: https://www.reuters.com/world/china/chinese-companies-used-claude-improve-own-models-anthropic-says-2026-02-23/\nComments URL: https://news.ycombinator.com/item?id=47942759\nPoints: 2\n# Comments: 0",
       "source": "HackerNews AI",
       "category": "AI/Tech",
       "language": "en"
@@ -24,7 +51,7 @@
       "title": "AI Worries Have Returned to Wall Street. Now Come Earnings",
       "link": "https://www.wsj.com/tech/ai-worries-have-returned-to-wall-street-now-come-earnings-d680e19c",
       "published": "2026-04-28 23:58",
-      "summary": "Article URL: https://www.wsj.com/tech/ai-worries-have-returned-to-wall-street-now-come-earnings-d680e19c\nComments URL: https://news.ycombinator.com/item?id=47942480\nPoints: 3\n# Comments: 0",
+      "summary": "Article URL: https://www.wsj.com/tech/ai-worries-have-returned-to-wall-street-now-come-earnings-d680e19c\nComments URL: https://news.ycombinator.com/item?id=47942480\nPoints: 4\n# Comments: 0",
       "source": "HackerNews AI",
       "category": "AI/Tech",
       "language": "en"
@@ -60,7 +87,7 @@
       "title": "Nvidia executive says AI is more expensive than paying human workers",
       "link": "https://fortune.com/2026/04/28/nvidia-executive-cost-of-ai-is-greater-than-cost-of-employees/",
       "published": "2026-04-28 22:15",
-      "summary": "Article URL: https://fortune.com/2026/04/28/nvidia-executive-cost-of-ai-is-greater-than-cost-of-employees/\nComments URL: https://news.ycombinator.com/item?id=47941609\nPoints: 9\n# Comments: 6",
+      "summary": "Article URL: https://fortune.com/2026/04/28/nvidia-executive-cost-of-ai-is-greater-than-cost-of-employees/\nComments URL: https://news.ycombinator.com/item?id=47941609\nPoints: 10\n# Comments: 6",
       "source": "HackerNews AI",
       "category": "AI/Tech",
       "language": "en"
@@ -105,7 +132,7 @@
       "title": "AI Wellbeing: Measuring and improving the functional pleasure and pain of AIs",
       "link": "https://www.ai-wellbeing.org/",
       "published": "2026-04-28 21:13",
-      "summary": "Article URL: https://www.ai-wellbeing.org/\nComments URL: https://news.ycombinator.com/item?id=47940875\nPoints: 1\n# Comments: 0",
+      "summary": "Article URL: https://www.ai-wellbeing.org/\nComments URL: https://news.ycombinator.com/item?id=47940875\nPoints: 2\n# Comments: 0",
       "source": "HackerNews AI",
       "category": "AI/Tech",
       "language": "en"
@@ -151,33 +178,6 @@
       "link": "https://www.wired.com/story/the-race-is-on-to-keep-ai-agents-from-running-wild-with-your-credit-cards/",
       "published": "2026-04-28 20:16",
       "summary": "Article URL: https://www.wired.com/story/the-race-is-on-to-keep-ai-agents-from-running-wild-with-your-credit-cards/\nComments URL: https://news.ycombinator.com/item?id=47940067\nPoints: 4\n# Comments: 0",
-      "source": "HackerNews AI",
-      "category": "AI/Tech",
-      "language": "en"
-    },
-    {
-      "title": "'World models' are AI's latest sensation: what are they and what can they do?",
-      "link": "https://www.nature.com/articles/d41586-026-00820-5",
-      "published": "2026-04-28 20:15",
-      "summary": "Article URL: https://www.nature.com/articles/d41586-026-00820-5\nComments URL: https://news.ycombinator.com/item?id=47940063\nPoints: 4\n# Comments: 0",
-      "source": "HackerNews AI",
-      "category": "AI/Tech",
-      "language": "en"
-    },
-    {
-      "title": "AI Talent agent making direct intros to 100s of startups",
-      "link": "https://www.getclera.com",
-      "published": "2026-04-28 20:14",
-      "summary": "Article URL: https://www.getclera.com\nComments URL: https://news.ycombinator.com/item?id=47940050\nPoints: 1\n# Comments: 0",
-      "source": "HackerNews AI",
-      "category": "AI/Tech",
-      "language": "en"
-    },
-    {
-      "title": "The Impact of AI-Generated Text on the Internet",
-      "link": "https://ai-on-the-internet.github.io/",
-      "published": "2026-04-28 20:11",
-      "summary": "Article URL: https://ai-on-the-internet.github.io/\nComments URL: https://news.ycombinator.com/item?id=47940013\nPoints: 2\n# Comments: 0",
       "source": "HackerNews AI",
       "category": "AI/Tech",
       "language": "en"

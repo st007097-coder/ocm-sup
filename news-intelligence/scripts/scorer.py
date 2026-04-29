@@ -7,14 +7,18 @@ News Intelligence System
 """
 
 import os
+import re
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from typing import List, Dict
 
 # Paths
 SCRIPT_DIR = Path(__file__).parent.parent
 CACHE_DIR = SCRIPT_DIR / "cache"
+
+# 7-day freshness filter
+FRESHNESS_DAYS = 7
 
 # Default scoring rules (can be configured)
 SCORING_RULES = {
@@ -87,6 +91,43 @@ def score_item(item: dict) -> dict:
     
     return item
 
+def is_fresh(item: dict, days: int = FRESHNESS_DAYS) -> bool:
+    """
+    檢查新聞係咪喺指定天數內
+    返回 True 如果係 fresh
+    """
+    pub_date_str = item.get('published', '')
+    
+    if not pub_date_str:
+        # 如果冇日期，保守啲當佢係 fresh
+        return True
+    
+    try:
+        # 嘗試解析日期 (格式: YYYY-MM-DD HH:MM)
+        pub_date_str = pub_date_str[:16]  # 取前面 YYYY-MM-DD HH:MM
+        pub_date = datetime.strptime(pub_date_str, '%Y-%m-%d %H:%M')
+        cutoff = datetime.now() - timedelta(days=days)
+        return pub_date >= cutoff
+    except:
+        # 解析失敗，當佢係 fresh
+        return True
+
+def filter_fresh(items: List[dict], days: int = FRESHNESS_DAYS) -> tuple:
+    """
+    過濾出指定天數內既新聞
+    返回 (fresh_items, old_items_count)
+    """
+    fresh_items = []
+    old_count = 0
+    
+    for item in items:
+        if is_fresh(item, days):
+            fresh_items.append(item)
+        else:
+            old_count += 1
+    
+    return fresh_items, old_count
+
 def score_items(items: List[dict]) -> List[dict]:
     """為所有新聞評分"""
     scored_items = []
@@ -124,8 +165,16 @@ def main():
     unique_items, dups, old = deduplicate(items)
     print(f"📊 After dedup: {len(unique_items)} unique items")
     
+    # Filter to last 7 days only
+    fresh_items, old_count = filter_fresh(unique_items, days=FRESHNESS_DAYS)
+    print(f"📅 After freshness filter ({FRESHNESS_DAYS} days): {len(fresh_items)} fresh, {old_count} old removed")
+    
+    if not fresh_items:
+        print("❌ No fresh news in the last 7 days!")
+        return
+    
     # Score
-    scored_items = score_items(unique_items)
+    scored_items = score_items(fresh_items)
     
     # Summary by level
     levels = {"🔥 HEADLINE": [], "⭐ IMPORTANT": [], "📌 NOTABLE": [], "📝 GENERAL": []}

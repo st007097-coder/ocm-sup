@@ -20,12 +20,6 @@ feeds:
     language: "en"
     frequency: "daily"
     
-  - name: "VentureBeat AI"
-    url: "https://venturebeat.com/category/ai/feed/"
-    category: "AI"
-    language: "en"
-    frequency: "daily"
-    
   - name: "The Verge AI"
     url: "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml"
     category: "AI/Tech"
@@ -42,3 +36,4 @@ feeds:
 # - frequency: daily/weekday/weekly/3x_week/irregular
 # - language: zh/en (用於決定是否需要翻譯)
 # - 每個 feed 最多取 20 條新聞
+# - VentureBeat AI removed: 舊聞過期（2026-01），返回緩存數據
