@@ -1,0 +1,44 @@
+# RSS Feeds Configuration
+# AI / 科技新聞來源
+
+feeds:
+  - name: "HackerNews AI"
+    url: "https://hnrss.org/newest?q=AI"
+    category: "AI/Tech"
+    language: "en"
+    frequency: "daily"
+    
+  - name: "MIT Tech Review"
+    url: "https://www.technologyreview.com/feed/"
+    category: "AI/Tech"
+    language: "en"
+    frequency: "daily"
+    
+  - name: "TechCrunch AI"
+    url: "https://techcrunch.com/tag/ai/feed/"
+    category: "AI/Tech"
+    language: "en"
+    frequency: "daily"
+    
+  - name: "VentureBeat AI"
+    url: "https://venturebeat.com/category/ai/feed/"
+    category: "AI"
+    language: "en"
+    frequency: "daily"
+    
+  - name: "The Verge AI"
+    url: "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml"
+    category: "AI/Tech"
+    language: "en"
+    frequency: "daily"
+    
+  - name: "Ars Technica"
+    url: "https://feeds.arstechnica.com/arstechnica/technology-lab"
+    category: "Tech"
+    language: "en"
+    frequency: "daily"
+
+# Notes:
+# - frequency: daily/weekday/weekly/3x_week/irregular
+# - language: zh/en (用於決定是否需要翻譯)
+# - 每個 feed 最多取 20 條新聞

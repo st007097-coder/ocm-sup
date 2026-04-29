@@ -1,0 +1,9 @@
+# News Intelligence - Cache files (don't commit)
+# These are generated daily and can be regenerated
+
+cache/
+output/daily/
+output/brief_*.txt
+
+# Keep these
+!cache/.gitkeep

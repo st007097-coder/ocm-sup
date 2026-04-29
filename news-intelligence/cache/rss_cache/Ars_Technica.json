@@ -1,0 +1,186 @@
+{
+  "feed": "Ars Technica",
+  "fetched_at": "2026-04-29T08:51:52.618281",
+  "items": [
+    {
+      "title": "Open source package with 1 million monthly downloads stole user credentials",
+      "link": "https://arstechnica.com/security/2026/04/open-source-package-with-1-million-monthly-downloads-stole-user-credentials/",
+      "published": "2026-04-27 21:04",
+      "summary": "If you're one of millions using element-data, it's time to check for compromise.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en"
+    },
+    {
+      "title": "Why are top university websites serving porn? It comes down to shoddy housekeeping.",
+      "link": "https://arstechnica.com/security/2026/04/why-are-top-university-websites-serving-porn-it-comes-down-to-shoddy-housekeeping/",
+      "published": "2026-04-24 19:00",
+      "summary": "Hundreds of subdomains from dozens of universities have been hijacked by scammers.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en"
+    },
+    {
+      "title": "In a first, a ransomware family is confirmed to be quantum-safe",
+      "link": "https://arstechnica.com/security/2026/04/now-even-ransomware-is-using-post-quantum-cryptography/",
+      "published": "2026-04-23 20:41",
+      "summary": "Technically speaking, there's no practical benefit to use PQC. So why is it being used?",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en"
+    },
+    {
+      "title": "Microsoft issues emergency update for macOS and Linux ASP.NET threat",
+      "link": "https://arstechnica.com/security/2026/04/microsoft-issues-emergency-update-for-macos-and-linux-asp-net-threat/",
+      "published": "2026-04-22 19:32",
+      "summary": "When authentication fails, things can go very, very wrong.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en"
+    },
+    {
+      "title": "Contrary to popular superstition, AES 128 is just fine in a post-quantum world",
+      "link": "https://arstechnica.com/security/2026/04/contrary-to-popular-superstition-aes-128-is-just-fine-in-a-post-quantum-world/",
+      "published": "2026-04-21 12:35",
+      "summary": "A stubborn misconception is hampering the already hard work of quantum readiness.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en"
+    },
+    {
+      "title": "US-sanctioned currency exchange says $15 million heist done by \"unfriendly states\"",
+      "link": "https://arstechnica.com/security/2026/04/russia-friendly-exchange-says-western-special-service-behind-15-million-cyberattack/",
+      "published": "2026-04-17 21:28",
+      "summary": "Grinex says needed hacking resources \"available exclusively to... unfriendly states.\"",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en"
+    },
+    {
+      "title": "Recent advances push Big Tech closer to the Q-Day danger zone",
+      "link": "https://arstechnica.com/security/2026/04/while-some-big-tech-players-accelerate-pqc-readiness-others-stay-the-course/",
+      "published": "2026-04-17 11:00",
+      "summary": "Here's which players are winning the race to transition to post-quantum crypto.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en"
+    },
+    {
+      "title": "“Negative” views of Broadcom driving thousands of VMware migrations, rival says",
+      "link": "https://arstechnica.com/information-technology/2026/04/nutanix-claims-it-has-poached-30000-vmware-customers/",
+      "published": "2026-04-09 19:44",
+      "summary": "Western Union exec says there were \"challenges\" working with Broadcom.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en"
+    },
+    {
+      "title": "Iran-linked hackers disrupt operations at US critical infrastructure sites",
+      "link": "https://arstechnica.com/security/2026/04/iran-linked-hackers-disrupt-operations-at-us-critical-infrastructure-sites/",
+      "published": "2026-04-08 20:49",
+      "summary": "As the US and Israel's war has ramped up, so too have hacks on US industrial sites.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en"
+    },
+    {
+      "title": "Thousands of consumer routers hacked by Russia's military",
+      "link": "https://arstechnica.com/security/2026/04/russias-military-hacks-thousands-of-consumer-routers-to-steal-credentials/",
+      "published": "2026-04-08 11:00",
+      "summary": "End-of-life routers in homes and small offices hacked in 120 countries.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en"
+    },
+    {
+      "title": "OpenClaw gives users yet another reason to be freaked out about security",
+      "link": "https://arstechnica.com/security/2026/04/heres-why-its-prudent-for-openclaw-users-to-assume-compromise/",
+      "published": "2026-04-03 20:30",
+      "summary": "The viral AI agentic tool let attackers silently gain admin unauthenticated access.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en"
+    },
+    {
+      "title": "New Rowhammer attacks give complete control of machines running Nvidia GPUs",
+      "link": "https://arstechnica.com/security/2026/04/new-rowhammer-attacks-give-complete-control-of-machines-running-nvidia-gpus/",
+      "published": "2026-04-02 17:00",
+      "summary": "GDDRHammer, GeForge and GPUBreach hammer GPU memory in ways that hijack the CPU.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en"
+    },
+    {
+      "title": "Quantum computers need vastly fewer resources than thought to break vital encryption",
+      "link": "https://arstechnica.com/security/2026/03/new-quantum-computing-advances-heighten-threat-to-elliptic-curve-cryptosystems/",
+      "published": "2026-03-31 18:25",
+      "summary": "No, the sky isn't falling, but Q Day is coming, and it won't be as expensive as thought.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en"
+    },
+    {
+      "title": "Google bumps up Q Day deadline to 2029, far sooner than previously thought",
+      "link": "https://arstechnica.com/security/2026/03/google-bumps-up-q-day-estimate-to-2029-far-sooner-than-previously-thought/",
+      "published": "2026-03-25 15:49",
+      "summary": "Company warns entire industry to move off RSA and EC more quickly.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en"
+    },
+    {
+      "title": "Self-propagating malware poisons open source software and wipes Iran-based machines",
+      "link": "https://arstechnica.com/security/2026/03/self-propagating-malware-poisons-open-source-software-and-wipes-iran-based-machines/",
+      "published": "2026-03-24 12:38",
+      "summary": "Development houses: It's time to check your networks for infections.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en"
+    },
+    {
+      "title": "Widely used Trivy scanner compromised in ongoing supply-chain attack",
+      "link": "https://arstechnica.com/security/2026/03/widely-used-trivy-scanner-compromised-in-ongoing-supply-chain-attack/",
+      "published": "2026-03-20 20:50",
+      "summary": "Admins: Sorry to say, but it's likely a rotate-your-secrets kind of weekend.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en"
+    },
+    {
+      "title": "Cloud service providers ask EU regulator to reinstate VMware partner program",
+      "link": "https://arstechnica.com/information-technology/2026/03/cloud-service-providers-ask-eu-regulator-to-reinstate-vmware-partner-program/",
+      "published": "2026-03-19 21:29",
+      "summary": "Broadcom says the group is misrepresenting market \"realities.\"",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en"
+    },
+    {
+      "title": "Federal cyber experts called Microsoft's cloud a \"pile of shit,\" approved it anyway",
+      "link": "https://arstechnica.com/information-technology/2026/03/federal-cyber-experts-called-microsofts-cloud-a-pile-of-shit-approved-it-anyway/",
+      "published": "2026-03-18 17:36",
+      "summary": "One Microsoft product was approved despite years of concerns about its security.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en"
+    },
+    {
+      "title": "Researchers disclose vulnerabilities in IP KVMs from four manufacturers",
+      "link": "https://arstechnica.com/security/2026/03/researchers-disclose-vulnerabilities-in-ip-kvms-from-4-manufacturers/",
+      "published": "2026-03-17 17:07",
+      "summary": "Internet-exposed devices that give BIOS-level access? What could possibly go wrong?",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en"
+    },
+    {
+      "title": "Supply-chain attack using invisible code hits GitHub and other repositories",
+      "link": "https://arstechnica.com/security/2026/03/supply-chain-attack-using-invisible-code-hits-github-and-other-repositories/",
+      "published": "2026-03-13 20:18",
+      "summary": "Unicode that's invisible to the human eye was largely abandoned—until attackers took notice.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en"
+    }
+  ]
+}

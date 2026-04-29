@@ -1,0 +1,96 @@
+{
+  "feed": "MIT Tech Review",
+  "fetched_at": "2026-04-29T08:51:51.088611",
+  "items": [
+    {
+      "title": "The Download: Musk and Altman’s legal showdown, and AI’s profit problem",
+      "link": "https://www.technologyreview.com/2026/04/28/1136479/the-download-musk-altman-openai-trial-ai-profit-problem/",
+      "published": "2026-04-28 12:10",
+      "summary": "This is today&#8217;s edition of The Download, our weekday newsletter that provides a daily dose of what&#8217;s going on in the world of technology. Elon Musk and Sam Altman are going to court over OpenAI’s future Elon Musk and OpenAI CEO Sam Altman head to trial this week in a case with sweeping consequences. Ahead&#8230;",
+      "source": "MIT Tech Review",
+      "category": "AI/Tech",
+      "language": "en"
+    },
+    {
+      "title": "Elon Musk and Sam Altman are going to court over OpenAI’s future",
+      "link": "https://www.technologyreview.com/2026/04/27/1136466/elon-musk-and-sam-altman-are-going-to-court-over-openais-future/",
+      "published": "2026-04-27 22:52",
+      "summary": "After a yearslong legal feud, Elon Musk and OpenAI CEO Sam Altman are heading to trial this week in Northern California in a case that could have sweeping consequences. Ahead of OpenAI’s highly anticipated IPO, the court could rule on whether the company is allowed to exist as a for-profit enterprise and might even oust&#8230;",
+      "source": "MIT Tech Review",
+      "category": "AI/Tech",
+      "language": "en"
+    },
+    {
+      "title": "The missing step between hype and profit",
+      "link": "https://www.technologyreview.com/2026/04/27/1136456/the-missing-step-between-hype-and-profit/",
+      "published": "2026-04-27 16:13",
+      "summary": "This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox first, sign up here. In February, I picked up a flyer at an anti-AI march in London. I can’t say for sure whether or not its writers meant to riff on South Park’s underpants gnomes. But&#8230;",
+      "source": "MIT Tech Review",
+      "category": "AI/Tech",
+      "language": "en"
+    },
+    {
+      "title": "Rebuilding the data stack for AI",
+      "link": "https://www.technologyreview.com/2026/04/27/1136322/rebuilding-the-data-stack-for-ai/",
+      "published": "2026-04-27 13:00",
+      "summary": "Artificial intelligence may be dominating boardroom agendas, but many enterprises are discovering that the biggest obstacle to meaningful adoption is the state of their data. While consumer-facing AI tools have dazzled users with speed and ease, enterprise leaders are discovering that deploying AI at scale requires something far less glamorous but far more consequential: data&#8230;",
+      "source": "MIT Tech Review",
+      "category": "AI/Tech",
+      "language": "en"
+    },
+    {
+      "title": "The Download: DeepSeek’s latest AI breakthrough, and the race to build world models",
+      "link": "https://www.technologyreview.com/2026/04/27/1136438/the-download-deepseek-v4-ai-world-models/",
+      "published": "2026-04-27 12:10",
+      "summary": "This is today&#8217;s edition of The Download, our weekday newsletter that provides a daily dose of what&#8217;s going on in the world of technology. Three reasons why DeepSeek’s new model matters On Friday, Chinese AI firm DeepSeek released a preview of V4, its long-awaited new flagship model. Notably, the model can process much longer prompts&#8230;",
+      "source": "MIT Tech Review",
+      "category": "AI/Tech",
+      "language": "en"
+    },
+    {
+      "title": "Three reasons why DeepSeek’s new model matters",
+      "link": "https://www.technologyreview.com/2026/04/24/1136422/why-deepseeks-v4-matters/",
+      "published": "2026-04-24 21:40",
+      "summary": "On April 24, Chinese AI firm DeepSeek released a preview of V4, its long-awaited new flagship model. The model can process much longer prompts than its last generation, thanks to a new design that helps it handle large amounts of text more efficiently. Like DeepSeek’s previous models, V4 is open source, meaning it is available&#8230;",
+      "source": "MIT Tech Review",
+      "category": "AI/Tech",
+      "language": "en"
+    },
+    {
+      "title": "The Download: supercharged scams and studying AI healthcare",
+      "link": "https://www.technologyreview.com/2026/04/24/1136400/the-download-supercharged-scams-questionable-ai-healthcare/",
+      "published": "2026-04-24 12:10",
+      "summary": "This is today&#8217;s edition of The Download, our weekday newsletter that provides a daily dose of what&#8217;s going on in the world of technology. We’re in a new era of AI-driven scams When ChatGPT was released in late 2022, it showed how easily generative AI could create human-like text. This quickly caught the eye of&#8230;",
+      "source": "MIT Tech Review",
+      "category": "AI/Tech",
+      "language": "en"
+    },
+    {
+      "title": "Health-care AI is here. We don’t know if it actually helps patients.",
+      "link": "https://www.technologyreview.com/2026/04/24/1136352/health-care-ai-dont-know-actually-helps-patients/",
+      "published": "2026-04-24 09:00",
+      "summary": "I don’t need to tell you that&#160;AI is everywhere. Or that it is being used, increasingly, in hospitals. Doctors are using AI to help them with note-taking. AI-based tools are trawling through patient records, flagging people who may require certain support or treatments. They are also used to interpret medical exam results and x-rays. A&#8230;",
+      "source": "MIT Tech Review",
+      "category": "AI/Tech",
+      "language": "en"
+    },
+    {
+      "title": "The Download: introducing the Nature issue",
+      "link": "https://www.technologyreview.com/2026/04/23/1136346/the-download-introducing-nature-issue/",
+      "published": "2026-04-23 12:10",
+      "summary": "This is today&#8217;s edition of The Download, our weekday newsletter that provides a daily dose of what&#8217;s going on in the world of technology. Introducing: the Nature issue When we talk about “nature,” we usually mean something untouched by humans. But little of that world exists today.&#160; From microplastics in rainforest wildlife to artificial light&#8230;",
+      "source": "MIT Tech Review",
+      "category": "AI/Tech",
+      "language": "en"
+    },
+    {
+      "title": "Will fusion power get cheap? Don’t count on it.",
+      "link": "https://www.technologyreview.com/2026/04/23/1136329/fusion-power-cost/",
+      "published": "2026-04-23 10:00",
+      "summary": "Fusion power could provide a steady, zero-emissions source of electricity in the future—if companies can get plants built and running. But a new study suggests that even if that future arrives, it might not come cheap. Technologies tend to get less expensive over time. Lithium-ion batteries are now about 90% cheaper than they were in&#8230;",
+      "source": "MIT Tech Review",
+      "category": "AI/Tech",
+      "language": "en"
+    }
+  ]
+}

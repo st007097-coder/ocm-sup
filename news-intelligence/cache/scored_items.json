@@ -1,0 +1,1825 @@
+{
+  "scored_at": "2026-04-29T08:53:45.889374",
+  "total_items": 86,
+  "items": [
+    {
+      "title": "Anthropic launches Cowork, a Claude Desktop agent that works in your files — no coding required",
+      "link": "https://venturebeat.com/technology/anthropic-launches-cowork-a-claude-desktop-agent-that-works-in-your-files-no",
+      "published": "2026-01-12 11:30",
+      "summary": "Anthropic released Cowork on Monday, a new AI agent capability that extends the power of its wildly successful Claude Code tool to non-technical users — and according to company insiders, the team built the entire feature in approximately a week and a half, largely using Claude Code itself.The launch marks a major inflection point in the race to deliver practical AI agents to mainstream users, positioning Anthropic to compete not just with OpenAI and Google in conversational AI, but with Microso",
+      "source": "VentureBeat AI",
+      "category": "AI",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 14,
+      "level": "🔥 HEADLINE",
+      "score_breakdown": {
+        "major_ai_model": {
+          "score": 6,
+          "matched": [
+            "claude",
+            "openai",
+            "anthropic"
+          ]
+        },
+        "ai_agent": {
+          "score": 4,
+          "matched": [
+            "ai agent",
+            "agent"
+          ]
+        },
+        "product_tool": {
+          "score": 4,
+          "matched": [
+            "launch",
+            "release",
+            "launches"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Nous Research's NousCoder-14B is an open-source coding model landing right in the Claude Code moment",
+      "link": "https://venturebeat.com/technology/nous-researchs-nouscoder-14b-is-an-open-source-coding-model-landing-right-in",
+      "published": "2026-01-07 20:00",
+      "summary": "Nous Research, the open-source artificial intelligence startup backed by crypto venture firm Paradigm, released a new competitive programming model on Monday that it says matches or exceeds several larger proprietary systems — trained in just four days using 48 of Nvidia&#x27;s latest B200 graphics processors.The model, called NousCoder-14B, is another entry in a crowded field of AI coding assistants, but arrives at a particularly charged moment: Claude Code, the agentic programming tool from ri",
+      "source": "VentureBeat AI",
+      "category": "AI",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 11,
+      "level": "🔥 HEADLINE",
+      "score_breakdown": {
+        "major_ai_model": {
+          "score": 3,
+          "matched": [
+            "claude"
+          ]
+        },
+        "ai_agent": {
+          "score": 4,
+          "matched": [
+            "agentic",
+            "agent"
+          ]
+        },
+        "product_tool": {
+          "score": 2,
+          "matched": [
+            "release"
+          ]
+        },
+        "industry_trend": {
+          "score": 1,
+          "matched": [
+            "us "
+          ]
+        },
+        "research_paper": {
+          "score": 1,
+          "matched": [
+            "research"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Claude Code costs up to $200 a month. Goose does the same thing for free.",
+      "link": "https://venturebeat.com/infrastructure/claude-code-costs-up-to-usd200-a-month-goose-does-the-same-thing-for-free",
+      "published": "2026-01-19 14:00",
+      "summary": "The artificial intelligence coding revolution comes with a catch: it&#x27;s expensive.Claude Code, Anthropic&#x27;s terminal-based AI agent that can write, debug, and deploy code autonomously, has captured the imagination of software developers worldwide. But its pricing — ranging from $20 to $200 per month depending on usage — has sparked a growing rebellion among the very programmers it aims to serve.Now, a free alternative is gaining traction. Goose, an open-source AI agent developed by Block",
+      "source": "VentureBeat AI",
+      "category": "AI",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 10,
+      "level": "🔥 HEADLINE",
+      "score_breakdown": {
+        "major_ai_model": {
+          "score": 6,
+          "matched": [
+            "claude",
+            "anthropic"
+          ]
+        },
+        "ai_agent": {
+          "score": 4,
+          "matched": [
+            "ai agent",
+            "agent",
+            "autonomous"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Three reasons why DeepSeek’s new model matters",
+      "link": "https://www.technologyreview.com/2026/04/24/1136422/why-deepseeks-v4-matters/",
+      "published": "2026-04-24 21:40",
+      "summary": "On April 24, Chinese AI firm DeepSeek released a preview of V4, its long-awaited new flagship model. The model can process much longer prompts than its last generation, thanks to a new design that helps it handle large amounts of text more efficiently. Like DeepSeek’s previous models, V4 is open source, meaning it is available&#8230;",
+      "source": "MIT Tech Review",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 8,
+      "level": "🔥 HEADLINE",
+      "score_breakdown": {
+        "major_ai_model": {
+          "score": 3,
+          "matched": [
+            "deepseek"
+          ]
+        },
+        "ai_framework": {
+          "score": 2,
+          "matched": [
+            "open source"
+          ]
+        },
+        "product_tool": {
+          "score": 2,
+          "matched": [
+            "release"
+          ]
+        },
+        "industry_trend": {
+          "score": 1,
+          "matched": [
+            "us "
+          ]
+        }
+      }
+    },
+    {
+      "title": "Florida AG announces investigation into OpenAI over shooting that allegedly involved ChatGPT",
+      "link": "https://techcrunch.com/2026/04/09/florida-ag-investigation-openai-chatgpt-shooting/",
+      "published": "2026-04-09 20:11",
+      "summary": "ChatGPT had reportedly been used to plan the attack that killed two and injured five at Florida State University last April. The family of one victim has said that they plan to sue OpenAI over the incident.",
+      "source": "TechCrunch AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 8,
+      "level": "🔥 HEADLINE",
+      "score_breakdown": {
+        "major_ai_model": {
+          "score": 6,
+          "matched": [
+            "gpt",
+            "openai"
+          ]
+        },
+        "product_tool": {
+          "score": 2,
+          "matched": [
+            "announce"
+          ]
+        }
+      }
+    },
+    {
+      "title": "The creator of Claude Code just revealed his workflow, and developers are losing their minds",
+      "link": "https://venturebeat.com/technology/the-creator-of-claude-code-just-revealed-his-workflow-and-developers-are",
+      "published": "2026-01-05 07:45",
+      "summary": "When the creator of the world&#x27;s most advanced coding agent speaks, Silicon Valley doesn&#x27;t just listen — it takes notes.For the past week, the engineering community has been dissecting a thread on X from Boris Cherny, the creator and head of Claude Code at Anthropic. What began as a casual sharing of his personal terminal setup has spiraled into a viral manifesto on the future of software development, with industry insiders calling it a watershed moment for the startup.&quot;If you&#x27",
+      "source": "VentureBeat AI",
+      "category": "AI",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 8,
+      "level": "🔥 HEADLINE",
+      "score_breakdown": {
+        "major_ai_model": {
+          "score": 6,
+          "matched": [
+            "claude",
+            "anthropic"
+          ]
+        },
+        "ai_agent": {
+          "score": 2,
+          "matched": [
+            "agent"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Claude can now plug directly into Photoshop, Blender, and Ableton",
+      "link": "https://www.theverge.com/ai-artificial-intelligence/919648/anthropic-claude-creative-connectors-adobe-blender",
+      "published": "2026-04-28 16:49",
+      "summary": "Anthropic has launched a set of connectors for Claude that allow the AI chatbot to tap into popular creative software, including Adobe's Creative Cloud apps, Affinity, Blender, Ableton, Autodesk, and more. This marks the company's latest efforts to break into the creative industry following its launch of Claude Design earlier this month. The new connectors [&#8230;]",
+      "source": "The Verge AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 8,
+      "level": "🔥 HEADLINE",
+      "score_breakdown": {
+        "major_ai_model": {
+          "score": 6,
+          "matched": [
+            "claude",
+            "anthropic"
+          ]
+        },
+        "product_tool": {
+          "score": 2,
+          "matched": [
+            "launch"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Tencent used Anthropic's Claude to fine-tune it's new Hy3 AI model",
+      "link": "https://www.reuters.com/world/china/chinese-companies-used-claude-improve-own-models-anthropic-says-2026-02-23/",
+      "published": "2026-04-29 00:35",
+      "summary": "Article URL: https://www.reuters.com/world/china/chinese-companies-used-claude-improve-own-models-anthropic-says-2026-02-23/\nComments URL: https://news.ycombinator.com/item?id=47942759\nPoints: 1\n# Comments: 0",
+      "source": "HackerNews AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 7,
+      "level": "⭐ IMPORTANT",
+      "score_breakdown": {
+        "major_ai_model": {
+          "score": 6,
+          "matched": [
+            "claude",
+            "ai model",
+            "anthropic"
+          ]
+        },
+        "industry_trend": {
+          "score": 1,
+          "matched": [
+            "china"
+          ]
+        }
+      }
+    },
+    {
+      "title": "The Controllability Trap: A Governance Framework for Military AI Agents",
+      "link": "https://arxiv.org/abs/2603.03515",
+      "published": "2026-04-28 21:24",
+      "summary": "Article URL: https://arxiv.org/abs/2603.03515\nComments URL: https://news.ycombinator.com/item?id=47941011\nPoints: 2\n# Comments: 0",
+      "source": "HackerNews AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 7,
+      "level": "⭐ IMPORTANT",
+      "score_breakdown": {
+        "ai_agent": {
+          "score": 4,
+          "matched": [
+            "ai agent",
+            "agent"
+          ]
+        },
+        "ai_framework": {
+          "score": 2,
+          "matched": [
+            "framework"
+          ]
+        },
+        "research_paper": {
+          "score": 1,
+          "matched": [
+            "arxiv"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Live updates from Elon Musk and Sam Altman’s court battle over the future of OpenAI",
+      "link": "https://www.theverge.com/tech/917225/sam-altman-elon-musk-openai-lawsuit",
+      "published": "2026-04-28 19:27",
+      "summary": "Sam Altman and Elon Musk are facing off in a high-stakes trial that could alter the future of OpenAI and its most well-known product, ChatGPT. In 2024, Musk filed a lawsuit accusing OpenAI of abandoning its founding mission of developing AI to benefit humanity and shifting focus to boosting profits instead. The trial began with [&#8230;]",
+      "source": "The Verge AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 7,
+      "level": "⭐ IMPORTANT",
+      "score_breakdown": {
+        "major_ai_model": {
+          "score": 6,
+          "matched": [
+            "gpt",
+            "openai"
+          ]
+        },
+        "industry_trend": {
+          "score": 1,
+          "matched": [
+            "us "
+          ]
+        }
+      }
+    },
+    {
+      "title": "The Download: supercharged scams and studying AI healthcare",
+      "link": "https://www.technologyreview.com/2026/04/24/1136400/the-download-supercharged-scams-questionable-ai-healthcare/",
+      "published": "2026-04-24 12:10",
+      "summary": "This is today&#8217;s edition of The Download, our weekday newsletter that provides a daily dose of what&#8217;s going on in the world of technology. We’re in a new era of AI-driven scams When ChatGPT was released in late 2022, it showed how easily generative AI could create human-like text. This quickly caught the eye of&#8230;",
+      "source": "MIT Tech Review",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 6,
+      "level": "⭐ IMPORTANT",
+      "score_breakdown": {
+        "major_ai_model": {
+          "score": 3,
+          "matched": [
+            "gpt"
+          ]
+        },
+        "product_tool": {
+          "score": 2,
+          "matched": [
+            "release"
+          ]
+        },
+        "research_paper": {
+          "score": 1,
+          "matched": [
+            "study"
+          ]
+        }
+      }
+    },
+    {
+      "title": "At the HumanX conference, everyone was talking about Claude",
+      "link": "https://techcrunch.com/2026/04/12/at-the-humanx-conference-everyone-was-talking-about-claude/",
+      "published": "2026-04-12 15:00",
+      "summary": "Anthropic was the star of the show at San Francisco's AI-centric conference.",
+      "source": "TechCrunch AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 6,
+      "level": "⭐ IMPORTANT",
+      "score_breakdown": {
+        "major_ai_model": {
+          "score": 6,
+          "matched": [
+            "claude",
+            "anthropic"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Anthropic debuts preview of powerful new AI model Mythos in new cybersecurity initiative",
+      "link": "https://techcrunch.com/2026/04/07/anthropic-mythos-ai-model-preview-security/",
+      "published": "2026-04-07 18:00",
+      "summary": "The new model will be used by a small number of high-profile companies to engage in defensive cybersecurity work.",
+      "source": "TechCrunch AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 6,
+      "level": "⭐ IMPORTANT",
+      "score_breakdown": {
+        "major_ai_model": {
+          "score": 6,
+          "matched": [
+            "ai model",
+            "anthropic"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Railway secures $100 million to challenge AWS with AI-native cloud infrastructure",
+      "link": "https://venturebeat.com/infrastructure/railway-secures-usd100-million-to-challenge-aws-with-ai-native-cloud",
+      "published": "2026-01-22 14:00",
+      "summary": "Railway, a San Francisco-based cloud platform that has quietly amassed two million developers without spending a dollar on marketing, announced Thursday that it raised $100 million in a Series B funding round, as surging demand for artificial intelligence applications exposes the limitations of legacy cloud infrastructure.TQ Ventures led the round, with participation from FPV Ventures, Redpoint, and Unusual Ventures. The investment values Railway as one of the most significant infrastructure sta",
+      "source": "VentureBeat AI",
+      "category": "AI",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 6,
+      "level": "⭐ IMPORTANT",
+      "score_breakdown": {
+        "ai_framework": {
+          "score": 2,
+          "matched": [
+            "platform"
+          ]
+        },
+        "product_tool": {
+          "score": 2,
+          "matched": [
+            "announce"
+          ]
+        },
+        "industry_trend": {
+          "score": 2,
+          "matched": [
+            "market",
+            "investment",
+            "funding",
+            "raise"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Salesforce rolls out new Slackbot AI agent as it battles Microsoft and Google in workplace AI",
+      "link": "https://venturebeat.com/technology/salesforce-rolls-out-new-slackbot-ai-agent-as-it-battles-microsoft-and",
+      "published": "2026-01-13 13:00",
+      "summary": "Salesforce on Tuesday launched an entirely rebuilt version of Slackbot, the company&#x27;s workplace assistant, transforming it from a simple notification tool into what executives describe as a fully powered AI agent capable of searching enterprise data, drafting documents, and taking action on behalf of employees.The new Slackbot, now generally available to Business+ and Enterprise+ customers, is Salesforce&#x27;s most aggressive move yet to position Slack at the center of the emerging &quot;a",
+      "source": "VentureBeat AI",
+      "category": "AI",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 6,
+      "level": "⭐ IMPORTANT",
+      "score_breakdown": {
+        "ai_agent": {
+          "score": 4,
+          "matched": [
+            "ai agent",
+            "agent"
+          ]
+        },
+        "product_tool": {
+          "score": 2,
+          "matched": [
+            "launch"
+          ]
+        }
+      }
+    },
+    {
+      "title": "The Download: DeepSeek’s latest AI breakthrough, and the race to build world models",
+      "link": "https://www.technologyreview.com/2026/04/27/1136438/the-download-deepseek-v4-ai-world-models/",
+      "published": "2026-04-27 12:10",
+      "summary": "This is today&#8217;s edition of The Download, our weekday newsletter that provides a daily dose of what&#8217;s going on in the world of technology. Three reasons why DeepSeek’s new model matters On Friday, Chinese AI firm DeepSeek released a preview of V4, its long-awaited new flagship model. Notably, the model can process much longer prompts&#8230;",
+      "source": "MIT Tech Review",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 5,
+      "level": "⭐ IMPORTANT",
+      "score_breakdown": {
+        "major_ai_model": {
+          "score": 3,
+          "matched": [
+            "deepseek"
+          ]
+        },
+        "product_tool": {
+          "score": 2,
+          "matched": [
+            "release"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Google and Pentagon reportedly agree on deal for ‘any lawful’ use of AI",
+      "link": "https://www.theverge.com/ai-artificial-intelligence/919494/google-pentagon-classified-ai-deal",
+      "published": "2026-04-28 11:09",
+      "summary": "Google has signed a classified deal that allows the US Department of Defense to use its AI models for \"any lawful government purpose,\" The Information reports. The agreement was reported less than a day after Google employees demanded CEO Sundar Pichai block the Pentagon from using its AI amid concerns that it would be used [&#8230;]",
+      "source": "The Verge AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 5,
+      "level": "⭐ IMPORTANT",
+      "score_breakdown": {
+        "major_ai_model": {
+          "score": 3,
+          "matched": [
+            "ai model"
+          ]
+        },
+        "industry_trend": {
+          "score": 2,
+          "matched": [
+            "deal",
+            "government",
+            "us "
+          ]
+        }
+      }
+    },
+    {
+      "title": "From spaghetti to main bus: refactoring an AI agent orchestrator with Elm",
+      "link": "https://blog.mariohayashi.com/p/the-factory-must-grow-part-ii-from",
+      "published": "2026-04-28 23:35",
+      "summary": "Article URL: https://blog.mariohayashi.com/p/the-factory-must-grow-part-ii-from\nComments URL: https://news.ycombinator.com/item?id=47942296\nPoints: 2\n# Comments: 0",
+      "source": "HackerNews AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 4,
+      "level": "📌 NOTABLE",
+      "score_breakdown": {
+        "ai_agent": {
+          "score": 4,
+          "matched": [
+            "ai agent",
+            "agent"
+          ]
+        }
+      }
+    },
+    {
+      "title": "PageGuide – a browser agent that grounds AI directly on the webpage",
+      "link": "https://pageguide.github.io/",
+      "published": "2026-04-28 21:23",
+      "summary": "Article URL: https://pageguide.github.io/\nComments URL: https://news.ycombinator.com/item?id=47940993\nPoints: 2\n# Comments: 0",
+      "source": "HackerNews AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 4,
+      "level": "📌 NOTABLE",
+      "score_breakdown": {
+        "ai_agent": {
+          "score": 2,
+          "matched": [
+            "agent"
+          ]
+        },
+        "ai_framework": {
+          "score": 2,
+          "matched": [
+            "github"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Why China's Affordable AI Is a Worry for Silicon Valley",
+      "link": "https://www.bloomberg.com/news/articles/2026-04-27/why-china-s-deepseek-qwen-and-moonshot-are-a-worry-for-us-ai-rivals",
+      "published": "2026-04-28 20:17",
+      "summary": "Article URL: https://www.bloomberg.com/news/articles/2026-04-27/why-china-s-deepseek-qwen-and-moonshot-are-a-worry-for-us-ai-rivals\nComments URL: https://news.ycombinator.com/item?id=47940086\nPoints: 17\n# Comments: 2",
+      "source": "HackerNews AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 4,
+      "level": "📌 NOTABLE",
+      "score_breakdown": {
+        "major_ai_model": {
+          "score": 3,
+          "matched": [
+            "deepseek"
+          ]
+        },
+        "industry_trend": {
+          "score": 1,
+          "matched": [
+            "china"
+          ]
+        }
+      }
+    },
+    {
+      "title": "The Race Is on to Keep AI Agents from Running Wild with Your Credit Cards",
+      "link": "https://www.wired.com/story/the-race-is-on-to-keep-ai-agents-from-running-wild-with-your-credit-cards/",
+      "published": "2026-04-28 20:16",
+      "summary": "Article URL: https://www.wired.com/story/the-race-is-on-to-keep-ai-agents-from-running-wild-with-your-credit-cards/\nComments URL: https://news.ycombinator.com/item?id=47940067\nPoints: 4\n# Comments: 0",
+      "source": "HackerNews AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 4,
+      "level": "📌 NOTABLE",
+      "score_breakdown": {
+        "ai_agent": {
+          "score": 4,
+          "matched": [
+            "ai agent",
+            "agent"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Elon Musk and Sam Altman are going to court over OpenAI’s future",
+      "link": "https://www.technologyreview.com/2026/04/27/1136466/elon-musk-and-sam-altman-are-going-to-court-over-openais-future/",
+      "published": "2026-04-27 22:52",
+      "summary": "After a yearslong legal feud, Elon Musk and OpenAI CEO Sam Altman are heading to trial this week in Northern California in a case that could have sweeping consequences. Ahead of OpenAI’s highly anticipated IPO, the court could rule on whether the company is allowed to exist as a for-profit enterprise and might even oust&#8230;",
+      "source": "MIT Tech Review",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 4,
+      "level": "📌 NOTABLE",
+      "score_breakdown": {
+        "major_ai_model": {
+          "score": 3,
+          "matched": [
+            "openai"
+          ]
+        },
+        "industry_trend": {
+          "score": 1,
+          "matched": [
+            "ipo"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Esther and Anne Wojcicki back new  healthcare accelerator, fund",
+      "link": "https://techcrunch.com/2026/04/22/esther-and-anne-wojcicki-back-new-healthcare-accelerator-fund/",
+      "published": "2026-04-22 14:00",
+      "summary": "Mary Minno launches early-stage startup accelerator program, Treehub, and an early-stage firm, AI Health Fund, aimed at backing startups working at the intersection of healthcare and AI.",
+      "source": "TechCrunch AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 4,
+      "level": "📌 NOTABLE",
+      "score_breakdown": {
+        "product_tool": {
+          "score": 4,
+          "matched": [
+            "launch",
+            "launches"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Roblox’s AI assistant gets new agentic tools to plan, build, and test games",
+      "link": "https://techcrunch.com/2026/04/16/robloxs-ai-assistant-gets-new-agentic-tools-to-plan-build-and-test-games/",
+      "published": "2026-04-16 16:00",
+      "summary": "The new tools are designed to help creators throughout the entire development process.",
+      "source": "TechCrunch AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 4,
+      "level": "📌 NOTABLE",
+      "score_breakdown": {
+        "ai_agent": {
+          "score": 4,
+          "matched": [
+            "agentic",
+            "agent"
+          ]
+        }
+      }
+    },
+    {
+      "title": "WhatsApp can now draft AI-generated responses based on your conversations",
+      "link": "https://techcrunch.com/2026/03/26/whatsapp-can-now-draft-ai-generated-responses-based-on-your-conversations/",
+      "published": "2026-03-26 13:00",
+      "summary": "The Meta-owned messaging platform is also launching a way to free up space, the ability to touch up photos with Meta AI, and more.",
+      "source": "TechCrunch AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 4,
+      "level": "📌 NOTABLE",
+      "score_breakdown": {
+        "ai_framework": {
+          "score": 2,
+          "matched": [
+            "platform"
+          ]
+        },
+        "product_tool": {
+          "score": 2,
+          "matched": [
+            "launch"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Elon Musk tells the jury that all he wants to do is save humanity",
+      "link": "https://www.theverge.com/ai-artificial-intelligence/920048/elon-musk-testimony-save-humanity",
+      "published": "2026-04-28 20:46",
+      "summary": "On the stand, Elon Musk is positioning himself as a savior. In the high-profile trial between him and his fellow OpenAI co-founder, now CEO, Sam Altman, Musk opened by going through his background. He went as far back as being raised in South Africa and arriving in Canada for college with \"2,500 in Canadian travelers' [&#8230;]",
+      "source": "The Verge AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 4,
+      "level": "📌 NOTABLE",
+      "score_breakdown": {
+        "major_ai_model": {
+          "score": 3,
+          "matched": [
+            "openai"
+          ]
+        },
+        "industry_trend": {
+          "score": 1,
+          "matched": [
+            "raise"
+          ]
+        }
+      }
+    },
+    {
+      "title": "OpenClaw gives users yet another reason to be freaked out about security",
+      "link": "https://arstechnica.com/security/2026/04/heres-why-its-prudent-for-openclaw-users-to-assume-compromise/",
+      "published": "2026-04-03 20:30",
+      "summary": "The viral AI agentic tool let attackers silently gain admin unauthenticated access.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 4,
+      "level": "📌 NOTABLE",
+      "score_breakdown": {
+        "ai_agent": {
+          "score": 4,
+          "matched": [
+            "ai agent",
+            "agentic",
+            "agent"
+          ]
+        }
+      }
+    },
+    {
+      "title": "OpenAI Reportedly Working on an AI Smartphone to Rival iPhone",
+      "link": "https://www.macrumors.com/2026/04/27/openai-working-on-an-ai-smartphone/",
+      "published": "2026-04-28 20:39",
+      "summary": "Article URL: https://www.macrumors.com/2026/04/27/openai-working-on-an-ai-smartphone/\nComments URL: https://news.ycombinator.com/item?id=47940394\nPoints: 14\n# Comments: 7",
+      "source": "HackerNews AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 3,
+      "level": "📌 NOTABLE",
+      "score_breakdown": {
+        "major_ai_model": {
+          "score": 3,
+          "matched": [
+            "openai"
+          ]
+        }
+      }
+    },
+    {
+      "title": "The Download: Musk and Altman’s legal showdown, and AI’s profit problem",
+      "link": "https://www.technologyreview.com/2026/04/28/1136479/the-download-musk-altman-openai-trial-ai-profit-problem/",
+      "published": "2026-04-28 12:10",
+      "summary": "This is today&#8217;s edition of The Download, our weekday newsletter that provides a daily dose of what&#8217;s going on in the world of technology. Elon Musk and Sam Altman are going to court over OpenAI’s future Elon Musk and OpenAI CEO Sam Altman head to trial this week in a case with sweeping consequences. Ahead&#8230;",
+      "source": "MIT Tech Review",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 3,
+      "level": "📌 NOTABLE",
+      "score_breakdown": {
+        "major_ai_model": {
+          "score": 3,
+          "matched": [
+            "openai"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Cohere acquires, merges with Germany-based startup to create a ‘transatlantic AI powerhouse’",
+      "link": "https://techcrunch.com/2026/04/24/cohere-acquires-merges-with-german-based-startup-to-create-a-transatlantic-ai-powerhouse/",
+      "published": "2026-04-24 21:35",
+      "summary": "Cohere, the Canada-based AI company that makes AI tools for businesses in regulated industries, announced Friday it would merge with Aleph Alpha, a German company that also builds AI systems for businesses and governments.",
+      "source": "TechCrunch AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 3,
+      "level": "📌 NOTABLE",
+      "score_breakdown": {
+        "product_tool": {
+          "score": 2,
+          "matched": [
+            "announce"
+          ]
+        },
+        "industry_trend": {
+          "score": 1,
+          "matched": [
+            "government"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Accel raises $5B to back late-stage bets",
+      "link": "https://techcrunch.com/2026/04/15/accel-raises-5b-to-back-late-stage-bets/",
+      "published": "2026-04-15 17:37",
+      "summary": "Accel announced on Tuesday that it raised $5 billion in fresh capital to back late-stage companies building AI.",
+      "source": "TechCrunch AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 3,
+      "level": "📌 NOTABLE",
+      "score_breakdown": {
+        "product_tool": {
+          "score": 2,
+          "matched": [
+            "announce"
+          ]
+        },
+        "industry_trend": {
+          "score": 1,
+          "matched": [
+            "raise"
+          ]
+        }
+      }
+    },
+    {
+      "title": "After pivoting, Y Combinator grad Glimpse raises $35M led by a16z",
+      "link": "https://techcrunch.com/2026/03/25/a16z-backed-glimpse-raises-new-funds-accelerates-dispute-tracking-automation-for-cpg-brands/",
+      "published": "2026-03-25 13:00",
+      "summary": "Glimpse announced on Wednesday a $35 million Series A led by Andreessen Horowitz, with participation from 8VC and YC.",
+      "source": "TechCrunch AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 3,
+      "level": "📌 NOTABLE",
+      "score_breakdown": {
+        "product_tool": {
+          "score": 2,
+          "matched": [
+            "announce"
+          ]
+        },
+        "industry_trend": {
+          "score": 1,
+          "matched": [
+            "raise"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Elon Musk takes the stand in high-profile trial against OpenAI",
+      "link": "https://www.theverge.com/ai-artificial-intelligence/917052/elon-musk-takes-stand-trial-openai-sam-altman",
+      "published": "2026-04-28 19:00",
+      "summary": "Elon Musk officially began his testimony in the trial he has brought against OpenAI CEO Sam Altman and company president Greg Brockman. The three were on the initial founding team of OpenAI, with Musk investing up to $38 million early on before the co-founders' relationship soured over disagreements over company structure and mission, including whether [&#8230;]",
+      "source": "The Verge AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 3,
+      "level": "📌 NOTABLE",
+      "score_breakdown": {
+        "major_ai_model": {
+          "score": 3,
+          "matched": [
+            "openai"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Musk and Altman go to court",
+      "link": "https://www.theverge.com/podcast/919534/musk-openai-trial-vergecast",
+      "published": "2026-04-28 14:47",
+      "summary": "The trial between Elon Musk and OpenAI is officially upon us. And it is going to be a mess. As the two sides fight over the early days of AI, who deserves credit and cash for what, and more, we're likely to spend the next few weeks hearing a lot of important people's secrets made [&#8230;]",
+      "source": "The Verge AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 3,
+      "level": "📌 NOTABLE",
+      "score_breakdown": {
+        "major_ai_model": {
+          "score": 3,
+          "matched": [
+            "openai"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Jury selection in Musk v. Altman: ‘People don’t like him’",
+      "link": "https://www.theverge.com/tech/919469/elon-musk-dont-like",
+      "published": "2026-04-28 03:39",
+      "summary": "On Monday, the courtroom battle between Elon Musk and Sam Altman over alleged broken promises at OpenAI started, as usual, with jury selection. The only tricky part? A lot of the prospective jurors already have an opinion about Elon Musk, and it's not a good one. The Verge reporter Elizabeth Lopatto, who was there at [&#8230;]",
+      "source": "The Verge AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 3,
+      "level": "📌 NOTABLE",
+      "score_breakdown": {
+        "major_ai_model": {
+          "score": 3,
+          "matched": [
+            "openai"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Evaluating CUDA Tile for AI Workloads on Hopper and Blackwell GPUs",
+      "link": "https://arxiv.org/abs/2604.23466",
+      "published": "2026-04-29 00:07",
+      "summary": "Article URL: https://arxiv.org/abs/2604.23466\nComments URL: https://news.ycombinator.com/item?id=47942553\nPoints: 2\n# Comments: 0",
+      "source": "HackerNews AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 2,
+      "level": "📝 GENERAL",
+      "score_breakdown": {
+        "industry_trend": {
+          "score": 1,
+          "matched": [
+            "us "
+          ]
+        },
+        "research_paper": {
+          "score": 1,
+          "matched": [
+            "arxiv"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Building simulations and/or digital twins with AI",
+      "link": "https://github.com/plugboard-dev/plugboard",
+      "published": "2026-04-28 21:00",
+      "summary": "Article URL: https://github.com/plugboard-dev/plugboard\nComments URL: https://news.ycombinator.com/item?id=47940695\nPoints: 1\n# Comments: 1",
+      "source": "HackerNews AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 2,
+      "level": "📝 GENERAL",
+      "score_breakdown": {
+        "ai_framework": {
+          "score": 2,
+          "matched": [
+            "github"
+          ]
+        }
+      }
+    },
+    {
+      "title": "AI Talent agent making direct intros to 100s of startups",
+      "link": "https://www.getclera.com",
+      "published": "2026-04-28 20:14",
+      "summary": "Article URL: https://www.getclera.com\nComments URL: https://news.ycombinator.com/item?id=47940050\nPoints: 1\n# Comments: 0",
+      "source": "HackerNews AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 2,
+      "level": "📝 GENERAL",
+      "score_breakdown": {
+        "ai_agent": {
+          "score": 2,
+          "matched": [
+            "agent"
+          ]
+        }
+      }
+    },
+    {
+      "title": "The Impact of AI-Generated Text on the Internet",
+      "link": "https://ai-on-the-internet.github.io/",
+      "published": "2026-04-28 20:11",
+      "summary": "Article URL: https://ai-on-the-internet.github.io/\nComments URL: https://news.ycombinator.com/item?id=47940013\nPoints: 2\n# Comments: 0",
+      "source": "HackerNews AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 2,
+      "level": "📝 GENERAL",
+      "score_breakdown": {
+        "ai_framework": {
+          "score": 2,
+          "matched": [
+            "github"
+          ]
+        }
+      }
+    },
+    {
+      "title": "The Download: introducing the Nature issue",
+      "link": "https://www.technologyreview.com/2026/04/23/1136346/the-download-introducing-nature-issue/",
+      "published": "2026-04-23 12:10",
+      "summary": "This is today&#8217;s edition of The Download, our weekday newsletter that provides a daily dose of what&#8217;s going on in the world of technology. Introducing: the Nature issue When we talk about “nature,” we usually mean something untouched by humans. But little of that world exists today.&#160; From microplastics in rainforest wildlife to artificial light&#8230;",
+      "source": "MIT Tech Review",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 2,
+      "level": "📝 GENERAL",
+      "score_breakdown": {
+        "product_tool": {
+          "score": 2,
+          "matched": [
+            "introducing"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Google is launching Search Live globally",
+      "link": "https://techcrunch.com/2026/03/26/google-is-launching-search-live-globally/",
+      "published": "2026-03-26 16:37",
+      "summary": "Search Live allows users to point their phone camera at objects to get real-time assistance, enabling back-and-forth conversations that draw on the visual context from the camera feed.",
+      "source": "TechCrunch AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 2,
+      "level": "📝 GENERAL",
+      "score_breakdown": {
+        "product_tool": {
+          "score": 2,
+          "matched": [
+            "launch"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Listen Labs raises $69M after viral billboard hiring stunt to scale AI customer interviews",
+      "link": "https://venturebeat.com/technology/listen-labs-raises-usd69m-after-viral-billboard-hiring-stunt-to-scale-ai",
+      "published": "2026-01-16 14:01",
+      "summary": "Alfred Wahlforss was running out of options. His startup, Listen Labs, needed to hire over 100 engineers, but competing against Mark Zuckerberg&#x27;s $100 million offers seemed impossible. So he spent $5,000 — a fifth of his marketing budget — on a billboard in San Francisco displaying what looked like gibberish: five strings of random numbers.The numbers were actually AI tokens. Decoded, they led to a coding challenge: build an algorithm to act as a digital bouncer at Berghain, the Berlin nigh",
+      "source": "VentureBeat AI",
+      "category": "AI",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 2,
+      "level": "📝 GENERAL",
+      "score_breakdown": {
+        "industry_trend": {
+          "score": 2,
+          "matched": [
+            "market",
+            "raise"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Open source package with 1 million monthly downloads stole user credentials",
+      "link": "https://arstechnica.com/security/2026/04/open-source-package-with-1-million-monthly-downloads-stole-user-credentials/",
+      "published": "2026-04-27 21:04",
+      "summary": "If you're one of millions using element-data, it's time to check for compromise.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 2,
+      "level": "📝 GENERAL",
+      "score_breakdown": {
+        "ai_framework": {
+          "score": 2,
+          "matched": [
+            "open source"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Self-propagating malware poisons open source software and wipes Iran-based machines",
+      "link": "https://arstechnica.com/security/2026/03/self-propagating-malware-poisons-open-source-software-and-wipes-iran-based-machines/",
+      "published": "2026-03-24 12:38",
+      "summary": "Development houses: It's time to check your networks for infections.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 2,
+      "level": "📝 GENERAL",
+      "score_breakdown": {
+        "ai_framework": {
+          "score": 2,
+          "matched": [
+            "open source"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Cloud service providers ask EU regulator to reinstate VMware partner program",
+      "link": "https://arstechnica.com/information-technology/2026/03/cloud-service-providers-ask-eu-regulator-to-reinstate-vmware-partner-program/",
+      "published": "2026-03-19 21:29",
+      "summary": "Broadcom says the group is misrepresenting market \"realities.\"",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 2,
+      "level": "📝 GENERAL",
+      "score_breakdown": {
+        "industry_trend": {
+          "score": 2,
+          "matched": [
+            "market",
+            "eu "
+          ]
+        }
+      }
+    },
+    {
+      "title": "Supply-chain attack using invisible code hits GitHub and other repositories",
+      "link": "https://arstechnica.com/security/2026/03/supply-chain-attack-using-invisible-code-hits-github-and-other-repositories/",
+      "published": "2026-03-13 20:18",
+      "summary": "Unicode that's invisible to the human eye was largely abandoned—until attackers took notice.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 2,
+      "level": "📝 GENERAL",
+      "score_breakdown": {
+        "ai_framework": {
+          "score": 2,
+          "matched": [
+            "github"
+          ]
+        }
+      }
+    },
+    {
+      "title": "AI researchers want AI to fake \"thinking\" – by Mike Elgan",
+      "link": "https://www.machinesociety.ai/p/ai-researchers-want-ai-to-fake-thinking-247",
+      "published": "2026-04-28 23:52",
+      "summary": "Article URL: https://www.machinesociety.ai/p/ai-researchers-want-ai-to-fake-thinking-247\nComments URL: https://news.ycombinator.com/item?id=47942427\nPoints: 3\n# Comments: 1",
+      "source": "HackerNews AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 1,
+      "level": "📝 GENERAL",
+      "score_breakdown": {
+        "research_paper": {
+          "score": 1,
+          "matched": [
+            "research"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Rebuilding the data stack for AI",
+      "link": "https://www.technologyreview.com/2026/04/27/1136322/rebuilding-the-data-stack-for-ai/",
+      "published": "2026-04-27 13:00",
+      "summary": "Artificial intelligence may be dominating boardroom agendas, but many enterprises are discovering that the biggest obstacle to meaningful adoption is the state of their data. While consumer-facing AI tools have dazzled users with speed and ease, enterprise leaders are discovering that deploying AI at scale requires something far less glamorous but far more consequential: data&#8230;",
+      "source": "MIT Tech Review",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 1,
+      "level": "📝 GENERAL",
+      "score_breakdown": {
+        "industry_trend": {
+          "score": 1,
+          "matched": [
+            "us "
+          ]
+        }
+      }
+    },
+    {
+      "title": "Will fusion power get cheap? Don’t count on it.",
+      "link": "https://www.technologyreview.com/2026/04/23/1136329/fusion-power-cost/",
+      "published": "2026-04-23 10:00",
+      "summary": "Fusion power could provide a steady, zero-emissions source of electricity in the future—if companies can get plants built and running. But a new study suggests that even if that future arrives, it might not come cheap. Technologies tend to get less expensive over time. Lithium-ion batteries are now about 90% cheaper than they were in&#8230;",
+      "source": "MIT Tech Review",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 1,
+      "level": "📝 GENERAL",
+      "score_breakdown": {
+        "research_paper": {
+          "score": 1,
+          "matched": [
+            "study"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Apple’s new CEO, and why Elon Musk wants to buy Cursor for $60B",
+      "link": "https://techcrunch.com/podcast/apples-new-ceo-and-why-elon-musk-wants-to-buy-cursor-for-60b/",
+      "published": "2026-04-24 17:45",
+      "summary": "A new era is on the way for Apple as Tim Cook plans to step down from his CEO role in September,&#160;handing the reins to hardware chief John Ternus.&#160;&#160; Ternus may be inheriting one of the most durable businesses in tech, but&#160;he’s&#160;also stepping into&#160;a very different&#160;ecosystem than the one Cook spent decades shaping. The App [&#8230;]",
+      "source": "TechCrunch AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 1,
+      "level": "📝 GENERAL",
+      "score_breakdown": {
+        "industry_trend": {
+          "score": 1,
+          "matched": [
+            "us "
+          ]
+        }
+      }
+    },
+    {
+      "title": "Tim Cook is stepping down. What happens to Apple now?",
+      "link": "https://techcrunch.com/video/tim-cook-is-stepping-down-what-happens-to-apple-now/",
+      "published": "2026-04-24 14:00",
+      "summary": "Tim Cook plans to step down from his CEO role in September, handing the reins to hardware chief John Ternus.   Ternus may be inheriting one of the most durable businesses in tech, but&#160;he’s&#160;also stepping into&#160;a very different&#160;ecosystemthan the one Cook spent decades shaping. The App Store’s 30% cut is under pressure, the behind-the-scenes power Apple once [&#8230;]",
+      "source": "TechCrunch AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 1,
+      "level": "📝 GENERAL",
+      "score_breakdown": {
+        "industry_trend": {
+          "score": 1,
+          "matched": [
+            "us "
+          ]
+        }
+      }
+    },
+    {
+      "title": "AI startups are eating the venture industry and the returns, so far, are good",
+      "link": "https://techcrunch.com/2026/03/20/ai-startups-are-eating-the-venture-industry-and-the-returns-so-far-are-good/",
+      "published": "2026-03-20 15:41",
+      "summary": "AI startups accounted for 41% of the $128 billion in venture dollars raised by companies on Carta last year — a record-high annual share.",
+      "source": "TechCrunch AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 1,
+      "level": "📝 GENERAL",
+      "score_breakdown": {
+        "industry_trend": {
+          "score": 1,
+          "matched": [
+            "raise"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Iran-linked hackers disrupt operations at US critical infrastructure sites",
+      "link": "https://arstechnica.com/security/2026/04/iran-linked-hackers-disrupt-operations-at-us-critical-infrastructure-sites/",
+      "published": "2026-04-08 20:49",
+      "summary": "As the US and Israel's war has ramped up, so too have hacks on US industrial sites.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 1,
+      "level": "📝 GENERAL",
+      "score_breakdown": {
+        "industry_trend": {
+          "score": 1,
+          "matched": [
+            "us "
+          ]
+        }
+      }
+    },
+    {
+      "title": "New Rowhammer attacks give complete control of machines running Nvidia GPUs",
+      "link": "https://arstechnica.com/security/2026/04/new-rowhammer-attacks-give-complete-control-of-machines-running-nvidia-gpus/",
+      "published": "2026-04-02 17:00",
+      "summary": "GDDRHammer, GeForge and GPUBreach hammer GPU memory in ways that hijack the CPU.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 1,
+      "level": "📝 GENERAL",
+      "score_breakdown": {
+        "industry_trend": {
+          "score": 1,
+          "matched": [
+            "us "
+          ]
+        }
+      }
+    },
+    {
+      "title": "Researchers disclose vulnerabilities in IP KVMs from four manufacturers",
+      "link": "https://arstechnica.com/security/2026/03/researchers-disclose-vulnerabilities-in-ip-kvms-from-4-manufacturers/",
+      "published": "2026-03-17 17:07",
+      "summary": "Internet-exposed devices that give BIOS-level access? What could possibly go wrong?",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 1,
+      "level": "📝 GENERAL",
+      "score_breakdown": {
+        "research_paper": {
+          "score": 1,
+          "matched": [
+            "research"
+          ]
+        }
+      }
+    },
+    {
+      "title": "AI Worries Have Returned to Wall Street. Now Come Earnings",
+      "link": "https://www.wsj.com/tech/ai-worries-have-returned-to-wall-street-now-come-earnings-d680e19c",
+      "published": "2026-04-28 23:58",
+      "summary": "Article URL: https://www.wsj.com/tech/ai-worries-have-returned-to-wall-street-now-come-earnings-d680e19c\nComments URL: https://news.ycombinator.com/item?id=47942480\nPoints: 3\n# Comments: 0",
+      "source": "HackerNews AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "Show HN: InterviewDen – Free voice AI mock interviews for SWE, IB, quant, more",
+      "link": "https://theinterviewden.com/",
+      "published": "2026-04-28 22:57",
+      "summary": "Article URL: https://theinterviewden.com/\nComments URL: https://news.ycombinator.com/item?id=47941987\nPoints: 2\n# Comments: 0",
+      "source": "HackerNews AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "Nvidia executive says AI is more expensive than paying human workers",
+      "link": "https://fortune.com/2026/04/28/nvidia-executive-cost-of-ai-is-greater-than-cost-of-employees/",
+      "published": "2026-04-28 22:15",
+      "summary": "Article URL: https://fortune.com/2026/04/28/nvidia-executive-cost-of-ai-is-greater-than-cost-of-employees/\nComments URL: https://news.ycombinator.com/item?id=47941609\nPoints: 9\n# Comments: 6",
+      "source": "HackerNews AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "Building an AI-Native Company",
+      "link": "https://darkport.co.uk/blog/on-building-an-ai-native-company/",
+      "published": "2026-04-28 22:00",
+      "summary": "Article URL: https://darkport.co.uk/blog/on-building-an-ai-native-company/\nComments URL: https://news.ycombinator.com/item?id=47941445\nPoints: 3\n# Comments: 1",
+      "source": "HackerNews AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "World's First conversational AI skills assessment",
+      "link": "https://news.ycombinator.com/item?id=47941341",
+      "published": "2026-04-28 21:51",
+      "summary": "Two AIs. One conversation. Measure real AI skills. I like to call it LLMs As Assessment (LLMAA?)\nOne AI talks to you. A second one scores every answer in real time.\n\nComments URL: https://news.ycombinator.com/item?id=47941341\nPoints: 1\n# Comments: 0",
+      "source": "HackerNews AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "AI Wellbeing: Measuring and improving the functional pleasure and pain of AIs",
+      "link": "https://www.ai-wellbeing.org/",
+      "published": "2026-04-28 21:13",
+      "summary": "Article URL: https://www.ai-wellbeing.org/\nComments URL: https://news.ycombinator.com/item?id=47940875\nPoints: 1\n# Comments: 0",
+      "source": "HackerNews AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "Preparing for the AI-Enhanced Attacker and the Impact on CISOs",
+      "link": "https://www.armadin.com/blog-posts/prepare-for-the-ai-enhanced-attacker",
+      "published": "2026-04-28 21:11",
+      "summary": "Article URL: https://www.armadin.com/blog-posts/prepare-for-the-ai-enhanced-attacker\nComments URL: https://news.ycombinator.com/item?id=47940843\nPoints: 1\n# Comments: 0",
+      "source": "HackerNews AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "'World models' are AI's latest sensation: what are they and what can they do?",
+      "link": "https://www.nature.com/articles/d41586-026-00820-5",
+      "published": "2026-04-28 20:15",
+      "summary": "Article URL: https://www.nature.com/articles/d41586-026-00820-5\nComments URL: https://news.ycombinator.com/item?id=47940063\nPoints: 4\n# Comments: 0",
+      "source": "HackerNews AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "The missing step between hype and profit",
+      "link": "https://www.technologyreview.com/2026/04/27/1136456/the-missing-step-between-hype-and-profit/",
+      "published": "2026-04-27 16:13",
+      "summary": "This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox first, sign up here. In February, I picked up a flyer at an anti-AI march in London. I can’t say for sure whether or not its writers meant to riff on South Park’s underpants gnomes. But&#8230;",
+      "source": "MIT Tech Review",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "Health-care AI is here. We don’t know if it actually helps patients.",
+      "link": "https://www.technologyreview.com/2026/04/24/1136352/health-care-ai-dont-know-actually-helps-patients/",
+      "published": "2026-04-24 09:00",
+      "summary": "I don’t need to tell you that&#160;AI is everywhere. Or that it is being used, increasingly, in hospitals. Doctors are using AI to help them with note-taking. AI-based tools are trawling through patient records, flagging people who may require certain support or treatments. They are also used to interpret medical exam results and x-rays. A&#8230;",
+      "source": "MIT Tech Review",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "Don’t stop hiring humans — stop hiring the wrong humans, Artisan’s founder says",
+      "link": "https://techcrunch.com/2026/04/23/dont-stop-hiring-humans-stop-hiring-the-wrong-humans-artisans-founder-says/",
+      "published": "2026-04-23 18:49",
+      "summary": "Artisan may be known for their bold “Stop Hiring Humans” campaign but the reality is every founder needs to assemble the right team if they want to scale.",
+      "source": "TechCrunch AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "It’s not just one thing — it’s another thing",
+      "link": "https://techcrunch.com/2026/04/20/ai-writing-its-not-just-this-its-that-barrons/",
+      "published": "2026-04-20 19:37",
+      "summary": "This sentence construction (\"It's not just this — it's that\") has become so common in AI-generated writing that it's no longer just a clue that a piece of writing may be synthetic — it's almost a guarantee.",
+      "source": "TechCrunch AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "Stanford report highlights growing disconnect between AI insiders and everyone else",
+      "link": "https://techcrunch.com/2026/04/13/stanford-report-highlights-growing-disconnect-between-ai-insiders-and-everyone-else/",
+      "published": "2026-04-13 18:55",
+      "summary": "Stanford’s latest AI Index shows a widening gap between experts and the public, with rising anxiety over jobs, healthcare, and the economy.",
+      "source": "TechCrunch AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "Google Translate’s real-time headphone translations feature expands to iOS and more countries",
+      "link": "https://techcrunch.com/2026/03/26/google-translates-real-time-headphone-translations-feature-expands-to-ios-and-more-countries/",
+      "published": "2026-03-26 19:11",
+      "summary": "The real-time headphone translations experience keeps each speaker’s tone, emphasis, and cadence intact, so it’s easier to follow the conversation and tell who’s saying what.",
+      "source": "TechCrunch AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "Snapchat’s new ‘AI Clips’ Lens format turns photos into five-second videos",
+      "link": "https://techcrunch.com/2026/03/24/snapchats-new-ai-clips-lens-format-turns-photos-into-five-second-videos/",
+      "published": "2026-03-24 13:00",
+      "summary": "Snapchat says both experienced and new developers can use the new \"AI Clips\" Lens format to turn a single prompt into a published Lens in minutes without the need for external tools.",
+      "source": "TechCrunch AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "Employees had to restrain a dancing humanoid robot after it went wild at a California restaurant",
+      "link": "https://techcrunch.com/2026/03/19/restaurant-dancing-robot-went-wild-hot-pot-cupertino-haidilao-agibot/",
+      "published": "2026-03-19 21:13",
+      "summary": "A dancing robot in a Haidilao hot pot restaurant boogied down a little too hard.",
+      "source": "TechCrunch AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "Elon Musk appeared more petty than prepared",
+      "link": "https://www.theverge.com/ai-artificial-intelligence/920191/elon-musk-sam-altman-trial-day-one",
+      "published": "2026-04-28 23:17",
+      "summary": "Today the first witness was sworn in in Musk v. Altman: Elon Musk. I was surprised by how flat he seemed. This is not the first time I've seen Musk in court. During his defamation suit, he turned on the charm and the jury responded by finding him not guilty. Today he looked adrift and [&#8230;]",
+      "source": "The Verge AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "Taylor Swift is stepping up the legal war on AI copycats",
+      "link": "https://www.theverge.com/ai-artificial-intelligence/919827/taylor-swift-trademarks-ai-copycats",
+      "published": "2026-04-28 20:30",
+      "summary": "Taylor Swift has been at the center of AI imitation controversies for years, and now, she's become the latest celebrity who's escalating attempts to protect herself from AI copycats. As usual, however, the legal system intersects with technology in complicated ways - and Swift's efforts may be a long shot. In trademark applications filed last [&#8230;]",
+      "source": "The Verge AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "Attack of the killer script kiddies",
+      "link": "https://www.theverge.com/ai-artificial-intelligence/915660/mythos-script-kiddies-hackers-attack-cybersecurity-ai",
+      "published": "2026-04-28 11:00",
+      "summary": "Last August, some of the best cybersecurity teams in the business gathered in Las Vegas to demonstrate the strength of their AI bug-finding systems at DARPA's Artificial Intelligence Cyber Challenge (AIxCC). The tools had scanned 54 million lines of actual software code that DARPA had injected with artificial flaws. The teams were capable enough to [&#8230;]",
+      "source": "The Verge AI",
+      "category": "AI/Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "Why are top university websites serving porn? It comes down to shoddy housekeeping.",
+      "link": "https://arstechnica.com/security/2026/04/why-are-top-university-websites-serving-porn-it-comes-down-to-shoddy-housekeeping/",
+      "published": "2026-04-24 19:00",
+      "summary": "Hundreds of subdomains from dozens of universities have been hijacked by scammers.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "In a first, a ransomware family is confirmed to be quantum-safe",
+      "link": "https://arstechnica.com/security/2026/04/now-even-ransomware-is-using-post-quantum-cryptography/",
+      "published": "2026-04-23 20:41",
+      "summary": "Technically speaking, there's no practical benefit to use PQC. So why is it being used?",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "Microsoft issues emergency update for macOS and Linux ASP.NET threat",
+      "link": "https://arstechnica.com/security/2026/04/microsoft-issues-emergency-update-for-macos-and-linux-asp-net-threat/",
+      "published": "2026-04-22 19:32",
+      "summary": "When authentication fails, things can go very, very wrong.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "Contrary to popular superstition, AES 128 is just fine in a post-quantum world",
+      "link": "https://arstechnica.com/security/2026/04/contrary-to-popular-superstition-aes-128-is-just-fine-in-a-post-quantum-world/",
+      "published": "2026-04-21 12:35",
+      "summary": "A stubborn misconception is hampering the already hard work of quantum readiness.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "US-sanctioned currency exchange says $15 million heist done by \"unfriendly states\"",
+      "link": "https://arstechnica.com/security/2026/04/russia-friendly-exchange-says-western-special-service-behind-15-million-cyberattack/",
+      "published": "2026-04-17 21:28",
+      "summary": "Grinex says needed hacking resources \"available exclusively to... unfriendly states.\"",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "Recent advances push Big Tech closer to the Q-Day danger zone",
+      "link": "https://arstechnica.com/security/2026/04/while-some-big-tech-players-accelerate-pqc-readiness-others-stay-the-course/",
+      "published": "2026-04-17 11:00",
+      "summary": "Here's which players are winning the race to transition to post-quantum crypto.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "“Negative” views of Broadcom driving thousands of VMware migrations, rival says",
+      "link": "https://arstechnica.com/information-technology/2026/04/nutanix-claims-it-has-poached-30000-vmware-customers/",
+      "published": "2026-04-09 19:44",
+      "summary": "Western Union exec says there were \"challenges\" working with Broadcom.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "Thousands of consumer routers hacked by Russia's military",
+      "link": "https://arstechnica.com/security/2026/04/russias-military-hacks-thousands-of-consumer-routers-to-steal-credentials/",
+      "published": "2026-04-08 11:00",
+      "summary": "End-of-life routers in homes and small offices hacked in 120 countries.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "Quantum computers need vastly fewer resources than thought to break vital encryption",
+      "link": "https://arstechnica.com/security/2026/03/new-quantum-computing-advances-heighten-threat-to-elliptic-curve-cryptosystems/",
+      "published": "2026-03-31 18:25",
+      "summary": "No, the sky isn't falling, but Q Day is coming, and it won't be as expensive as thought.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "Google bumps up Q Day deadline to 2029, far sooner than previously thought",
+      "link": "https://arstechnica.com/security/2026/03/google-bumps-up-q-day-estimate-to-2029-far-sooner-than-previously-thought/",
+      "published": "2026-03-25 15:49",
+      "summary": "Company warns entire industry to move off RSA and EC more quickly.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "Widely used Trivy scanner compromised in ongoing supply-chain attack",
+      "link": "https://arstechnica.com/security/2026/03/widely-used-trivy-scanner-compromised-in-ongoing-supply-chain-attack/",
+      "published": "2026-03-20 20:50",
+      "summary": "Admins: Sorry to say, but it's likely a rotate-your-secrets kind of weekend.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    },
+    {
+      "title": "Federal cyber experts called Microsoft's cloud a \"pile of shit,\" approved it anyway",
+      "link": "https://arstechnica.com/information-technology/2026/03/federal-cyber-experts-called-microsofts-cloud-a-pile-of-shit-approved-it-anyway/",
+      "published": "2026-03-18 17:36",
+      "summary": "One Microsoft product was approved despite years of concerns about its security.",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "language": "en",
+      "is_old": false,
+      "dedup_reason": null,
+      "score": 0,
+      "level": "📝 GENERAL",
+      "score_breakdown": {}
+    }
+  ]
+}
