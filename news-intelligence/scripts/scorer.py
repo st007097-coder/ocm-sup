@@ -145,23 +145,31 @@ def main():
     """測試主函數"""
     from deduplicator import deduplicate
     
-    print(f"🎯 Interest Scorer Test - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"🎯 Interest Scorer - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 50)
     
-    # Load RSS data
+    # Load unified data (from unified_collector.py)
+    # Falls back to rss_combined.json if unified not available
+    unified_file = CACHE_DIR / "unified_combined.json"
     rss_file = CACHE_DIR / "rss_combined.json"
     
-    if not rss_file.exists():
-        print("❌ No RSS cache found. Run rss_fetcher.py first.")
+    source_file = unified_file if unified_file.exists() else rss_file
+    
+    if not source_file.exists():
+        print(f"❌ No cache found. Run unified_collector.py or rss_fetcher.py first.")
         return
     
-    with open(rss_file, 'r', encoding='utf-8') as f:
-        rss_data = json.load(f)
+    with open(source_file, 'r', encoding='utf-8') as f:
+        data = json.load(f)
     
-    items = rss_data.get('items', [])
-    print(f"📥 Input: {len(items)} items")
+    items = data.get('items', [])
+    print(f"📥 Input: {len(items)} items from {source_file.name}")
     
-    # Deduplicate first
+    # Check source breakdown if available
+    if 'sources' in data:
+        print(f"   Sources: {data['sources']}")
+    
+    # Deduplicate (safety dedup even though unified_collector already did)
     unique_items, dups, old = deduplicate(items)
     print(f"📊 After dedup: {len(unique_items)} unique items")
     
