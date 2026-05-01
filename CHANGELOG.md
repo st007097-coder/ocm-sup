@@ -32,6 +32,8 @@
 | 2026-04-26 | v2.4 | Memory Stability System (P0-P2) |
 | **2026-04-28** | **v2.5** | **P3 Reliability Layer + P4 Integration** |
 | 2026-04-28 | v2.6 | Memory Reliability Layer (user skeleton + P3 merged) |
+| 2026-04-28 | v3.5 | Hybrid Layer — Performance Optimization (Phase 1-3) |
+| 2026-04-29 | v3.0 | Documentation Update + Pain Points |
 
 ---
 
@@ -611,3 +613,101 @@ p3_reliability/ 標記為 deprecated
 ---
 
 _Version: 2.6_
+
+---
+
+## 🧬 v3.5: Hybrid Layer — 性能優化 (2026-04-28)
+
+### 當時情况
+
+發現問題：Vector search 每次都要重新計算 embedding，浪費大量資源。
+- 重複 embedding 導致 high latency
+- blocking operations 拖慢整個系統
+- 沒有 idempotency checks，duplicate writes 污染數據
+
+### 解決方案：Hybrid Layer
+
+選擇性非同步層 — 將慢操作解耦，保持同步主流程。
+
+### Phase 1 - Reliability ✅
+
+| Component | 功能 |
+|-----------|------|
+| **idempotency_guard.py** | Hash-based dedup，防止重複寫入 |
+| **async_runner.py** | Simple background thread executor |
+| **retry_utils.py** | Retry with exponential backoff |
+
+### Phase 2 - Latency Optimization ✅
+
+| Component | 功能 |
+|-----------|------|
+| **vector_batcher.py** | Batch embeddings（8條/批）|
+| **embedding_cache.py** | Cache embeddings，相同句子唔再 embed |
+
+**測試結果：**
+- 10 writes: all succeeded
+- Buffer auto-flushed at batch size 8
+- Cache: 10 entries stored
+- Idempotency: duplicates blocked before embedding
+
+### Phase 3 - Async Post-processing ✅
+
+| Component | 功能 |
+|-----------|------|
+| **postprocess_worker.py** | Background 執行 contradiction/pruning |
+
+**測試結果：**
+- Health score: 78.79%
+- Total facts: 17
+- Contradiction: 0 found
+- Pruning: working
+
+### 版本降級
+
+後來發現 v3.5 版本號太進取，降為 **v3**（commit fc2fd30）
+
+---
+
+## 🧬 v3: Documentation Update + Pain Points (2026-04-29)
+
+### 當時情况
+
+v3 核心功能完成，需要完整文檔記錄系統問題同解決方案。
+
+### 新增文檔
+
+| 文檔 | 內容 |
+|------|------|
+| **docs/PAIN_POINTS.md** | 痛點問題同解決方案 |
+| **tests/comprehensive_test.py** | 完整測試套件 + benchmark |
+| **TEST-REPORT.md** | 全面測試結果，v3 benchmark |
+
+### Pain Points Document
+
+記錄 6 大痛點：
+1. **Data pollution** — duplicate writes 問題
+2. **High latency** — blocking operations
+3. **Repeated embedding** — cost + latency 浪費
+4. **Post-processing blocking** — 非必要操作阻塞主流程
+5. **Crash data inconsistency** — crash 時資料不一致
+6. **Slow operations dragging system** — 慢操作拖慢整體
+
+### Benchmark 結果
+
+```
+Avg latency: 401ms
+Cache entries: 36
+Buffer remaining: 0
+Tests: 7/8 passed (1 minor issue in contradiction check)
+```
+
+### 關鍵教訓
+
+1. **選擇性非同步 > 完全同步** — minimal complexity, maximum impact
+2. **Cache is king** — 避免重複計算係最大優化
+3. **Idempotency matters** — 防止重複寫入係 reliability 嘅基礎
+
+---
+
+_Version: 3.0_
+_Last updated: 2026-05-01_

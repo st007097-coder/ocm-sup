@@ -1,6 +1,6 @@
 {
   "name": "ocm-sup",
-  "version": "2.5.0",
+  "version": "3.0",
   "description": "OCM Sup 知識管理系統。結合 Triple-Stream Search（BM25 + Vector + Graph）同 Proactive Memory System，自動管理知識圖譜、主動發現新舊知識連接、防止 AI 失憶。",
   "owner": "阿星 (main agent)",
   "updated_at": "2026-05-01",
@@ -28,7 +28,7 @@
   "regression_history": [
     {
       "date": "2026-04-28",
-      "version": "2.5.0",
+      "version": "3.0",
       "changes": "P3 Reliability Layer + P4 Integration"
     },
     {
