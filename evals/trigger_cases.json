@@ -1,0 +1,62 @@
+{
+  "recommended_threshold": 0.33,
+  "should_trigger": [
+    {
+      "text": "search 期哥",
+      "family": "search_request",
+      "expected": "搜索期哥相關信息，返回entity關係"
+    },
+    {
+      "text": "搜索古洞站",
+      "family": "search_request",
+      "expected": "搜索古洞站相關信息"
+    },
+    {
+      "text": "記住呢個",
+      "family": "memory_add",
+      "expected": "將信息加入memory"
+    },
+    {
+      "text": "找到相關",
+      "family": "search_request",
+      "expected": "搜索相關entity"
+    },
+    {
+      "text": "知識圖譜",
+      "family": "graph_view",
+      "expected": "查看實體關係圖"
+    },
+    {
+      "text": "OCM Sup",
+      "family": "system_invocation",
+      "expected": "啟動完整系統"
+    }
+  ],
+  "should_not_trigger": [
+    {
+      "text": "創建一個新技能",
+      "family": "skill_creation",
+      "reason": "這是 skill creation，不是 knowledge search"
+    },
+    {
+      "text": "天氣怎麼樣",
+      "family": "weather",
+      "reason": "天氣查詢，不是知識搜索"
+    },
+    {
+      "text": "生成圖片",
+      "family": "image_gen",
+      "reason": "圖片生成，不是知識管理"
+    },
+    {
+      "text": "幫我寫代碼",
+      "family": "coding",
+      "reason": "編程任務，不是知識搜索"
+    },
+    {
+      "text": "今日新聞",
+      "family": "news_request",
+      "reason": "新聞請求，應使用 news-intelligence"
+    }
+  ]
+}

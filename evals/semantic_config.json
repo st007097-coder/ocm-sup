@@ -1,0 +1,82 @@
+{
+  "recommended_threshold": 0.33,
+  "fallback_positive_concepts": [
+    "knowledge_search",
+    "entity_lookup",
+    "graph_query"
+  ],
+  "positive_concepts": {
+    "search_request": {
+      "weight": 0.35,
+      "phrases": [
+        "search",
+        "搜索",
+        "查找",
+        "找",
+        "查",
+        "find",
+        "lookup"
+      ]
+    },
+    "memory_add": {
+      "weight": 0.25,
+      "phrases": [
+        "記住",
+        "remember",
+        "存入記憶",
+        "加入memory",
+        "保存",
+        "記錄"
+      ]
+    },
+    "entity_query": {
+      "weight": 0.20,
+      "phrases": [
+        "entity",
+        "實體",
+        "關係圖",
+        "知識圖譜",
+        "graph"
+      ]
+    },
+    "triple_stream": {
+      "weight": 0.10,
+      "phrases": [
+        "triple-stream",
+        "三流搜索",
+        "BM25",
+        "vector"
+      ]
+    },
+    "proactive": {
+      "weight": 0.10,
+      "phrases": [
+        "proactive",
+        "主動發現",
+        "discovery"
+      ]
+    }
+  },
+  "negative_concepts": {
+    "weather": {
+      "weight": -0.5,
+      "phrases": ["天氣", "weather", "溫度"]
+    },
+    "coding": {
+      "weight": -0.5,
+      "phrases": ["代碼", "code", "編程", "python", "寫code"]
+    },
+    "image_gen": {
+      "weight": -0.5,
+      "phrases": ["圖片", "image", "生成圖片"]
+    },
+    "news": {
+      "weight": -0.4,
+      "phrases": ["新聞", "news", "今日資訊"]
+    },
+    "skill_creation": {
+      "weight": -0.3,
+      "phrases": ["創建技能", "新建 skill", "create skill"]
+    }
+  }
+}

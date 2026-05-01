@@ -1,0 +1,55 @@
+{
+  "name": "ocm-sup",
+  "version": "2.5.0",
+  "description": "OCM Sup 知識管理系統。結合 Triple-Stream Search（BM25 + Vector + Graph）同 Proactive Memory System，自動管理知識圖譜、主動發現新舊知識連接、防止 AI 失憶。",
+  "owner": "阿星 (main agent)",
+  "updated_at": "2026-05-01",
+  "review_cadence": "monthly",
+  "status": "active",
+  "maturity_tier": "library",
+  "lifecycle_stage": "production",
+  "tags": ["knowledge", "search", "graph", "memory", "entity", "triple-stream"],
+  "skill_type": "knowledge_management",
+  "evals": {
+    "trigger_cases": 6,
+    "last_run": "2026-05-01"
+  },
+  "components": {
+    "triple_stream_search": "BM25 + Vector + Graph 三流搜索",
+    "knowledge_graph": "Entity 關係管理",
+    "proactive_discovery": "自動發現新舊連接",
+    "memory_system": "防止 AI 失憶"
+  },
+  "constraints": {
+    "vector_model_required": true,
+    "wiki_sync_optional": true,
+    "memory_backup_recommended": true
+  },
+  "regression_history": [
+    {
+      "date": "2026-04-28",
+      "version": "2.5.0",
+      "changes": "P3 Reliability Layer + P4 Integration"
+    },
+    {
+      "date": "2026-04-26",
+      "version": "2.4.0",
+      "changes": "Memory Stability System (P0-P2)"
+    },
+    {
+      "date": "2026-04-25",
+      "version": "2.3.0",
+      "changes": "AI 失憶問題研究 — Proactive Memory System"
+    },
+    {
+      "date": "2026-04-18",
+      "version": "2.0.0",
+      "changes": "7-Dir 全部完成"
+    },
+    {
+      "date": "2026-03-29",
+      "version": "0.1.0",
+      "changes": "阿星誕生"
+    }
+  ]
+}
