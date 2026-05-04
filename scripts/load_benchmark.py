@@ -23,10 +23,10 @@ from datetime import datetime
 from pathlib import Path
 from collections import defaultdict
 
-sys.path.insert(0, '/root/.openclaw/workspace/OCM-Sup/scripts')
+sys.path.insert(0, '/home/jacky/.openclaw/workspace/OCM-Sup/scripts')
 from triple_stream_search import TripleStreamSearch
 
-WIKI_PATH = '/root/.openclaw/workspace/wiki'
+WIKI_PATH = '/home/jacky/.openclaw/workspace/wiki'
 
 # Test queries
 QUERIES = [

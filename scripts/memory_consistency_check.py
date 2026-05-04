@@ -32,10 +32,10 @@ class MemoryConsistencyChecker:
     
     def __init__(
         self,
-        struct_dir: str = "/root/.openclaw/workspace/memory/structured",
-        vector_cache: str = "/root/.openclaw/workspace/memory/vector_store.jsonl",
-        graph_store: str = "/root/.openclaw/workspace/memory/graph_store.jsonl",
-        validated_db: str = "/root/.openclaw/workspace/memory/checkpoints/validated_memories.jsonl",
+        struct_dir: str = "/home/jacky/.openclaw/workspace/memory/structured",
+        vector_cache: str = "/home/jacky/.openclaw/workspace/memory/vector_store.jsonl",
+        graph_store: str = "/home/jacky/.openclaw/workspace/memory/graph_store.jsonl",
+        validated_db: str = "/home/jacky/.openclaw/workspace/memory/checkpoints/validated_memories.jsonl",
     ):
         self.struct_dir = Path(struct_dir)
         self.vector_cache = Path(vector_cache)

@@ -23,7 +23,7 @@ from datetime import datetime, timedelta
 from typing import Dict, List, Optional
 
 # Add Triple-Stream Search to path
-sys.path.insert(0, '/root/.openclaw/workspace/skills/triple-stream-search/scripts')
+sys.path.insert(0, '/home/jacky/.openclaw/workspace/skills/triple-stream-search/scripts')
 
 
 class SessionStartMemoryLoader:
@@ -40,10 +40,10 @@ class SessionStartMemoryLoader:
     
     def __init__(
         self,
-        memory_dir: str = "/root/.openclaw/workspace/memory",
-        session_summary_dir: str = "/root/.openclaw/workspace/memory/session_summaries",
-        must_keep_file: str = "/root/.openclaw/workspace/memory/must_keep_facts.md",
-        wiki_path: str = "/root/.openclaw/workspace/wiki",
+        memory_dir: str = "/home/jacky/.openclaw/workspace/memory",
+        session_summary_dir: str = "/home/jacky/.openclaw/workspace/memory/session_summaries",
+        must_keep_file: str = "/home/jacky/.openclaw/workspace/memory/must_keep_facts.md",
+        wiki_path: str = "/home/jacky/.openclaw/workspace/wiki",
         days_back: int = 7,
     ):
         self.memory_dir = Path(memory_dir)

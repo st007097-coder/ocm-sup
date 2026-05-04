@@ -9,7 +9,7 @@ import json
 import argparse
 
 # Add scripts path
-sys.path.insert(0, '/root/.openclaw/workspace/skills/triple-stream-search/scripts')
+sys.path.insert(0, '/home/jacky/.openclaw/workspace/skills/triple-stream-search/scripts')
 
 from triple_stream_search import TripleStreamSearch
 
@@ -18,7 +18,7 @@ def main():
     parser.add_argument('query', help='Search query')
     parser.add_argument('--top-k', type=int, default=5, help='Number of results')
     parser.add_argument('--format', choices=['text', 'json'], default='text', help='Output format')
-    parser.add_argument('--wiki-path', default='/root/.openclaw/workspace/wiki', help='Wiki path')
+    parser.add_argument('--wiki-path', default='/home/jacky/.openclaw/workspace/wiki', help='Wiki path')
     
     args = parser.parse_args()
     

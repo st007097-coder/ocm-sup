@@ -86,7 +86,7 @@ class FrontstageGuard:
     
     def __init__(
         self,
-        state_dir: str = "/root/.openclaw/workspace/OCM-Sup/scripts/continuity"
+        state_dir: str = "/home/jacky/.openclaw/workspace/OCM-Sup/scripts/continuity"
     ):
         self.state_dir = Path(state_dir)
         

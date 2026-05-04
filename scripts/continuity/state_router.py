@@ -126,8 +126,8 @@ class StateRouter:
     
     def __init__(
         self,
-        wiki_path: str = "/root/.openclaw/workspace/wiki",
-        state_dir: str = "/root/.openclaw/workspace/OCM-Sup/scripts/continuity"
+        wiki_path: str = "/home/jacky/.openclaw/workspace/wiki",
+        state_dir: str = "/home/jacky/.openclaw/workspace/OCM-Sup/scripts/continuity"
     ):
         self.wiki_path = Path(wiki_path)
         self.state_dir = Path(state_dir)

@@ -56,8 +56,8 @@ class OCMGraphIntegration:
     
     def __init__(
         self,
-        wiki_path: str = "/root/.openclaw/workspace/wiki",
-        ocm_sup_path: str = "/root/.openclaw/workspace/OCM-Sup"
+        wiki_path: str = "/home/jacky/.openclaw/workspace/wiki",
+        ocm_sup_path: str = "/home/jacky/.openclaw/workspace/OCM-Sup"
     ):
         self.wiki_path = Path(wiki_path)
         self.ocm_sup_path = Path(ocm_sup_path)

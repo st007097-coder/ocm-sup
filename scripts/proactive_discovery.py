@@ -19,7 +19,7 @@ from datetime import datetime, timedelta
 from collections import defaultdict
 from typing import Dict, List, Set, Tuple, Optional
 
-sys.path.insert(0, '/root/.openclaw/workspace/skills/triple-stream-search/scripts')
+sys.path.insert(0, '/home/jacky/.openclaw/workspace/skills/triple-stream-search/scripts')
 
 from triple_stream_search import TripleStreamSearch
 
@@ -34,7 +34,7 @@ class ProactiveDiscovery:
     4. Generate discovery reports
     """
     
-    def __init__(self, wiki_path: str = "/root/.openclaw/workspace/wiki"):
+    def __init__(self, wiki_path: str = "/home/jacky/.openclaw/workspace/wiki"):
         self.wiki_path = Path(wiki_path)
         self.search = TripleStreamSearch(wiki_path=wiki_path)
         self.graph = self.search.graph_channel
@@ -44,7 +44,7 @@ class ProactiveDiscovery:
         self.suggested_updates: List[Dict] = []
         
         # Load previous state
-        self.state_file = Path("/root/.openclaw/scripts/.proactive_state.json")
+        self.state_file = Path("/home/jacky/.openclaw/scripts/.proactive_state.json")
         self.previous_entities: Set[str] = set()
         self.load_state()
     
@@ -240,7 +240,7 @@ class ProactiveDiscovery:
     
     def _get_learned_confidence(self, from_type: str, to_type: str, rel_type: str) -> float:
         """Get learned confidence from previous suggestions"""
-        learning_file = Path("/root/.openclaw/scripts/.relationship_learning.json")
+        learning_file = Path("/home/jacky/.openclaw/scripts/.relationship_learning.json")
         if not learning_file.exists():
             return 0.0
         
@@ -279,7 +279,7 @@ class ProactiveDiscovery:
     
     def record_suggestion_outcome(self, suggestion: Dict, accepted: bool):
         """Record whether a suggestion was accepted or rejected for learning"""
-        learning_file = Path("/root/.openclaw/scripts/.relationship_learning.json")
+        learning_file = Path("/home/jacky/.openclaw/scripts/.relationship_learning.json")
         learning = {'accepted': {}, 'rejected': {}, 'total': 0}
         
         if learning_file.exists():
@@ -567,7 +567,7 @@ def main():
         print("\n" + report)
         
         # Save report
-        report_path = Path("/root/.openclaw/scripts/proactive_discovery_report.md")
+        report_path = Path("/home/jacky/.openclaw/scripts/proactive_discovery_report.md")
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(report, encoding='utf-8')
         print(f"\n📄 Report saved to: {report_path}")

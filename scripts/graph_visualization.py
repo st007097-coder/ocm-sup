@@ -17,7 +17,7 @@ from pathlib import Path
 from collections import defaultdict
 from typing import Dict, List, Set, Optional
 
-sys.path.insert(0, '/root/.openclaw/workspace/skills/triple-stream-search/scripts')
+sys.path.insert(0, '/home/jacky/.openclaw/workspace/skills/triple-stream-search/scripts')
 
 from triple_stream_search import TripleStreamSearch
 
@@ -31,7 +31,7 @@ class GraphVisualization:
     - HTML: Interactive viewer
     """
     
-    def __init__(self, wiki_path: str = "/root/.openclaw/workspace/wiki"):
+    def __init__(self, wiki_path: str = "/home/jacky/.openclaw/workspace/wiki"):
         self.wiki_path = Path(wiki_path)
         self.search = TripleStreamSearch(wiki_path=wiki_path)
         self.graph = self.search.graph_channel
@@ -383,7 +383,7 @@ def main():
         suffix = args.format
         if args.focus:
             suffix = f"{args.focus}_{suffix}"
-        output_path = Path(f"/root/.openclaw/scripts/knowledge_graph_{suffix}.{args.format if args.format != 'html' else 'html'}")
+        output_path = Path(f"/home/jacky/.openclaw/scripts/knowledge_graph_{suffix}.{args.format if args.format != 'html' else 'html'}")
     
     if not args.no_save:
         viz.save_output(args.format, output_path, args.focus, args.depth)

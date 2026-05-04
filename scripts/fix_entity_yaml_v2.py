@@ -182,7 +182,7 @@ def check_and_fix_file(filepath: Path) -> tuple[bool, bool, str]:
 
 
 def main():
-    wiki_path = Path("/root/.openclaw/workspace/wiki")
+    wiki_path = Path("/home/jacky/.openclaw/workspace/wiki")
     
     # Find all markdown files
     md_files = list(wiki_path.rglob("*.md"))

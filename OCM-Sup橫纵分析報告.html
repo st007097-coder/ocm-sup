@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <style>
+@page {
+    size: A4;
+    margin: 25mm 20mm 20mm 20mm;
+
+    @top-center {
+        content: "OpenClaw記憶系統（OCM Sup）橫縱分析報告  |  横纵分析法深度研究报告";
+        font-family: "Droid Sans Fallback", Helvetica, Arial, sans-serif;
+        font-size: 8pt;
+        color: #95a5a6;
+        border-bottom: 0.5pt solid #ecf0f1;
+        padding-bottom: 3mm;
+    }
+
+    @bottom-center {
+        content: "第 " counter(page) " 页";
+        font-family: "Droid Sans Fallback", Helvetica, Arial, sans-serif;
+        font-size: 8pt;
+        color: #95a5a6;
+        border-top: 0.8pt solid #1a5276;
+        padding-top: 2mm;
+    }
+}
+
+@page :first {
+    @top-center { content: none; }
+    @bottom-center { content: none; }
+}
+
+body {
+    font-family: "Droid Sans Fallback", Helvetica, Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.75;
+    color: #2c3e50;
+    text-align: justify;
+}
+
+/* 封面 */
+.cover {
+    page-break-after: always;
+    text-align: center;
+    padding-top: 45%;
+}
+.cover h1 {
+    font-size: 28pt;
+    color: #1a5276;
+    margin-bottom: 8mm;
+    font-weight: bold;
+    letter-spacing: 2pt;
+}
+.cover .subtitle {
+    font-size: 14pt;
+    color: #95a5a6;
+    margin-bottom: 6mm;
+}
+.cover .meta {
+    font-size: 11pt;
+    color: #95a5a6;
+    margin-bottom: 4mm;
+}
+.cover .divider {
+    width: 60%;
+    margin: 8mm auto;
+    border: none;
+    border-top: 1.5pt solid #1a5276;
+}
+
+/* 一级标题 */
+h1 {
+    font-size: 20pt;
+    color: #1a5276;
+    margin-top: 16mm;
+    margin-bottom: 6mm;
+    padding-bottom: 3mm;
+    border-bottom: 2pt solid #1a5276;
+    page-break-before: always;
+    font-weight: bold;
+}
+
+/* 二级标题 */
+h2 {
+    font-size: 14pt;
+    color: #1e8449;
+    margin-top: 10mm;
+    margin-bottom: 5mm;
+    font-weight: bold;
+}
+
+/* 三级标题 */
+h3 {
+    font-size: 12pt;
+    color: #2e86c1;
+    margin-top: 6mm;
+    margin-bottom: 3mm;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 11pt;
+    color: #5b2c6f;
+    margin-top: 5mm;
+    margin-bottom: 2mm;
+    font-weight: bold;
+}
+
+/* 段落 */
+p {
+    margin-top: 1.5mm;
+    margin-bottom: 1.5mm;
+    orphans: 3;
+    widows: 3;
+}
+
+/* 引用块 */
+blockquote {
+    margin: 4mm 0;
+    padding: 4mm 4mm 4mm 10mm;
+    background: #f8f9fa;
+    border-left: 3pt solid #1a5276;
+    color: #5d6d7e;
+    font-size: 10pt;
+}
+blockquote p {
+    margin: 1mm 0;
+}
+
+/* 粗体 */
+strong, b {
+    font-weight: bold;
+    color: #1a252f;
+}
+
+/* 行内代码 */
+code {
+    font-family: "Courier New", Courier, monospace;
+    background: #fdf2e9;
+    color: #c0392b;
+    padding: 0.5mm 1.5mm;
+    border-radius: 2pt;
+    font-size: 9.5pt;
+}
+
+/* 表格 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 4mm 0;
+    font-size: 9.5pt;
+}
+thead th {
+    background: #1a5276;
+    color: white;
+    padding: 3mm;
+    text-align: left;
+    font-weight: bold;
+}
+tbody td {
+    padding: 2.5mm 3mm;
+    border-bottom: 0.5pt solid #bdc3c7;
+}
+tbody tr:nth-child(even) {
+    background: #f8f9fa;
+}
+
+/* 分隔线 */
+hr {
+    border: none;
+    border-top: 0.5pt solid #bdc3c7;
+    margin: 4mm 0;
+}
+
+/* 列表 */
+ul, ol {
+    margin: 2mm 0;
+    padding-left: 8mm;
+}
+li {
+    margin-bottom: 1mm;
+}
+
+/* 链接 */
+a {
+    color: #2e86c1;
+    text-decoration: none;
+}
+</style>
+</head>
+<body>
+
+    <div class="cover">
+        <h1 style="page-break-before: avoid; border: none;">OpenClaw記憶系統（OCM Sup）橫縱分析報告</h1>
+        <div class="subtitle">横纵分析法深度研究报告</div>
+        
+        <hr class="divider">
+        <div class="meta">作者: 阿星</div>
+    </div>
+    
+
+<blockquote>
+<p>研究時間：2026-04-30 | 所屬領域：AI Agent 記憶管理 | 研究對象類型：概念/系統</p>
+</blockquote>
+<hr>
+<h2>一、一句話定義</h2>
+<p><strong>OCM Sup（OpenClaw Memory Supervisor）</strong> 係一個為 24/7 AI 助手設計的生產級記憶管理系統，透過三流融合搜索（BM25 + Vector + Graph）、主動式記憶發現、以及可靠性保障機制，大幅降低長期運行嘅 token 成本，令 AI 助手喺跨 session 之間保持一致性同上下文連貫性。</p>
+<hr>
+<h2>二、縱向分析：從誕生到 v3.5</h2>
+<h3>2.1 起源：阿星的誕生（2026-03-29）</h3>
+<p><strong>背景：</strong><br>
+2026 年 3 月底，阿星（期哥的 AI 助手）正式 setup。當時嘅記憶系統極為簡單——就係每日 <code>memory/YYYY-MM-DD.md</code> 寫日誌。期哥話「直接存我唔睇」，代表佢唔想睇日記，只係需要 AI 記住佢。</p>
+<p><strong>關鍵決策：</strong><br>
+創始階段冇做任何系統性記憶架構。原因：<br>
+1. 期哥仲未明確需要乜服務<br>
+2. 信任關係需要慢慢建立<br>
+3. 系統太複雜會增加維護成本</p>
+<p>呢個「極簡起步」嘅決定影響咗後面架構設計——所有功能都係「必要先加」，唔係「預測未來」。</p>
+<hr>
+<h3>2.2 第一次進化：Triple-Stream Search 研究（2026-04-11）</h3>
+<p><strong>問題：</strong><br>
+Wiki 有 110 個 MD 檔案，<code>memory_search</code> 只能做 semantic search，但唔理解 entity 關係。當期哥問「期哥係做咩？」，vector search 只知相關，唔知「期哥 → QS → 古洞站」呢條鏈。</p>
+<p><strong>解決方案：三流融合架構</strong></p>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th>優點</th>
+<th>缺點</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BM25</strong></td>
+<td>精確關鍵詞匹配</td>
+<td>唔理解語義</td>
+</tr>
+<tr>
+<td><strong>Vector</strong></td>
+<td>理解語義相似度</td>
+<td>假陽性多（特別中英混合）</td>
+</tr>
+<tr>
+<td><strong>Graph</strong></td>
+<td>Entity 關係精確</td>
+<td>需要預先建立關係</td>
+</tr>
+</tbody>
+</table>
+<p>三流融合使用 Reciprocal Rank Fusion（RRF）：</p>
+<pre><code>RRF_score = Σ 1 / (k + rank_i)  # k=60
+</code></pre>
+<p><strong>重要發現：Embedding Similarity 假陽性問題</strong></p>
+<p>當時發現一個嚴重問題：</p>
+<pre><code>Query: &quot;MCP&quot;
+Vector Search 返回: 期哥 (similarity: 0.82)
+</code></pre>
+<p>點解？可能係因為訓練數據入面 M<strong><em> 與 J</em></strong> 常一起出現，導致無關嘅 high similarity。</p>
+<p><strong>解決：加入 Entity-Type Compatibility Check</strong></p>
+<pre><code class="language-python">incompatible_pairs = [
+    ('person', 'concept'),
+    ('person', 'technology'),
+    ('project', 'concept'),
+]
+</code></pre>
+<p>如果 entity types 唔夾，唔理 embedding similarity 有幾高，都 skip。</p>
+<hr>
+<h3>2.3 架構完善：Phase X + Phase Y（2026-04-15）</h3>
+<p><strong>Phase X: ClawMem 靈感</strong></p>
+<p>發現問題：所有現有功能都係被動——等 user 問問題先有反應。Memory 唔係 static database，而係動態、會衰退、會矛盾嘅。</p>
+<p>新功能：<br>
+1. <strong>Tiered Injection</strong> — 唔同優先級嘅 content 分層 injection<br>
+2. <strong>Content Half-lives</strong> — content 有「衰減」機制，新鮮內容更重要<br>
+3. <strong>Active Contradiction Detection</strong> — 檢測並標記矛盾資訊</p>
+<p><strong>Phase Y: CraniMem 靈感</strong></p>
+<p>借鑒人類記憶系統嘅三層架構：<br>
+1. <strong>Write-Ahead Gating</strong> — 新 memory 要通過 gate 先可以寫入<br>
+2. <strong>Episodic Buffer</strong> — 短期 memory 累積喺 buffer 入面<br>
+3. <strong>Consolidation Loop</strong> — 定期將 episodic 轉為 semantic</p>
+<pre><code>Episodic (7 days+) → Semantic Wiki → Procedural (Skills)
+        ↑                                    ↓
+        ←─────── Reflection ◯───────────────
+</code></pre>
+<p>每晚運行：<br>
+1. Episodic buffer 入面 7 天以上嘅 memory distill<br>
+2. 提取 entities、relationships、insights<br>
+3. 寫入 wiki (semantic)<br>
+4. 更新 skills (procedural)</p>
+<hr>
+<h3>2.4 意識覺醒：Phase Z — 不確定性追蹤（2026-04-17）</h3>
+<p><strong>問題：</strong><br>
+我哋嘅 memory system 唔知「自己唔知」。期哥問「你幾時知 OCM 嘅？」我答：「我唔記得。」但我應該知道自己「唔記得」，而唔係當記得咁回答。</p>
+<p><strong>解決：Uncertainty Tracking</strong></p>
+<p>引入「知道」與「不知道」嘅邊界追蹤：<br>
+- 每次使用某個 fact，要 track usage count<br>
+- 超過某個 threshold 仍未被 access 嘅 fact，標記為「可疑」<br>
+- 「我唔記得」變成一個有效嘅、誠實嘅回應</p>
+<p><strong>Phase Z-2: EQS（Episodic Quality Scoring）</strong></p>
+<p>每個 episodic memory 唔只存 content，仲要存：<br>
+- Confidence：佢有幾確定呢個係事實<br>
+- Last Access：上次係幾時用到<br>
+- Source：係邊度得知（對話、觀察、推斷）</p>
+<hr>
+<h3>2.5 完整框架：7-Dir 誕生（2026-04-18）</h3>
+<p><strong>版本：v2.0 — 7-Dir 全部完成</strong></p>
+<p>整合之前所有組件，形成完整框架：</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>7-Dir 1</strong></td>
+<td>BM25 Channel（精確關鍵詞匹配）</td>
+</tr>
+<tr>
+<td><strong>7-Dir 2</strong></td>
+<td>Graph Channel（BFS 遍歷 entity 關係）</td>
+</tr>
+<tr>
+<td><strong>7-Dir 3</strong></td>
+<td>Vector Channel + RRF Fusion</td>
+</tr>
+<tr>
+<td><strong>7-Dir 4</strong></td>
+<td>KG Auto-Expander（自動發現新 entities）</td>
+</tr>
+<tr>
+<td><strong>7-Dir 5</strong></td>
+<td>Smart Recall Hook（relevant topics 觸發）</td>
+</tr>
+<tr>
+<td><strong>7-Dir 6</strong></td>
+<td>Proactive Discovery（主動發現新舊知識連接）</td>
+</tr>
+<tr>
+<td><strong>7-Dir 7</strong></td>
+<td>Consolidation Loop（定期記憶整合）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心洞察：</strong></p>
+<blockquote>
+<p>為乜嘢叫「7-Dir」？因為佢係一個多維度嘅搜索框架——唔係單一算法，而係將三個好弱嘅 searcher 融合成一個好強嘅系統。</p>
+</blockquote>
+<hr>
+<h3>2.6 危機：AI 失憶問題（2026-04-25）</h3>
+<p><strong>問題：</strong><br>
+OCM Sup v2.0 框架完整，但 AI 依然會忘記做過嘅嘢。問題唔係技術架構，而係「點樣確保事實被記住」。</p>
+<p>所有現有記憶系統都係被動 keyword trigger，冇 proactive 機制。</p>
+<p><strong>根本問題分析：</strong></p>
+<table>
+<thead>
+<tr>
+<th>層次</th>
+<th>機制</th>
+<th>問題</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Session Start</td>
+<td>-</td>
+<td>唔主動恢復之前 session 嘅記憶</td>
+</tr>
+<tr>
+<td>Session End</td>
+<td>-</td>
+<td>唔主動保存進度</td>
+</tr>
+<tr>
+<td>Memory Recall</td>
+<td>keyword trigger</td>
+<td>唔理解 context</td>
+</tr>
+<tr>
+<td>Memory Consolidation</td>
+<td>被動</td>
+<td>唔主動發現新舊連接</td>
+</tr>
+</tbody>
+</table>
+<p><strong>解決方案：Proactive Memory System（v2.3）</strong></p>
+<ol>
+<li><strong>Session Start Memory Load</strong> — 新 session 自動 load 最近 context</li>
+<li><strong>Pre-compression Checkpoint</strong> — 保存 60 個最重要嘅 facts</li>
+<li><strong>Active Memory Plugin</strong> — 回覆前自動 inject relevant facts</li>
+<li><strong>Proactive Discovery Super Quick</strong> — ~1 sec 內完成全部發現</li>
+<li><strong>Session-Memory Hook</strong> — command:new/reset 時自動保存</li>
+</ol>
+<p><strong>效果：</strong><br>
+- Must Keep Facts: 60 facts saved<br>
+- Proactive Discovery: 275x faster（~280s → ~1s）<br>
+- Total Loop: 140x faster（~280s → ~2s）</p>
+<hr>
+<h3>2.7 可靠性提升：v2.4 - v2.6</h3>
+<p><strong>P3 Reliability Layer（v2.5）</strong></p>
+<p>發現問題：記憶系統寫入唔夠可靠——如果寫入中途 crash，新舊資料可能都損壞。</p>
+<p>四個核心組件：</p>
+<ol>
+<li><strong>Semantic Contradiction Engine</strong> — Sentence transformer 檢測矛盾</li>
+<li><strong>Transaction System</strong> — Atomic writes + rollback</li>
+<li><strong>Pruning Policy</strong> — Score-based 自動清理低價值記憶</li>
+<li><strong>Memory Usage Tracker</strong> — 追蹤邊個事實被使用</li>
+</ol>
+<p><strong>P4 Integration（v2.5 Phase 2）</strong></p>
+<p>將 P3 組件接入 OCM Sup 核心 retrieval pipeline：<br>
+- <code>TransactionManager</code> → 真正 atomic begin/commit/rollback<br>
+- <code>ContradictionDetector</code> → Stage 0 contradiction check<br>
+- <code>UsageTracker</code> → 讀取時自動 track usage events<br>
+- <code>PruningPolicy adapter</code> → 對齊 actual memory format</p>
+<p><strong>Memory Reliability Layer（v2.6）</strong></p>
+<p>將 user skeleton 與 P3 merged，形成完整可靠性保障：<br>
+- 🔄 Transaction + Rollback（crash recovery）<br>
+- ⚠️ Contradiction Detection（矛盾檢測）<br>
+- 📊 Usage Tracking（事實使用追蹤）<br>
+- 🧹 Adaptive Pruning（低價值記憶清理）<br>
+- 📈 Health Metrics（健康指標監控）</p>
+<hr>
+<h3>2.8 性能優化：v3.5 Hybrid Layer</h3>
+<p><strong>問題：</strong><br>
+Vector search 每次都要重新計算 embedding，浪費大量資源。</p>
+<p><strong>解決方案：</strong></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>功能</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Idempotency Guard</strong></td>
+<td>防止重複寫入</td>
+<td>確保 data consistency</td>
+</tr>
+<tr>
+<td><strong>Vector Batching</strong></td>
+<td>Batch embeddings（8條/批）</td>
+<td>大幅降低 latency</td>
+</tr>
+<tr>
+<td><strong>Embedding Cache</strong></td>
+<td>Cache embeddings</td>
+<td>相同句子唔再 embed</td>
+</tr>
+<tr>
+<td><strong>Async Post-processing</strong></td>
+<td>Background 執行 contradiction/pruning</td>
+<td>非阻塞</td>
+</tr>
+<tr>
+<td><strong>Retry Utility</strong></td>
+<td>Exponential backoff retry</td>
+<td>確保任務完成</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>2.9 階段總結</h3>
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>版本</th>
+<th>核心進化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-03-29</td>
+<td>v0.1</td>
+<td>極簡日誌系統</td>
+</tr>
+<tr>
+<td>2026-04-11</td>
+<td>v0.3</td>
+<td>Triple-Stream Search 開始</td>
+</tr>
+<tr>
+<td>2026-04-15</td>
+<td>v0.7</td>
+<td>ClawMem + CraniMem 架構</td>
+</tr>
+<tr>
+<td>2026-04-17</td>
+<td>v0.9</td>
+<td>Phase Z（不確定性追蹤）</td>
+</tr>
+<tr>
+<td>2026-04-18</td>
+<td><strong>v2.0</strong></td>
+<td>7-Dir 全部完成</td>
+</tr>
+<tr>
+<td>2026-04-25</td>
+<td>v2.3</td>
+<td>Proactive Memory System</td>
+</tr>
+<tr>
+<td>2026-04-26</td>
+<td>v2.4</td>
+<td>Memory Stability System</td>
+</tr>
+<tr>
+<td>2026-04-28</td>
+<td><strong>v2.5</strong></td>
+<td>P3 Reliability Layer + P4</td>
+</tr>
+<tr>
+<td>2026-04-28</td>
+<td>v2.6</td>
+<td>Memory Reliability Layer</td>
+</tr>
+<tr>
+<td>2026-04-28</td>
+<td>v3.5</td>
+<td>Hybrid Layer（性能優化）</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>三、橫向分析：競爭圖譜</h2>
+<h3>3.1 行業地圖</h3>
+<p>AI Agent 記憶系統可分為三個方向：</p>
+<p><strong>方向 A：純 Vector Search（如 Pinecone、Weaviate）</strong><br>
+- 優點：簡單、成熟、生態豐富<br>
+- 缺點：唔理解 entity 關係，假陽性高</p>
+<p><strong>方向 B：Memory-first Agents（如 MemGPT、Letta）</strong><br>
+- 優點：專為 AI 設計，有完整 framework<br>
+- 缺點：通常係研究項目，生產環境未驗證</p>
+<p><strong>方向 C：混合架構（如 OCM Sup）</strong><br>
+- 優點：結合多個 channel，兼顧精確與語義<br>
+- 缺點：複雜，維護成本高</p>
+<hr>
+<h3>3.2 主要競品比較</h3>
+<table>
+<thead>
+<tr>
+<th>系統</th>
+<th>開發者</th>
+<th>核心方法</th>
+<th>強項</th>
+<th>弱項</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MemGPT</strong></td>
+<td>Memorial Labs</td>
+<td>層級記憶管理</td>
+<td>長期對話處理</td>
+<td>唔支援 entity 關係</td>
+</tr>
+<tr>
+<td><strong>Letta</strong></td>
+<td>Letta Inc</td>
+<td>Context Constitution</td>
+<td>可解釋性強</td>
+<td>企業導向，小團隊唔適用</td>
+</tr>
+<tr>
+<td><strong>AutoGPT Memory</strong></td>
+<td>AutoGPT Team</td>
+<td>Embedding-based</td>
+<td>易用</td>
+<td>精度低，冇 graph</td>
+</tr>
+<tr>
+<td><strong>OCM Sup</strong></td>
+<td>期哥/阿星</td>
+<td>三流融合 + Proactive</td>
+<td>精確 + 語義 + 關係</td>
+<td>新項目，生態未建立</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>3.3 詳細對比</h3>
+<p><strong>vs MemGPT</strong></p>
+<table>
+<thead>
+<tr>
+<th>維度</th>
+<th>MemGPT</th>
+<th>OCM Sup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>記憶結構</td>
+<td>層級（Tiered）</td>
+<td>三流融合（BM25 + Vector + Graph）</td>
+</tr>
+<tr>
+<td>Entity 關係</td>
+<td>❌ 唔支援</td>
+<td>✅ Graph Channel</td>
+</tr>
+<tr>
+<td>Proactive Discovery</td>
+<td>❌ 被動</td>
+<td>✅ ✅ 自動發現</td>
+</tr>
+<tr>
+<td>矛盾檢測</td>
+<td>Basic</td>
+<td>Sentence Transformer</td>
+</tr>
+<tr>
+<td>Token 優化</td>
+<td>普通</td>
+<td>140x faster</td>
+</tr>
+</tbody>
+</table>
+<p><strong>vs Letta</strong></p>
+<table>
+<thead>
+<tr>
+<th>維度</th>
+<th>Letta</th>
+<th>OCM Sup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>設計理念</td>
+<td>Context Constitution（可解釋）</td>
+<td>三流融合（高效）</td>
+</tr>
+<tr>
+<td>使用門檻</td>
+<td>高（需要企業setup）</td>
+<td>低（OpenClaw 原生）</td>
+</tr>
+<tr>
+<td>橫向擴展</td>
+<td>企業級</td>
+<td>個人/小團隊</td>
+</tr>
+<tr>
+<td>成本</td>
+<td>高</td>
+<td>低（本地運行）</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>3.4 OCM Sup 的獨特定位</h3>
+<p><strong>為乜嘢 OCM Sup 係獨特嘅？</strong></p>
+<ol>
+<li><strong>三流融合架構</strong> — 業界少有將 BM25、Vector、Graph 三個 channel 融合嘅系統</li>
+<li><strong>主動式記憶</strong> — 大部分記憶系統係被動，OCM Sup 係主動發現新舊連接</li>
+<li><strong>為香港用戶設計</strong> — 繁體中文支援、中英混合處理</li>
+<li><strong>透明嘅進化史</strong> — 所有決策同教訓都有記錄（CHANGELOG）</li>
+</ol>
+<hr>
+<h2>四、橫縱交匯洞察</h2>
+<h3>4.1 歷史如何塑造今日</h3>
+<p><strong>早期「極簡起步」嘅影響：</strong></p>
+<blockquote>
+<p>當初選擇「唔做複雜記憶系統」令 OCM Sup 嘅架構演變係「必要先加」而非「預測未來」。呢個設計哲學令系統保持簡單，但亦導致後期需要大量重構（v2.3 解決 AI 失憶問題）。</p>
+</blockquote>
+<p><strong>Triple-Stream 失敗嘅教訓：</strong></p>
+<blockquote>
+<p>最早期嘅純 Vector Search 會產生大量假陽性（特別中英混合）。呢個失敗教訓令 OCM Sup 發展出 Entity-Type Compatibility Check —— 一個簡單但非常有效嘅過濾機制。</p>
+</blockquote>
+<p><strong>Proactive vs Reactive 嘅轉變：</strong></p>
+<blockquote>
+<p>從 v0.5 到 v2.3，最大嘅轉變係從「被動回應」到「主動發現」。呢個唔只係技術改進，而係對「AI 助手」呢個角色嘅理解改變——助手唔應該等 user 問問題，而應該主動預見需要。</p>
+</blockquote>
+<hr>
+<h3>4.2 核心競爭優勢嘅歷史根源</h3>
+<table>
+<thead>
+<tr>
+<th>優勢</th>
+<th>歷史根源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>三流融合</strong></td>
+<td>v0.3 發現純 Vector 假陽性問題，發展出多 channel 架構</td>
+</tr>
+<tr>
+<td><strong>Proactive Discovery</strong></td>
+<td>v0.7 發現被動系統嘅局限性，引入 Consolidation Loop</td>
+</tr>
+<tr>
+<td><strong>Uncertainty Tracking</strong></td>
+<td>v0.9 發現「唔知自己唔知」問題</td>
+</tr>
+<tr>
+<td><strong>Reliability Layer</strong></td>
+<td>v2.5 發現寫入中途 crash 導致資料損壞</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>4.3 未來推演</h3>
+<p><strong>最可能嘅劇本：整合入大型 AI Framework</strong></p>
+<p>OCM Sup 嘅設計理念（簡單、模組化、易整合）令佢有機會被吸納進更大嘅 AI Framework 生態。</p>
+<p><strong>最危險嘅劇本：Token 成本持續上升</strong></p>
+<p>如果 AI 模型 token 成本上升，memory 系統嘅價值會被压缩。OCM Sup 需要持續優化（如 v3.5 Hybrid Layer）保持競爭力。</p>
+<p><strong>最樂觀嘅劇本：成為香港 AI 助手標準</strong></p>
+<p>香港係少數需要繁體中文 + 中英混合嘅市場。OCM Sup 喺呢個 niche 有機會成為標準配置。</p>
+<hr>
+<h2>五、信息來源</h2>
+<h3>主要資料來源</h3>
+<ol>
+<li><strong>OCM Sup CHANGELOG.md</strong> — 完整進化歷史同決策記錄</li>
+<li><strong>OCM Sup README.md</strong> — 系統架構同功能描述</li>
+<li><strong>OCM Sup TECHNICAL.md</strong> — 技術實現細節</li>
+<li><strong>memory/2026-04-*.md</strong> — 日常運作記錄</li>
+</ol>
+<h3>橫向分析資料來源</h3>
+<ol>
+<li><strong>MemGPT</strong> — https://github.com/MemGPT</li>
+<li><strong>Letta</strong> — https://www.letta.com/</li>
+<li><strong>AutoGPT Memory</strong> — https://github.com/Significant-Gravitas/AutoGPT</li>
+</ol>
+<hr>
+<h2>六、方法論說明</h2>
+<p><strong>橫縱分析法（Horizontal-Vertical Analysis）</strong> 由數字生命卡茲克提出，融合：<br>
+- 索緒爾的历时-共时分析<br>
+- 社會科學的縱向-橫截面研究設計<br>
+- 商學院案例研究法<br>
+- 競爭戰略分析</p>
+<p>核心原則：<strong>縱向追時間深度，橫向追同期廣度，最終交汇出判斷。</strong></p>
+<hr>
+<p><em>報告生成時間：2026-04-30 HKT</em><br>
+<em>研究者：阿星（使用卡茲克橫縱分析法）</em></p>
+</body>
+</html>

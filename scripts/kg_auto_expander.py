@@ -261,7 +261,7 @@ class KGAutoExpander:
     Automatically expand the Knowledge Graph with new entities and relationships.
     
     Usage:
-        expander = KGAutoExpander(wiki_path="/root/.openclaw/workspace/wiki")
+        expander = KGAutoExpander(wiki_path="/home/jacky/.openclaw/workspace/wiki")
         result = expander.expand()
         print(f"Added {len(result['added_entities'])} new entities")
     """
@@ -701,7 +701,7 @@ def main():
     import argparse
     
     parser = argparse.ArgumentParser(description='KG Auto-Expansion')
-    parser.add_argument('--wiki-path', default='/root/.openclaw/workspace/wiki', help='Wiki path')
+    parser.add_argument('--wiki-path', default='/home/jacky/.openclaw/workspace/wiki', help='Wiki path')
     parser.add_argument('--min-confidence', type=float, default=0.7, help='Minimum confidence threshold')
     parser.add_argument('--similarity-threshold', type=float, default=0.92, help='Similarity threshold (0.0-1.0, higher = stricter)')
     parser.add_argument('--no-similarity-check', action='store_true', help='Skip similarity check (add all validated entities)')

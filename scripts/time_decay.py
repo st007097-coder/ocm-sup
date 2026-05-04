@@ -24,7 +24,7 @@ from datetime import datetime, timedelta
 from typing import Dict, List, Tuple, Optional
 import math
 
-WIKI_PATH = Path('/root/.openclaw/workspace/wiki')
+WIKI_PATH = Path('/home/jacky/.openclaw/workspace/wiki')
 
 # Decay parameters
 BASE_HALF_LIFE_DAYS = 30  # Base half-life for all memories

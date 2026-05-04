@@ -15,11 +15,11 @@ import json
 from datetime import datetime
 from pathlib import Path
 
-sys.path.insert(0, '/root/.openclaw/workspace/OCM-Sup/scripts')
+sys.path.insert(0, '/home/jacky/.openclaw/workspace/OCM-Sup/scripts')
 from triple_stream_search import TripleStreamSearch
 
 # Initialize search
-WIKI_PATH = '/root/.openclaw/workspace/wiki'
+WIKI_PATH = '/home/jacky/.openclaw/workspace/wiki'
 search = TripleStreamSearch(wiki_path=WIKI_PATH)
 
 # Expanded query set
@@ -201,7 +201,7 @@ def print_summary(all_results):
 
 def save_results(all_results, summary):
     """Save results to file"""
-    output_path = Path('/root/.openclaw/workspace/OCM-Sup/benchmark-results.json')
+    output_path = Path('/home/jacky/.openclaw/workspace/OCM-Sup/benchmark-results.json')
     data = {
         'timestamp': datetime.now().isoformat(),
         'total_queries': len(all_results),

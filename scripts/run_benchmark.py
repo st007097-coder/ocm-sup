@@ -5,7 +5,7 @@ import sys
 
 # Run the benchmark script as subprocess
 result = subprocess.run(
-    [sys.executable, '/root/.openclaw/workspace/OCM-Sup/scripts/silent_benchmark.py'],
+    [sys.executable, '/home/jacky/.openclaw/workspace/OCM-Sup/scripts/silent_benchmark.py'],
     capture_output=True,
     text=True,
     timeout=300

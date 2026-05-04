@@ -41,7 +41,7 @@ from memory_reliability_layer import is_duplicate as check_idempotency
 
 VALID_TYPES = {"fact", "lesson", "preference", "decision", "insight", "constraint", "habit", "goal", "project", "episode", "reflection"}
 
-REJECT_LOG = Path("/root/.openclaw/workspace/logs/memory_rejects.log")
+REJECT_LOG = Path("/home/jacky/.openclaw/workspace/logs/memory_rejects.log")
 REJECT_LOG.parent.mkdir(parents=True, exist_ok=True)
 
 # P3 Storage paths
@@ -63,8 +63,8 @@ class MemoryWriteGate:
     
     def __init__(
         self,
-        memory_db_path: str = "/root/.openclaw/workspace/memory/checkpoints/validated_memories.jsonl",
-        entity_map_path: str = "/root/.openclaw/workspace/memory/entity_canonical_map.json",
+        memory_db_path: str = "/home/jacky/.openclaw/workspace/memory/checkpoints/validated_memories.jsonl",
+        entity_map_path: str = "/home/jacky/.openclaw/workspace/memory/entity_canonical_map.json",
     ):
         self.memory_db_path = Path(memory_db_path)
         self.memory_db_path.parent.mkdir(parents=True, exist_ok=True)
@@ -127,7 +127,7 @@ class MemoryWriteGate:
     
     def _load_entity_map(self) -> Dict[str, str]:
         """Load entity canonicalization map."""
-        p = Path(entity_map_path if 'entity_map_path' in dir() else "/root/.openclaw/workspace/memory/entity_canonical_map.json")
+        p = Path(entity_map_path if 'entity_map_path' in dir() else "/home/jacky/.openclaw/workspace/memory/entity_canonical_map.json")
         if p.exists():
             with open(p) as f:
                 return json.load(f)

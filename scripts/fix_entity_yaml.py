@@ -123,7 +123,7 @@ def fix_entity_yaml(filepath: Path) -> tuple[bool, list]:
 
 
 def main():
-    wiki_path = Path("/root/.openclaw/workspace/wiki")
+    wiki_path = Path("/home/jacky/.openclaw/workspace/wiki")
     
     # Find all markdown files that might be entities
     md_files = []

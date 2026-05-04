@@ -34,9 +34,9 @@ class MemoryPruner:
     
     def __init__(
         self,
-        struct_dir: str = "/root/.openclaw/workspace/memory/structured",
-        archive_dir: str = "/root/.openclaw/workspace/memory/archive",
-        decayed_dir: str = "/root/.openclaw/workspace/memory/decayed",
+        struct_dir: str = "/home/jacky/.openclaw/workspace/memory/structured",
+        archive_dir: str = "/home/jacky/.openclaw/workspace/memory/archive",
+        decayed_dir: str = "/home/jacky/.openclaw/workspace/memory/decayed",
         max_age_days: int = 90,
         min_confidence: float = 0.3,
         min_score_threshold: float = 0.2,

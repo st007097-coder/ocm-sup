@@ -16,9 +16,9 @@ from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Set, Tuple
 
-WIKI_PATH = Path("/root/.openclaw/workspace/wiki")
-STATE_FILE = Path("/root/.openclaw/scripts/.proactive_state.json")
-DISCOVERY_LOG = Path("/root/.openclaw/scripts/.proactive_discovery_log.json")
+WIKI_PATH = Path("/home/jacky/.openclaw/workspace/wiki")
+STATE_FILE = Path("/home/jacky/.openclaw/scripts/.proactive_state.json")
+DISCOVERY_LOG = Path("/home/jacky/.openclaw/scripts/.proactive_discovery_log.json")
 
 
 class SuperQuickDiscovery:

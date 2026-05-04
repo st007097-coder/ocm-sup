@@ -49,9 +49,9 @@ class ContinuityState:
     
     def __init__(
         self,
-        wiki_path: str = "/root/.openclaw/workspace/wiki",
-        state_dir: str = "/root/.openclaw/workspace/OCM-Sup/scripts/continuity",
-        ocm_sup_path: str = "/root/.openclaw/workspace/OCM-Sup"
+        wiki_path: str = "/home/jacky/.openclaw/workspace/wiki",
+        state_dir: str = "/home/jacky/.openclaw/workspace/OCM-Sup/scripts/continuity",
+        ocm_sup_path: str = "/home/jacky/.openclaw/workspace/OCM-Sup"
     ):
         self.wiki_path = Path(wiki_path)
         self.state_dir = Path(state_dir)
@@ -437,7 +437,7 @@ class ContinuityState:
         from pathlib import Path
         
         today = datetime.now().strftime("%Y-%m-%d")
-        memory_dir = Path("/root/.openclaw/workspace/memory")
+        memory_dir = Path("/home/jacky/.openclaw/workspace/memory")
         memory_dir.mkdir(parents=True, exist_ok=True)
         
         trace_file = memory_dir / f"{today}.md"

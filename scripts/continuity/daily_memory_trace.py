@@ -29,7 +29,7 @@ class DailyMemoryTrace:
     
     Usage:
         trace = DailyMemoryTrace(
-            memory_dir="/root/.openclaw/workspace/memory"
+            memory_dir="/home/jacky/.openclaw/workspace/memory"
         )
         
         # Write a trace
@@ -49,8 +49,8 @@ class DailyMemoryTrace:
     
     def __init__(
         self,
-        memory_dir: str = "/root/.openclaw/workspace/memory",
-        continuity_dir: str = "/root/.openclaw/workspace/OCM-Sup/scripts/continuity"
+        memory_dir: str = "/home/jacky/.openclaw/workspace/memory",
+        continuity_dir: str = "/home/jacky/.openclaw/workspace/OCM-Sup/scripts/continuity"
     ):
         self.memory_dir = Path(memory_dir)
         self.continuity_dir = Path(continuity_dir)

@@ -17,7 +17,7 @@ from pathlib import Path
 from datetime import datetime, timezone
 
 # Paths
-WORKSPACE = Path("/root/.openclaw/workspace")
+WORKSPACE = Path("/home/jacky/.openclaw/workspace")
 CHECKPOINT_FILE = WORKSPACE / "memory" / "work-in-progress.md"
 CHECKPOINT_JSON = WORKSPACE / "memory" / "work-in-progress.json"
 

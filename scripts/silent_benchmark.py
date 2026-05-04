@@ -7,10 +7,10 @@ import os
 sys.stdout = open(os.devnull, 'w')
 sys.stderr = open(os.devnull, 'w')
 
-sys.path.insert(0, '/root/.openclaw/workspace/OCM-Sup/scripts')
+sys.path.insert(0, '/home/jacky/.openclaw/workspace/OCM-Sup/scripts')
 from triple_stream_search import TripleStreamSearch
 
-search = TripleStreamSearch(wiki_path='/root/.openclaw/workspace/wiki')
+search = TripleStreamSearch(wiki_path='/home/jacky/.openclaw/workspace/wiki')
 
 # Restore output for benchmark results
 sys.stdout = sys.__stdout__

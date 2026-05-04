@@ -43,7 +43,7 @@ class GraphSearchChannel:
     - Return related entities and their source documents
     """
     
-    def __init__(self, wiki_path: str = "/root/.openclaw/workspace/wiki"):
+    def __init__(self, wiki_path: str = "/home/jacky/.openclaw/workspace/wiki"):
         self.wiki_path = Path(wiki_path)
         
         self.nodes: Dict[str, GraphNode] = {}
@@ -343,7 +343,7 @@ def test_graph_search():
     print("🧪 Testing Graph Search Channel")
     print("=" * 50)
     
-    wiki_path = "/root/.openclaw/workspace/wiki"
+    wiki_path = "/home/jacky/.openclaw/workspace/wiki"
     graph = GraphSearchChannel(wiki_path=wiki_path)
     
     stats = graph.get_stats()

@@ -63,7 +63,7 @@ class CarryoverManager:
     
     def __init__(
         self,
-        state_dir: str = "/root/.openclaw/workspace/OCM-Sup/scripts/continuity",
+        state_dir: str = "/home/jacky/.openclaw/workspace/OCM-Sup/scripts/continuity",
         max_turns: int = 5
     ):
         self.state_dir = Path(state_dir)

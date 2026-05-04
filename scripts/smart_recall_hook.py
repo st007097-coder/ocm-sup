@@ -18,7 +18,7 @@ from collections import defaultdict
 import time
 
 # Add Triple-Stream Search to path
-sys.path.insert(0, '/root/.openclaw/workspace/skills/triple-stream-search/scripts')
+sys.path.insert(0, '/home/jacky/.openclaw/workspace/skills/triple-stream-search/scripts')
 
 from triple_stream_search import TripleStreamSearch
 
@@ -41,8 +41,8 @@ class SmartRecallHook:
     
     def __init__(
         self,
-        wiki_path: str = "/root/.openclaw/workspace/wiki",
-        memory_dir: str = "/root/.openclaw/workspace/memory",
+        wiki_path: str = "/home/jacky/.openclaw/workspace/wiki",
+        memory_dir: str = "/home/jacky/.openclaw/workspace/memory",
         max_results: int = 5,
         token_budget: int = 2000,
     ):
@@ -63,7 +63,7 @@ class SmartRecallHook:
     
     def _load_patterns(self):
         """Load cached access patterns"""
-        cache_path = Path("/root/.openclaw/scripts/.recall_patterns.json")
+        cache_path = Path("/home/jacky/.openclaw/scripts/.recall_patterns.json")
         if cache_path.exists():
             try:
                 with open(cache_path, 'r') as f:
@@ -74,7 +74,7 @@ class SmartRecallHook:
     
     def _save_patterns(self):
         """Save access patterns to disk"""
-        cache_path = Path("/root/.openclaw/scripts/.recall_patterns.json")
+        cache_path = Path("/home/jacky/.openclaw/scripts/.recall_patterns.json")
         cache_path.parent.mkdir(parents=True, exist_ok=True)
         
         with open(cache_path, 'w') as f:
@@ -369,8 +369,8 @@ def main():
     parser = argparse.ArgumentParser(description='Smart Memory Recall Hook')
     parser.add_argument('--query', '-q', help='Query to recall')
     parser.add_argument('--stats', action='store_true', help='Show recall statistics')
-    parser.add_argument('--wiki-path', default='/root/.openclaw/workspace/wiki')
-    parser.add_argument('--memory-dir', default='/root/.openclaw/workspace/memory')
+    parser.add_argument('--wiki-path', default='/home/jacky/.openclaw/workspace/wiki')
+    parser.add_argument('--memory-dir', default='/home/jacky/.openclaw/workspace/memory')
     parser.add_argument('--context', help='JSON context for smart triggering')
     
     args = parser.parse_args()

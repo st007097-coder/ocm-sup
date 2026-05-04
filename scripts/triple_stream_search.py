@@ -38,7 +38,7 @@ from graph_search import GraphSearchChannel
 class EmbeddingCache:
     """Cache document embeddings"""
     
-    def __init__(self, cache_path: str = "/root/.openclaw/scripts/.embeddings_cache.json"):
+    def __init__(self, cache_path: str = "/home/jacky/.openclaw/scripts/.embeddings_cache.json"):
         self.cache_path = Path(cache_path)
         self.cache_path.parent.mkdir(parents=True, exist_ok=True)
         self._lock = __import__('threading').Lock()
@@ -89,7 +89,7 @@ class TripleStreamSearch:
     
     def __init__(
         self,
-        wiki_path: str = "/root/.openclaw/workspace/wiki",
+        wiki_path: str = "/home/jacky/.openclaw/workspace/wiki",
         ollama_url: str = "http://host.docker.internal:11434",
         embedding_model: str = "nomic-embed-text:latest",
         rrf_k: int = 60,
@@ -492,7 +492,7 @@ def main():
     print("🧪 Triple-Stream Enhanced Search")
     print("=" * 60)
     
-    wiki_path = "/root/.openclaw/workspace/wiki"
+    wiki_path = "/home/jacky/.openclaw/workspace/wiki"
     search = TripleStreamSearch(wiki_path=wiki_path)
     
     stats = search.get_stats()

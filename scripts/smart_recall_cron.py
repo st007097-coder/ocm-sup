@@ -17,7 +17,7 @@ import argparse
 from pathlib import Path
 from datetime import datetime
 
-sys.path.insert(0, '/root/.openclaw/workspace/skills/triple-stream-search/scripts')
+sys.path.insert(0, '/home/jacky/.openclaw/workspace/skills/triple-stream-search/scripts')
 
 from smart_recall_hook import SmartRecallHook, inject_into_context
 
@@ -53,7 +53,7 @@ def precache_context_for_topics(topics):
 
 def save_cache(results):
     """Save pre-cached context to disk"""
-    cache_path = Path("/root/.openclaw/scripts/.recall_cache.json")
+    cache_path = Path("/home/jacky/.openclaw/scripts/.recall_cache.json")
     cache_path.parent.mkdir(parents=True, exist_ok=True)
     
     with open(cache_path, 'w', encoding='utf-8') as f:
@@ -64,7 +64,7 @@ def save_cache(results):
 
 def load_cache():
     """Load pre-cached context from disk"""
-    cache_path = Path("/root/.openclaw/scripts/.recall_cache.json")
+    cache_path = Path("/home/jacky/.openclaw/scripts/.recall_cache.json")
     if cache_path.exists():
         try:
             with open(cache_path, 'r', encoding='utf-8') as f:

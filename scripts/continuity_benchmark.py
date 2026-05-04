@@ -22,7 +22,7 @@ import statistics
 from datetime import datetime
 from pathlib import Path
 
-sys.path.insert(0, '/root/.openclaw/workspace/OCM-Sup/scripts')
+sys.path.insert(0, '/home/jacky/.openclaw/workspace/OCM-Sup/scripts')
 
 from continuity.continuity_state import ContinuityState
 from continuity.hook_lifecycle import HookLifecycle

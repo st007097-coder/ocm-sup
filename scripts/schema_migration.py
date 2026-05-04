@@ -16,7 +16,7 @@ from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Tuple, Optional
 
-WIKI_PATH = Path('/root/.openclaw/workspace/wiki')
+WIKI_PATH = Path('/home/jacky/.openclaw/workspace/wiki')
 
 # Schema version history
 SCHEMA_VERSIONS = {

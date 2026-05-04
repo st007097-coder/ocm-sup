@@ -30,7 +30,7 @@ from pathlib import Path
 from datetime import datetime
 
 # Add OCM Sup to path
-sys.path.insert(0, '/root/.openclaw/workspace/OCM-Sup/scripts')
+sys.path.insert(0, '/home/jacky/.openclaw/workspace/OCM-Sup/scripts')
 
 from flask import Flask, request, jsonify
 from continuity.continuity_state import ContinuityState

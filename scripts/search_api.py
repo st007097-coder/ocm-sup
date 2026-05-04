@@ -20,7 +20,7 @@ from pathlib import Path
 from datetime import datetime
 
 # Add Triple-Stream to path
-sys.path.insert(0, '/root/.openclaw/workspace/skills/triple-stream-search/scripts')
+sys.path.insert(0, '/home/jacky/.openclaw/workspace/skills/triple-stream-search/scripts')
 
 from flask import Flask, request, jsonify
 from triple_stream_search import TripleStreamSearch
@@ -39,7 +39,7 @@ stats = {
 def init_search():
     """Initialize Triple-Stream Search"""
     global search
-    wiki_path = '/root/.openclaw/workspace/wiki'
+    wiki_path = '/home/jacky/.openclaw/workspace/wiki'
     search = TripleStreamSearch(wiki_path=wiki_path)
     print(f"✅ Triple-Stream Search initialized")
     print(f"   Wiki: {wiki_path}")

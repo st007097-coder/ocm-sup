@@ -188,7 +188,7 @@ def main():
         memories = load_memories_from_file(args.memories)
     else:
         # Try loading from structured dir
-        struct_dir = Path("/root/.openclaw/workspace/memory/structured")
+        struct_dir = Path("/home/jacky/.openclaw/workspace/memory/structured")
         memories = []
         if struct_dir.exists():
             for f in struct_dir.glob("*.json"):
